@@ -1,0 +1,25 @@
+{
+    "general": {
+        "housekeepingBook": "Hauswirtschaftsbuch",
+        "menu": "Menü",
+        "dashboard": "Dashboard",
+        "editMonth": "Monat bearbeiten",
+        "total": "Gesamtsumme",
+        "perPerson": "Pro Person",
+        "january": "Jänner",
+        "february": "Feber",
+        "march": "März",
+        "april": "April",
+        "may": "Mai",
+        "june": "Juni",
+        "july": "Juli",
+        "august": "August",
+        "september": "September",
+        "october": "Oktober",
+        "november": "November",
+        "december": "Dezember"
+    },
+    "editMonth": {
+        "invoiceTotal": "Rechnungssumme"
+    }
+}
