@@ -1,32 +1,34 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
 const props = defineProps({
   TextBefore: String,
   TextAfter: String,
-  checked: Boolean,
-});
+  checked: Boolean
+})
 
-const emit = defineEmits(["clicked"]);
-let checkedValue = props.checked;
+const emit = defineEmits(['clicked'])
+let checkedValue = props.checked
 
-function toggleCheckbox() {
-  checkedValue = !checkedValue;
-  emit("clicked", checkedValue);
+// variables
+const { t } = useI18n()
+
+// functions
+const toggleCheckbox = () => {
+  checkedValue = !checkedValue
+  emit('clicked', checkedValue)
 }
 </script>
 
 <template>
   <div class="d-flex align-items-center">
-    <span class="pe-3 fs-5">{{ TextBefore }}</span>
+    <span class="pe-2">{{ TextBefore }}</span>
     <label class="switch">
-      <input
-        v-bind="$attrs"
-        type="checkbox"
-        :checked="checkedValue"
-        @change="toggleCheckbox"
-      />
+      <input v-bind="$attrs" type="checkbox" :checked="checkedValue" @change="toggleCheckbox" />
       <span class="slider round"></span>
     </label>
-    <span class="ps-3 fs-5">{{ TextAfter }}</span>
+    <span class="px-2">{{ TextAfter }}</span>
+    <font-awesome-icon icon="fa-solid fa-circle-info" v-b-tooltip.hover.top="t('general.perPersonSetting')" />
   </div>
 </template>
 
@@ -34,8 +36,8 @@ function toggleCheckbox() {
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 40px;
+  height: 24px;
 }
 
 .switch input {
@@ -51,18 +53,19 @@ function toggleCheckbox() {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: green;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
 
 .slider:before {
   position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
+  content: '';
+  height: 20px;
+  width: 20px;
+  top: 2px;
+  left: 2px;
+  bottom: 2px;
   background-color: white;
   -webkit-transition: 0.4s;
   transition: 0.4s;
@@ -77,14 +80,14 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(16px);
 }
 
 /* Rounded sliders */
 .slider.round {
-  border-radius: 34px;
+  border-radius: 20px;
 }
 
 .slider.round:before {

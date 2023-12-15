@@ -1,25 +1,40 @@
 {
-    "general": {
-        "housekeepingBook": "Hauswirtschaftsbuch",
-        "menu": "Menü",
-        "dashboard": "Dashboard",
-        "editMonth": "Monat bearbeiten",
-        "total": "Gesamtsumme",
-        "perPerson": "Pro Person",
-        "january": "Jänner",
-        "february": "Feber",
-        "march": "März",
-        "april": "April",
-        "may": "Mai",
-        "june": "Juni",
-        "july": "Juli",
-        "august": "August",
-        "september": "September",
-        "october": "Oktober",
-        "november": "November",
-        "december": "Dezember"
-    },
-    "editMonth": {
-        "invoiceTotal": "Rechnungssumme"
-    }
+  "general": {
+    "housekeepingBook": "Hauswirtschaftsbuch",
+    "menu": "Menü",
+    "dashboard": "Dashboard",
+    "settings": "Einstellungen",
+    "editMonth": "Monat bearbeiten",
+    "total": "Gesamt",
+    "perPerson": "Pro Person",
+    "january": "Jänner",
+    "february": "Feber",
+    "march": "März",
+    "april": "April",
+    "may": "Mai",
+    "june": "Juni",
+    "july": "Juli",
+    "august": "August",
+    "september": "September",
+    "october": "Oktober",
+    "november": "November",
+    "december": "Dezember",
+    "selectMonth": "-- Wählen Sie bitte einen Monat aus --",
+    "selectYear": "-- Wählen Sie bitte ein Jahr aus --",
+    "sum": "Summe",
+    "numberOfInvoices": "Anzahl der Rechnungen:",
+    "perPersonSetting": "Die Anzahl der Personen können unter Einstellungen geändert werden.",
+    "currrentMonth": "Aktueller Monat",
+    "noCommentYet": "Sie haben für diesen Monat noch keinen Kommentar hinterlassen."
+  },
+  "editMonth": {
+    "invoiceTotal": "Rechnungssumme",
+    "noInvoicesCreatedYet": "Es wurden noch keine Rechnungssummen angelegt."
+  },
+  "settings": {
+    "people": "Personen",
+    "numberOfPeople": "Personenanzahl",
+    "currentSelectedMonth": "Aktuell eingestellter Monat",
+    "currentSelectedYear": "Aktuell eingestelltes Jahr"
+  }
 }
