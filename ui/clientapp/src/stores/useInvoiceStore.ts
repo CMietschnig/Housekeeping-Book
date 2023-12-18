@@ -3,6 +3,7 @@ import type { IInvoice } from '@/interfaces/IInvoice'
 
 export interface InvoiceStoreState {
   invoices: Array<IInvoice>
+  monthTotals: Array<number>
 }
 
 const DefaultInvoiceState: InvoiceStoreState = {
@@ -18,68 +19,9 @@ const DefaultInvoiceState: InvoiceStoreState = {
     {
       id: 3,
       sum: 45
-    },
-    {
-      id: 1,
-      sum: 2334.434343
-    },
-    {
-      id: 2,
-      sum: 34
-    },
-    {
-      id: 3,
-      sum: 45
-    },
-    {
-      id: 1,
-      sum: 2334.434343
-    },
-    {
-      id: 2,
-      sum: 34
-    },
-    {
-      id: 3,
-      sum: 45
-    },
-    {
-      id: 1,
-      sum: 2334.434343
-    },
-    {
-      id: 2,
-      sum: 34
-    },
-    {
-      id: 3,
-      sum: 45
-    },
-    {
-      id: 1,
-      sum: 2334.434343
-    },
-    {
-      id: 2,
-      sum: 34
-    },
-    {
-      id: 3,
-      sum: 45
-    },
-    {
-      id: 1,
-      sum: 2334.434343
-    },
-    {
-      id: 2,
-      sum: 34
-    },
-    {
-      id: 3,
-      sum: 45
-    },
-  ]
+    }
+  ],
+  monthTotals: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120]
 }
 
 export const useInvoiceStore = defineStore({
@@ -88,7 +30,8 @@ export const useInvoiceStore = defineStore({
     ...DefaultInvoiceState
   }),
   getters: {
-    getInvoices: (state): Array<IInvoice> => state.invoices
+    getInvoices: (state): Array<IInvoice> => state.invoices,
+    getMonthTotals: (state): Array<number> => state.monthTotals
   },
   actions: {
     async deleteNumber(id: number) {

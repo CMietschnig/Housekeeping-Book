@@ -4,6 +4,7 @@ import 'bootstrap-vue-next/dist/bootstrap-vue-next.css'
 import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
 import { createPinia } from 'pinia'
+import VueApexCharts from "vue3-apexcharts";
 
 import App from './App.vue'
 import router from './router'
@@ -42,6 +43,7 @@ const app = createApp(App)
 app.use(createPinia())
 app.use(router)
 app.use(i18n)
+app.use(VueApexCharts)
 app.component('font-awesome-icon', FontAwesomeIcon)
 
 app.mount('#app')

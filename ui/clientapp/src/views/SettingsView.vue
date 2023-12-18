@@ -29,8 +29,10 @@ const updateYear = (value: number) => {
 </script>
 
 <template>
-  <h1>{{ t('general.settings') }}</h1>
-  <div>
+  <div class="pt-5">
+    <h1 class="pb-4 d-flex justify-content-center">{{ t('general.settings') }}</h1>
+    <div class="d-flex flex-wrap justify-content-between gap-4">
+      <div>
     <span>{{ t('settings.numberOfPeople') }}</span>
     <NumberInput
       v-model:number="people"
@@ -49,4 +51,8 @@ const updateYear = (value: number) => {
     <span>{{ t('settings.currentSelectedYear') }}</span>
     <SingleSelect :select-options="yearOptions" :selected="year" @update:selected="updateYear" :placeholder="t('general.selectYear')" />
   </div>
+    </div>
+ 
+  </div>
+  
 </template>

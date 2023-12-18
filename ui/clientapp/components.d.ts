@@ -16,6 +16,7 @@ declare module 'vue' {
     BNavbarNav: typeof import('bootstrap-vue-next')['BNavbarNav']
     BNavbarToggle: typeof import('bootstrap-vue-next')['BNavbarToggle']
     BNavItem: typeof import('bootstrap-vue-next')['BNavItem']
+    ColumnChart: typeof import('./src/components/dashboard/ColumnChart.vue')['default']
     EditableComment: typeof import('./src/components/general/EditableComment.vue')['default']
     InvoicesPerMonthList: typeof import('./src/components/editMonth/InvoicesPerMonthList.vue')['default']
     LocaleChanger: typeof import('./src/components/general/LocaleChanger.vue')['default']

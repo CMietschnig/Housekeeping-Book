@@ -36,5 +36,8 @@
     "numberOfPeople": "Personenanzahl",
     "currentSelectedMonth": "Aktuell eingestellter Monat",
     "currentSelectedYear": "Aktuell eingestelltes Jahr"
+  },
+  "dashboard": {
+    "monthlyInvoices": "Monatliche Ausgaben"
   }
 }
