@@ -10,7 +10,7 @@ defineProps({
   }
 })
 
-defineEmits(['deleteNumber', 'saveNumber', 'addNumber'])
+defineEmits(['deleteNumber', 'updateNumber', 'addNumber'])
 
 // variables
 const { t } = useI18n()
@@ -35,10 +35,10 @@ const number = ref(null)
     <!-- list of invoices -->
     <div v-else v-for="(invoice, id) in invoices" :key="id">
       <NumberInput
-        v-model:number="invoice.sum"
-        :id="invoice.id"
+        v-model:number="invoice.Total"
+        :id="invoice.InvoiceId"
         @delete-number="$emit('deleteNumber', $event)"
-        @save-number="$emit('saveNumber', $event)"
+        @update-number="$emit('updateNumber', $event)"
         :placeholder="t('editMonth.invoiceTotal')"
         :only-addable="false"
       />

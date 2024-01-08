@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using HousekeepingBook.Entities;
+using HousekeepingBook.Models;
+using HousekeepingBook.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
-using System.Data.SqlClient;
 
 namespace HousekeepingBook.Controllers
 {
@@ -9,11 +9,89 @@ namespace HousekeepingBook.Controllers
     [ApiController]
     public class InvoicesController : ControllerBase
     {
+        private readonly IInvoiceRepository _invoiceRepository;
+        private readonly MonthlyInvoiceSummaryServices _monthlyInvoiceSummaryServices;
 
-     
+        public InvoicesController(IInvoiceRepository invoiceRepository, MonthlyInvoiceSummaryServices monthlyInvoiceSummaryServices)
+        {
+            _invoiceRepository = invoiceRepository;
+            _monthlyInvoiceSummaryServices = monthlyInvoiceSummaryServices;
+        }
 
-  
+        [HttpPost("getInvoicesPerMonthAndYear")]
+        public IEnumerable<Invoice> GetInvoicesPerMonthAndYear([FromBody] GetDataPerMonthAndYearModel model)
+        {
+            int id = _monthlyInvoiceSummaryServices.GetMonthlyInvoiceSummaryId(model.Month, model.Year);
 
+            var invoices = _invoiceRepository.GetInvoicesPerMonthlyInvoiceSummaryId(id);
+            return invoices;
+        }
+
+        [HttpPost("getCommentPerMonthAndYear")]
+        public string GetCommentPerMonthAndYear([FromBody] GetDataPerMonthAndYearModel model)
+        {
+            int id = _monthlyInvoiceSummaryServices.GetMonthlyInvoiceSummaryId(model.Month, model.Year);
+
+            var comment = _monthlyInvoiceSummaryServices.GetCommentByMonthlyInvoiceSummaryId(id);
+            return comment;
+        }
+
+        [HttpPost("addInvoiceToMonthAndYear")]
+        public string AddInvoiceToMonthAndYear([FromBody] AddInvoiceToMonthAndYearModel model)
+        {
+            int id = _monthlyInvoiceSummaryServices.GetMonthlyInvoiceSummaryId(model.Month, model.Year);
+
+            Invoice invoice = new Invoice()
+            {
+                Total = model.InvoiceTotal,
+                CreateTimestamp = DateTime.Now,
+                UpdateTimestamp = DateTime.Now,
+                MonthlyInvoiceSummaryId = id,
+                Store = null // store hinzufügen
+            };
+
+            _invoiceRepository.AddInvoiceToMonthAndYear(invoice);
+
+            
+            return "AddInvoiceToMonthAndYear " + model.Month + " " + model.Year + " " + model.InvoiceTotal;
+        }
+
+        [HttpPut("updateInvoiceById")]
+        public string UpdateInvoiceById([FromBody] UpdateInvoiceByIdModel model)
+        {
+            var oldInvoice = _invoiceRepository.GetInvoiceById(model.Id);
+
+            Invoice newModel = new Invoice()
+            {
+                InvoiceId = model.Id,
+                Total = model.invoiceTotal,
+                CreateTimestamp = oldInvoice.CreateTimestamp,
+                UpdateTimestamp = DateTime.Now,
+                MonthlyInvoiceSummaryId = oldInvoice.MonthlyInvoiceSummaryId,
+                Store = oldInvoice.Store
+            };
+
+            _invoiceRepository.UpdateInvoiceById(newModel);
+           
+            return "UpdateInvoiceById " + model.Id + " " + model.invoiceTotal;
+        }
+
+        [HttpPut("updateCommentByMonthAndYear")]
+        public string UpdateCommentByMonthAndYear([FromBody] UpdateCommentByMonthAndYearModel model)
+        {
+            int id = _monthlyInvoiceSummaryServices.GetMonthlyInvoiceSummaryId(model.Month, model.Year);
+
+            var monthlyInvoiceSummary = _monthlyInvoiceSummaryServices.UpdateComment(id, model.Comment);
+
+            return monthlyInvoiceSummary.Comment;
+        }
+
+        [HttpPost("deleteInvoiceById")]
+        public string DeleteInvoiceById([FromBody] DeleteInvoiceByIdModel model)
+        {
+            var test = _invoiceRepository.DeleteInvoiceById(model);
+            return "DeleteInvoiceById " + model.Id;
+        }
 
     }
 }

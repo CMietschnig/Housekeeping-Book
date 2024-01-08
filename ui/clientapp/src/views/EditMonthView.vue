@@ -6,36 +6,47 @@ import { useSettingsStore } from '@/stores/useSettingsStore'
 import useMonthOptions from '../composables/useMonthOptions.ts'
 import useYearOptions from '@/composables/useYearOptions'
 import { ref } from 'vue'
+import type { IInvoice } from '@/interfaces/IInvoice'
+import { onBeforeMount, onMounted } from 'vue'
 
 // variables
 const { t } = useI18n()
-const comment = ref('')
+
 
 //stores
 const invoiceStore = useInvoiceStore()
-const { getInvoices: invoices } = storeToRefs(invoiceStore)
+const { getInvoices: invoices, getComment: commentFromStore } = storeToRefs(invoiceStore)
 const settingsStore = useSettingsStore()
 const { getMonth: month, getYear: year } = storeToRefs(settingsStore)
+
 
 // composables
 const { monthOptions } = useMonthOptions()
 const { yearOptions } = useYearOptions()
 
-// onbeforeMount(getDataForSelectedMonthAndYear)
+onBeforeMount(() => {
+  invoiceStore.getInvoicesPerMonthAndYear(month.value, year.value.toString());
+  invoiceStore.getCommentPerMonthAndYear(month.value, year.value.toString());
+});
+
+
+// commentfromstore ist zu früh drann es ist leer wenn die seite neu geladen wird
+var comment = ref(commentFromStore.value);
+console.log(" comment form store", commentFromStore.value)
 // das aktuelle Jahr und Monat als standartwert einstellen
 
 // functions
-const deleteNumber = (id: number) => {
-  invoiceStore.deleteNumber(id)
+const deleteInvoice = (id: number) => {
+  invoiceStore.deleteInvoiceById(id)
 }
-const saveNumber = (value: { id: number; number: number }) => {
-  invoiceStore.saveNumber(value.id, value.number)
+const updateInvoice = (value: { id: number; invoiceTotal: number }) => {
+  invoiceStore.updateInvoiceById(value.id, value.invoiceTotal)
 }
-const saveComment = (value: { id: number; comment: string }) => {
-  console.log('save comment', value.id, value.comment)
+const updateComment = (comment: string) => {
+  invoiceStore.updateCommentByMonthAndYear(month.value, year.value, comment)
 }
-const addNumber = (number: number) => {
-  invoiceStore.addNumber(number)
+const addInvoice = (invoiceTotal: number) => {
+  invoiceStore.addInvoiceToMonthAndYear(month.value, year.value, invoiceTotal)
 }
 const updateMonth = (value: number) => {
   settingsStore.selectMonth(value)
@@ -73,16 +84,16 @@ const switchToggeled = (value: Boolean) => {
         <!-- invoices count -->
         <NumberOfInvoices :invoices="invoices" />
         <!-- comment -->
-        <EditableComment v-model:comment="comment" id="jannuary" @save-comment="saveComment" />
+        <EditableComment v-model:comment="comment" id="jannuary" @save-comment="updateComment"/>
       </div>
 
       <div>
         <!-- invoices -->
         <InvoicesPerMonthList
           :invoices="invoices"
-          @delete-number="deleteNumber"
-          @save-number="saveNumber"
-          @add-number="addNumber"
+          @delete-number="deleteInvoice"
+          @update-number="updateInvoice"
+          @add-number="addInvoice"
         />
         <!--sum  -->
         <MonthlySum :sum="2" :show-text="false" />

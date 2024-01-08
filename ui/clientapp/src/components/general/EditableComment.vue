@@ -30,7 +30,7 @@ const editComment = () => {
   isEditMode.value = !isEditMode.value
 }
 const saveComment = () => {
-  emit('saveComment', { id: props.id, comment: props.comment })
+  emit('saveComment', props.comment )
   isEditMode.value = !isEditMode.value
 }
 </script>

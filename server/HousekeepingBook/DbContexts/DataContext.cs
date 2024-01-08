@@ -6,7 +6,7 @@ namespace HousekeepingBook.DbContexts
     public class DataContext : DbContext
     {
 
-        public DataContext(DbContextOptions options)
+        public DataContext(DbContextOptions<DataContext> options)
             : base(options) { }
         
         public DbSet<Invoice> Invoices =>Set<Invoice>();

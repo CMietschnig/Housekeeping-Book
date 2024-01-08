@@ -28,7 +28,7 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['update:number', 'deleteNumber', 'saveNumber', 'addNumber'])
+const emit = defineEmits(['update:number', 'deleteNumber', 'updateNumber', 'addNumber'])
 
 // variables
 const oldNumber = props.number
@@ -43,9 +43,9 @@ const resetInput = () => {
   inputValue.value = oldNumber
   isEditMode.value = !isEditMode.value
 }
-const saveInput = () => {
+const updateInput = () => {
   if (props.number) {
-    emit('saveNumber', { id: props.id, number: props.number })
+    emit('updateNumber', { id: props.id, invoiceTotal: props.number })
     isEditMode.value = !isEditMode.value
   }
 }
@@ -88,7 +88,7 @@ const addInput = () => {
       >
         <input :placeholder="placeholder" v-model="inputValue" type="number" :id="'id-' + id" />
         <div class="d-flex gap-2">
-          <BButton variant="primary" class="save-btn" @click="saveInput()">
+          <BButton variant="primary" class="save-btn" @click="updateInput()">
             <font-awesome-icon icon="fa-regular fa-floppy-disk" />
           </BButton>
           <BButton variant="primary" class="reset-btn" @click="resetInput()">
