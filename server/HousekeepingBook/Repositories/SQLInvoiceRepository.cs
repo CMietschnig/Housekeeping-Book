@@ -1,8 +1,9 @@
-﻿
-using HousekeepingBook.DbContexts;
+﻿using HousekeepingBook.DbContexts;
 using HousekeepingBook.Entities;
+using HousekeepingBook.Interfaces;
+using HousekeepingBook.Models;
 
-namespace HousekeepingBook.Models
+namespace HousekeepingBook.Repositories
 {
     public class SQLInvoiceRepository : IInvoiceRepository
     {
@@ -12,18 +13,19 @@ namespace HousekeepingBook.Models
         {
             this.context = context;
         }
-        public Invoice AddInvoiceToMonthAndYear(Invoice model)
+        public bool AddInvoiceToMonthAndYear(Invoice model)
         {
             context.Invoices.Add(model);
-            context.SaveChanges();
-            
-            return model;
+            int affectedRows = context.SaveChanges();
+
+            return affectedRows > 0; // Returns true if at least one row was affected.
         }
 
         public Invoice DeleteInvoiceById(DeleteInvoiceByIdModel model)
         {
             var invoice = context.Invoices.Find(model.Id);
-            if (invoice != null) {
+            if (invoice != null)
+            {
                 context.Invoices.Remove(invoice);
                 context.SaveChanges();
             }
@@ -33,7 +35,7 @@ namespace HousekeepingBook.Models
         public Invoice GetInvoiceById(int id)
         {
             var invoice = context.Invoices.Find(id);
-             // check if invoice is null and return invoice or error??
+            // check if invoice is null and return invoice or error??
             return invoice;
         }
 

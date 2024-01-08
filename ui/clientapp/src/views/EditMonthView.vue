@@ -24,6 +24,7 @@ const { getMonth: month, getYear: year } = storeToRefs(settingsStore)
 const { monthOptions } = useMonthOptions()
 const { yearOptions } = useYearOptions()
 
+
 onBeforeMount(() => {
   invoiceStore.getInvoicesPerMonthAndYear(month.value, year.value.toString());
   invoiceStore.getCommentPerMonthAndYear(month.value, year.value.toString());

@@ -1,7 +1,8 @@
-﻿
-using HousekeepingBook.Entities;
+﻿using HousekeepingBook.Entities;
+using HousekeepingBook.Interfaces;
+using HousekeepingBook.Models;
 
-namespace HousekeepingBook.Models
+namespace HousekeepingBook.Tests
 {
     public class MockInvoiceRepository : IInvoiceRepository
     {
@@ -14,23 +15,23 @@ namespace HousekeepingBook.Models
                 new Invoice() { InvoiceId = 1 , Total= 23.34, CreateTimestamp= new DateTime(), UpdateTimestamp = new DateTime(), MonthlyInvoiceSummaryId= 1, Store= null },
                 new Invoice() { InvoiceId = 2 , Total= 45.87, CreateTimestamp= new DateTime(), UpdateTimestamp = new DateTime(), MonthlyInvoiceSummaryId= 1, Store= null },
                 new Invoice() { InvoiceId = 3 , Total= 934.87, CreateTimestamp= new DateTime(), UpdateTimestamp = new DateTime(), MonthlyInvoiceSummaryId= 1, Store= null }
-            }; 
+            };
         }
-        
 
-        public Invoice AddInvoiceToMonthAndYear(Invoice model)
+        // create a seperate IMonthlyInvoiceSummaryRepository and change the service
+        public bool AddInvoiceToMonthAndYear(Invoice model)
         {
             throw new NotImplementedException();
         }
 
         public Invoice DeleteInvoiceById(DeleteInvoiceByIdModel model)
         {
-                var invoice = _invoices.FirstOrDefault(i => i.InvoiceId == model.Id);
-                if (invoice != null)
-                {
-                    _invoices.Remove(invoice);
-                }
-            
+            var invoice = _invoices.FirstOrDefault(i => i.InvoiceId == model.Id);
+            if (invoice != null)
+            {
+                _invoices.Remove(invoice);
+            }
+
             return invoice!;
         }
 

@@ -1,6 +1,6 @@
 ﻿using HousekeepingBook.Entities;
+using HousekeepingBook.Interfaces;
 using HousekeepingBook.Models;
-using HousekeepingBook.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HousekeepingBook.Controllers
@@ -10,18 +10,18 @@ namespace HousekeepingBook.Controllers
     public class InvoicesController : ControllerBase
     {
         private readonly IInvoiceRepository _invoiceRepository;
-        private readonly MonthlyInvoiceSummaryServices _monthlyInvoiceSummaryServices;
+        private readonly IMonthlyInvoiceSummaryRepository _monthlyInvoiceSummaryRepository;
 
-        public InvoicesController(IInvoiceRepository invoiceRepository, MonthlyInvoiceSummaryServices monthlyInvoiceSummaryServices)
+        public InvoicesController(IInvoiceRepository invoiceRepository, IMonthlyInvoiceSummaryRepository monthlyInvoiceSummaryRepository)
         {
             _invoiceRepository = invoiceRepository;
-            _monthlyInvoiceSummaryServices = monthlyInvoiceSummaryServices;
+            _monthlyInvoiceSummaryRepository = monthlyInvoiceSummaryRepository;
         }
 
         [HttpPost("getInvoicesPerMonthAndYear")]
         public IEnumerable<Invoice> GetInvoicesPerMonthAndYear([FromBody] GetDataPerMonthAndYearModel model)
         {
-            int id = _monthlyInvoiceSummaryServices.GetMonthlyInvoiceSummaryId(model.Month, model.Year);
+            int id = _monthlyInvoiceSummaryRepository.GetMonthlyInvoiceSummaryId(model.Month, model.Year);
 
             var invoices = _invoiceRepository.GetInvoicesPerMonthlyInvoiceSummaryId(id);
             return invoices;
@@ -30,16 +30,16 @@ namespace HousekeepingBook.Controllers
         [HttpPost("getCommentPerMonthAndYear")]
         public string GetCommentPerMonthAndYear([FromBody] GetDataPerMonthAndYearModel model)
         {
-            int id = _monthlyInvoiceSummaryServices.GetMonthlyInvoiceSummaryId(model.Month, model.Year);
+            int id = _monthlyInvoiceSummaryRepository.GetMonthlyInvoiceSummaryId(model.Month, model.Year);
 
-            var comment = _monthlyInvoiceSummaryServices.GetCommentByMonthlyInvoiceSummaryId(id);
+            var comment = _monthlyInvoiceSummaryRepository.GetCommentByMonthlyInvoiceSummaryId(id);
             return comment;
         }
 
         [HttpPost("addInvoiceToMonthAndYear")]
         public string AddInvoiceToMonthAndYear([FromBody] AddInvoiceToMonthAndYearModel model)
         {
-            int id = _monthlyInvoiceSummaryServices.GetMonthlyInvoiceSummaryId(model.Month, model.Year);
+            int id = _monthlyInvoiceSummaryRepository.GetMonthlyInvoiceSummaryId(model.Month, model.Year);
 
             Invoice invoice = new Invoice()
             {
@@ -79,9 +79,9 @@ namespace HousekeepingBook.Controllers
         [HttpPut("updateCommentByMonthAndYear")]
         public string UpdateCommentByMonthAndYear([FromBody] UpdateCommentByMonthAndYearModel model)
         {
-            int id = _monthlyInvoiceSummaryServices.GetMonthlyInvoiceSummaryId(model.Month, model.Year);
+            int id = _monthlyInvoiceSummaryRepository.GetMonthlyInvoiceSummaryId(model.Month, model.Year);
 
-            var monthlyInvoiceSummary = _monthlyInvoiceSummaryServices.UpdateComment(id, model.Comment);
+            var monthlyInvoiceSummary = _monthlyInvoiceSummaryRepository.UpdateComment(id, model.Comment);
 
             return monthlyInvoiceSummary.Comment;
         }
