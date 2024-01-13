@@ -18,12 +18,12 @@ namespace HousekeepingBook.Tests
             };
         }
 
-        public string AddNewMonthlyInvoiceSummary(int month, string year)
+        public bool AddNewMonthlyInvoiceSummary(int month, string year)
         {
             throw new NotImplementedException();
         }
 
-        public string GetCommentByMonthlyInvoiceSummaryId(int id)
+        public string? GetCommentByMonthlyInvoiceSummaryId(int id)
         {
             throw new NotImplementedException();
         }
@@ -33,7 +33,7 @@ namespace HousekeepingBook.Tests
             throw new NotImplementedException();
         }
 
-        public MonthlyInvoiceSummary UpdateComment(int id, string comment)
+        public bool UpdateComment(int id, string comment)
         {
             throw new NotImplementedException();
         }

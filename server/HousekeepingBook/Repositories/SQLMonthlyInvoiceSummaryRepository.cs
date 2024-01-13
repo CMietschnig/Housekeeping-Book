@@ -13,8 +13,16 @@ namespace HousekeepingBook.Repositories
         {
             this.context = context;
         }
-        public string AddNewMonthlyInvoiceSummary(int month, string year)
+        public bool AddNewMonthlyInvoiceSummary(int month, string year)
         {
+
+            // Validate the month
+            if (!Enum.IsDefined(typeof(Month), month))
+            {
+                // Month is not valid
+                return false;
+            }
+
             MonthlyInvoiceSummary monthlyInvoiceSummary = new MonthlyInvoiceSummary()
             {
                 MonthId = (Month)Enum.Parse(typeof(Month), month.ToString()),
@@ -25,20 +33,36 @@ namespace HousekeepingBook.Repositories
                 //Invoices = null,
             };
 
-            context.MonthlyInvoiceSummaries.Add(monthlyInvoiceSummary);
-            context.SaveChanges();
+            int affectedRows = 0;
+            IEnumerable <MonthlyInvoiceSummary> summaries = 
+                context.MonthlyInvoiceSummaries.Where(
+                    x => x.MonthId == monthlyInvoiceSummary.MonthId 
+                    && x.Year == monthlyInvoiceSummary.Year);
 
-            return "MonthlyInvoiceSummary created for " + month + " " + year;
+            if(summaries.Count() == 0)
+            {
+                context.MonthlyInvoiceSummaries.Add(monthlyInvoiceSummary);
+                affectedRows = context.SaveChanges();
+            }
+
+            return affectedRows > 0; // Returns true if at least one row was affected.
         }
 
-        public string GetCommentByMonthlyInvoiceSummaryId(int id)
+        public string? GetCommentByMonthlyInvoiceSummaryId(int id)
         {
             var monthlyInvoiceSummary = context.MonthlyInvoiceSummaries.FirstOrDefault(c => c.MonthlyInvoiceSummaryId == id);
-            return monthlyInvoiceSummary != null ? monthlyInvoiceSummary.Comment : " ";
+            return monthlyInvoiceSummary?.Comment;
         }
 
         public int GetMonthlyInvoiceSummaryId(int month, string year)
         {
+            // Validate the month
+            if (!Enum.IsDefined(typeof(Month), month))
+            {
+                // Month is not valid
+                return 0;
+            }
+
             var MonthInEnum = (Month)Enum.Parse(typeof(Month), month.ToString());
             var monthlyInvoiceSummary = context.MonthlyInvoiceSummaries.FirstOrDefault(m => m.MonthId == MonthInEnum && m.Year == year);
 
@@ -51,16 +75,16 @@ namespace HousekeepingBook.Repositories
             return monthlyInvoiceSummary!.MonthlyInvoiceSummaryId;
         }
 
-        public MonthlyInvoiceSummary UpdateComment(int id, string comment)
+        public bool UpdateComment(int id, string comment)
         {
             var monthlyInvoiceSummary = context.MonthlyInvoiceSummaries.FirstOrDefault(m => m.MonthlyInvoiceSummaryId == id);
-            if (monthlyInvoiceSummary != null)
+            int affectedRows = 0;
+            if (monthlyInvoiceSummary != null && comment != null)
             {
                 monthlyInvoiceSummary.Comment = comment;
-                context.SaveChanges();
+                affectedRows = context.SaveChanges();
             }
-            return monthlyInvoiceSummary;
+            return affectedRows > 0; // Returns true if at least one row was affected.
         }
-
     }
 }

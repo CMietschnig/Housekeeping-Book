@@ -24,18 +24,12 @@ namespace HousekeepingBook.Tests
             throw new NotImplementedException();
         }
 
-        public Invoice DeleteInvoiceById(DeleteInvoiceByIdModel model)
+        public bool DeleteInvoiceById(DeleteInvoiceByIdModel model)
         {
-            var invoice = _invoices.FirstOrDefault(i => i.InvoiceId == model.Id);
-            if (invoice != null)
-            {
-                _invoices.Remove(invoice);
-            }
-
-            return invoice!;
+            throw new NotImplementedException();
         }
 
-        public Invoice GetInvoiceById(int id)
+        public Invoice? GetInvoiceById(int id)
         {
             throw new NotImplementedException();
         }
@@ -45,7 +39,7 @@ namespace HousekeepingBook.Tests
             throw new NotImplementedException();
         }
 
-        public Invoice UpdateInvoiceById(Invoice model)
+        public bool UpdateInvoiceById(Invoice model)
         {
             throw new NotImplementedException();
         }

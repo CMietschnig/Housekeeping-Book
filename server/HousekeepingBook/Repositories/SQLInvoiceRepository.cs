@@ -21,21 +21,21 @@ namespace HousekeepingBook.Repositories
             return affectedRows > 0; // Returns true if at least one row was affected.
         }
 
-        public Invoice DeleteInvoiceById(DeleteInvoiceByIdModel model)
+        public bool DeleteInvoiceById(DeleteInvoiceByIdModel model)
         {
             var invoice = context.Invoices.Find(model.Id);
+            int affectedRows = 0;
             if (invoice != null)
             {
                 context.Invoices.Remove(invoice);
-                context.SaveChanges();
+                affectedRows = context.SaveChanges();
             }
-            return invoice!;
+            return affectedRows > 0; // Returns true if at least one row was affected.
         }
 
-        public Invoice GetInvoiceById(int id)
+        public Invoice? GetInvoiceById(int id)
         {
             var invoice = context.Invoices.Find(id);
-            // check if invoice is null and return invoice or error??
             return invoice;
         }
 
@@ -45,19 +45,18 @@ namespace HousekeepingBook.Repositories
             return invoices;
         }
 
-        public Invoice UpdateInvoiceById(Invoice model)
+        public bool UpdateInvoiceById(Invoice model)
         {
             var invoice = context.Invoices.Find(model.InvoiceId);
+            int affectedRows = 0;
             if (invoice != null)
             {
                 invoice.Total = model.Total;
                 invoice.UpdateTimestamp = model.UpdateTimestamp;
+                //invoice.Store = model.Store; will be added later!
+                affectedRows = context.SaveChanges();
             }
-            //var invoice = context.Invoices.Update(model);
-            //invoice.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-            context.SaveChanges();
-
-            return invoice;
+            return affectedRows > 0; // Returns true if at least one row was affected.
         }
     }
 }

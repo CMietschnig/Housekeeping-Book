@@ -81,9 +81,9 @@ namespace HousekeepingBook.Controllers
         {
             int id = _monthlyInvoiceSummaryRepository.GetMonthlyInvoiceSummaryId(model.Month, model.Year);
 
-            var monthlyInvoiceSummary = _monthlyInvoiceSummaryRepository.UpdateComment(id, model.Comment);
+            bool commentUpdated = _monthlyInvoiceSummaryRepository.UpdateComment(id, model.Comment);
 
-            return monthlyInvoiceSummary.Comment;
+            return commentUpdated ? "sucess" : "fail";
         }
 
         [HttpPost("deleteInvoiceById")]
