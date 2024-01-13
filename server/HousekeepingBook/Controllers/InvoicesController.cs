@@ -2,6 +2,7 @@
 using HousekeepingBook.Interfaces;
 using HousekeepingBook.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace HousekeepingBook.Controllers
 {
@@ -19,78 +20,155 @@ namespace HousekeepingBook.Controllers
         }
 
         [HttpPost("getInvoicesPerMonthAndYear")]
-        public IEnumerable<Invoice> GetInvoicesPerMonthAndYear([FromBody] GetDataPerMonthAndYearModel model)
+        public IActionResult GetInvoicesPerMonthAndYear([FromBody] GetDataPerMonthAndYearModel model)
         {
-            int id = _monthlyInvoiceSummaryRepository.GetMonthlyInvoiceSummaryId(model.Month, model.Year);
+            try
+            {
+                int id = _monthlyInvoiceSummaryRepository.GetMonthlyInvoiceSummaryId(model.Month, model.Year);
+                if (id == 0)
+                {
+                    return NotFound($"No MonthlyInvoiceSummary found for month {model.Month} and year {model.Year}");
+                }
 
-            var invoices = _invoiceRepository.GetInvoicesPerMonthlyInvoiceSummaryId(id);
-            return invoices;
+                var invoices = _invoiceRepository.GetInvoicesPerMonthlyInvoiceSummaryId(id);
+                return Ok(invoices);
+            }
+            catch (Exception ex)
+            {
+                // Todo: add loggin for exeptions
+
+                return StatusCode(500, "Error occurred while executing GetInvoicesPerMonthAndYear: " + ex.Message);
+            }
         }
 
         [HttpPost("getCommentPerMonthAndYear")]
-        public string GetCommentPerMonthAndYear([FromBody] GetDataPerMonthAndYearModel model)
+        public IActionResult GetCommentPerMonthAndYear([FromBody] GetDataPerMonthAndYearModel model)
         {
-            int id = _monthlyInvoiceSummaryRepository.GetMonthlyInvoiceSummaryId(model.Month, model.Year);
+            try
+            {
+                int id = _monthlyInvoiceSummaryRepository.GetMonthlyInvoiceSummaryId(model.Month, model.Year);
+                if (id == 0)
+                {
+                    return NotFound($"No MonthlyInvoiceSummary found for month {model.Month} and year {model.Year}");
+                }
 
-            var comment = _monthlyInvoiceSummaryRepository.GetCommentByMonthlyInvoiceSummaryId(id);
-            return comment;
+                var comment = _monthlyInvoiceSummaryRepository.GetCommentByMonthlyInvoiceSummaryId(id);
+
+                return comment != null ? Ok(comment) : NotFound($"Comment for month {model.Month} and year {model.Year} not found.");
+            }
+            catch (Exception ex)
+            {
+                // Todo: add loggin for exeptions
+
+                return StatusCode(500, "Error occurred while executing GetCommentPerMonthAndYear: " + ex.Message);
+            }
         }
 
         [HttpPost("addInvoiceToMonthAndYear")]
-        public string AddInvoiceToMonthAndYear([FromBody] AddInvoiceToMonthAndYearModel model)
+        public IActionResult AddInvoiceToMonthAndYear([FromBody] AddInvoiceToMonthAndYearModel model)
         {
-            int id = _monthlyInvoiceSummaryRepository.GetMonthlyInvoiceSummaryId(model.Month, model.Year);
-
-            Invoice invoice = new Invoice()
+            try
             {
-                Total = model.InvoiceTotal,
-                CreateTimestamp = DateTime.Now,
-                UpdateTimestamp = DateTime.Now,
-                MonthlyInvoiceSummaryId = id,
-                Store = null // store hinzufügen
-            };
+                int id = _monthlyInvoiceSummaryRepository.GetMonthlyInvoiceSummaryId(model.Month, model.Year);
+                if (id == 0)
+                {
+                    return NotFound($"No MonthlyInvoiceSummary found for month {model.Month} and year {model.Year}");
+                }
 
-            _invoiceRepository.AddInvoiceToMonthAndYear(invoice);
+                Invoice invoice = new Invoice()
+                {
+                    Total = model.InvoiceTotal,
+                    CreateTimestamp = DateTime.Now,
+                    UpdateTimestamp = DateTime.Now,
+                    MonthlyInvoiceSummaryId = id,
+                    Store = null // store hinzufügen
+                };
 
-            
-            return "AddInvoiceToMonthAndYear " + model.Month + " " + model.Year + " " + model.InvoiceTotal;
+                bool invoiceAdded = _invoiceRepository.AddInvoiceToMonthAndYear(invoice);
+
+                return invoiceAdded ? Ok() : NotFound($"Invoice with total {model.InvoiceTotal} not added.");
+            }
+            catch (Exception ex) 
+            {
+                // Todo: add loggin for exeptions
+
+                return StatusCode(500, "Error occurred while executing AddInvoiceToMonthAndYear: " + ex.Message);
+            }
         }
 
         [HttpPut("updateInvoiceById")]
-        public string UpdateInvoiceById([FromBody] UpdateInvoiceByIdModel model)
+        public IActionResult UpdateInvoiceById([FromBody] UpdateInvoiceByIdModel model)
         {
-            var oldInvoice = _invoiceRepository.GetInvoiceById(model.Id);
-
-            Invoice newModel = new Invoice()
+            try
             {
-                InvoiceId = model.Id,
-                Total = model.invoiceTotal,
-                CreateTimestamp = oldInvoice.CreateTimestamp,
-                UpdateTimestamp = DateTime.Now,
-                MonthlyInvoiceSummaryId = oldInvoice.MonthlyInvoiceSummaryId,
-                Store = oldInvoice.Store
-            };
+                Invoice? oldInvoice = _invoiceRepository.GetInvoiceById(model.Id);
+                if (oldInvoice == null)
+                {
+                    return NotFound($"No invoice found for id {model.Id}");
+                }
+                
+                Invoice newModel = new Invoice()
+                {
+                    InvoiceId = model.Id,
+                    Total = model.invoiceTotal,
+                    CreateTimestamp = oldInvoice.CreateTimestamp,
+                    UpdateTimestamp = DateTime.Now,
+                    MonthlyInvoiceSummaryId = oldInvoice.MonthlyInvoiceSummaryId,
+                    Store = oldInvoice.Store
+                };
 
-            _invoiceRepository.UpdateInvoiceById(newModel);
-           
-            return "UpdateInvoiceById " + model.Id + " " + model.invoiceTotal;
+                bool invoiceUpdated = _invoiceRepository.UpdateInvoiceById(newModel);
+
+                return invoiceUpdated ? Ok() : NotFound($"Invoice with id {model.Id} not updated.");
+                
+            }
+            catch (Exception ex)
+            {
+                // Todo: add loggin for exeptions
+
+                return StatusCode(500, "Error occurred while executing UpdateInvoiceById: " + ex.Message);
+
+            }
         }
 
         [HttpPut("updateCommentByMonthAndYear")]
-        public string UpdateCommentByMonthAndYear([FromBody] UpdateCommentByMonthAndYearModel model)
+        public IActionResult UpdateCommentByMonthAndYear([FromBody] UpdateCommentByMonthAndYearModel model)
         {
-            int id = _monthlyInvoiceSummaryRepository.GetMonthlyInvoiceSummaryId(model.Month, model.Year);
+            try
+            {
+                int id = _monthlyInvoiceSummaryRepository.GetMonthlyInvoiceSummaryId(model.Month, model.Year);
+                if (id == 0)
+                {
+                    return NotFound($"No MonthlyInvoiceSummary found for month {model.Month} and year {model.Year}");
+                }
 
-            bool commentUpdated = _monthlyInvoiceSummaryRepository.UpdateComment(id, model.Comment);
+                bool commentUpdated = _monthlyInvoiceSummaryRepository.UpdateComment(id, model.Comment);
 
-            return commentUpdated ? "sucess" : "fail";
+                return commentUpdated ? Ok() : NotFound($"Comment for month {model.Month} and year {model.Year} not updated.");
+            }
+            catch (Exception ex)
+            {
+                // Todo: add loggin for exeptions
+
+                return StatusCode(500, "Error occurred while executing UpdateCommentByMonthAndYear: " + ex.Message);
+            }
         }
 
         [HttpPost("deleteInvoiceById")]
-        public string DeleteInvoiceById([FromBody] DeleteInvoiceByIdModel model)
+        public IActionResult DeleteInvoiceById([FromBody] DeleteInvoiceByIdModel model)
         {
-            var test = _invoiceRepository.DeleteInvoiceById(model);
-            return "DeleteInvoiceById " + model.Id;
+            try
+            {
+                bool invoiceDeleted = _invoiceRepository.DeleteInvoiceById(model);
+
+                return invoiceDeleted ? Ok() : NotFound($"Invoice with id {model.Id} not deleted.");
+            }
+            catch(Exception ex)
+            {
+                // Todo: add loggin for exeptions
+
+                return StatusCode(500, "Error occurred while executing DeleteInvoiceById: " + ex.Message);
+            }
         }
 
     }

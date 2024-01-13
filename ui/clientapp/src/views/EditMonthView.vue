@@ -37,8 +37,9 @@ console.log(" comment form store", commentFromStore.value)
 // das aktuelle Jahr und Monat als standartwert einstellen
 
 // functions
-const deleteInvoice = (id: number) => {
-  invoiceStore.deleteInvoiceById(id)
+const deleteInvoice = async (id: number) => {
+  await invoiceStore.deleteInvoiceById(id)
+  await invoiceStore.getInvoicesPerMonthAndYear(month.value, year.value.toString())
 }
 const updateInvoice = (value: { id: number; invoiceTotal: number }) => {
   invoiceStore.updateInvoiceById(value.id, value.invoiceTotal)

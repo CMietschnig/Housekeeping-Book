@@ -155,16 +155,5 @@ export const useInvoiceStore = defineStore({
         console.error('Could not delete number with id ' + id + '. ' + e)
       }
     }
-    /*async test() {
-      try {
-        console.log('test store')
-
-        const response = await axios.get('http://localhost:65513/api/invoices/gettest');
-      const test = response.data;
-      console.log("test", test)
-      } catch (e) {
-        console.error('Could not delete number with id ' + e)
-      }
-    }, */
   }
 })
