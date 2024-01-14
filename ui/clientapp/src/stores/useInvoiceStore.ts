@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import type { IInvoice } from '@/interfaces/IInvoice'
-import axios from 'axios'
+import InvoicesApiService from '@/services/api/InvoicesApiService'
 
 export interface InvoiceStoreState {
   invoices: Array<IInvoice>
@@ -11,8 +11,10 @@ export interface InvoiceStoreState {
 const DefaultInvoiceState: InvoiceStoreState = {
   invoices: [],
   monthTotals: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120],
-  comment: ""
+  comment: ''
 }
+
+const invoicesApiService = new InvoicesApiService()
 
 export const useInvoiceStore = defineStore({
   id: 'invoice-store',
@@ -27,53 +29,56 @@ export const useInvoiceStore = defineStore({
   actions: {
     async getInvoicesPerMonthAndYear(month: number, year: string) {
       try {
-        const response = await axios.post(
-          'http://localhost:65513/api/invoices/getInvoicesPerMonthAndYear',
-          { month, year },
-          {
-            headers: {
-              'content-type': 'application/json'
-            }
-          }
-        )
-        this.$patch((state) => {
-          state.invoices = response.data
-        })
+        const invoices = await invoicesApiService.getInvoicesPerMonthAndYear(month, year)
+
+        if (invoices) {
+          this.$patch((state) => {
+            state.invoices = invoices
+          })
+        } else {
+          console.error(
+            'Could not get invoices per month and year ' +
+              month +
+              ' ' +
+              year +
+              '. The response is undefined.'
+          )
+        }
       } catch (e) {
         console.error('Could not get invoices per month and year ' + month + ' ' + year + '. ' + e)
       }
     },
     async getCommentPerMonthAndYear(month: number, year: string) {
       try {
-        const response = await axios.post(
-          'http://localhost:65513/api/invoices/getCommentPerMonthAndYear',
-          { month, year },
-          {
-            headers: {
-              'content-type': 'application/json'
-            }
-          }
-        )
-        this.$patch((state) => {
-          state.comment = response.data
-        })
+        const comment = await invoicesApiService.getCommentPerMonthAndYear(month, year)
+
+        if (comment) {
+          this.$patch((state) => {
+            state.comment = comment
+          })
+        } else {
+          console.error(
+            'Could not get comment per month and year ' +
+              month +
+              ' ' +
+              year +
+              '. The response is undefined.'
+          )
+        }
       } catch (e) {
         console.error('Could not get comment per month and year ' + month + ' ' + year + '. ' + e)
       }
     },
     async addInvoiceToMonthAndYear(month: number, year: number, invoiceTotal: number) {
       try {
-        const response = await axios.post(
-          'http://localhost:65513/api/invoices/addInvoiceToMonthAndYear',
-          { month, year, invoiceTotal },
-          {
-            headers: {
-              'content-type': 'application/json'
-            }
-          }
+        const response = await invoicesApiService.addInvoiceToMonthAndYear(
+          month,
+          year,
+          invoiceTotal
         )
-        if (response.status === 200) {
-          console.log("addInvoiceToMonthAndYear was successful!");
+
+        if (response === 200) {
+          console.log('addInvoiceToMonthAndYear was successful!')
         }
       } catch (e) {
         console.error('Could not add invoice to month and year ' + e)
@@ -81,19 +86,9 @@ export const useInvoiceStore = defineStore({
     },
     async updateInvoiceById(id: number, invoiceTotal: number) {
       try {
-        const response = await axios.put(
-          'http://localhost:65513/api/invoices/updateInvoiceById',
-          {
-            id,
-            invoiceTotal
-          },
-          {
-            headers: {
-              'content-type': 'application/json'
-            }
-          }
-        )
-        if(response.status === 200) {
+        const response = await invoicesApiService.updateInvoiceById(id, invoiceTotal)
+
+        if (response === 200) {
           console.log('updateInvoiceById was successful!')
         }
       } catch (e) {
@@ -102,22 +97,27 @@ export const useInvoiceStore = defineStore({
     },
     async updateCommentByMonthAndYear(month: number, year: number, comment: string) {
       try {
-        const response = await axios.put(
-          'http://localhost:65513/api/invoices/updateCommentByMonthAndYear',
-          {
-            month,
-            year,
-            comment
-          },
-          {
-            headers: {
-              'content-type': 'application/json'
-            }
-          }
+        const newComment = await invoicesApiService.updateCommentByMonthAndYear(
+          month,
+          year,
+          comment
         )
-        this.$patch((state) => {
-          state.comment = response.data
-        })
+
+        if (newComment) {
+          this.$patch((state) => {
+            state.comment = newComment
+          })
+        } else {
+          console.error(
+            'Could not update comment by month and year ' +
+              month +
+              ' ' +
+              year +
+              ' ' +
+              comment +
+              '. The response is undefined.'
+          )
+        }
       } catch (e) {
         console.error(
           'Could not update comment by month and year ' +
@@ -133,16 +133,9 @@ export const useInvoiceStore = defineStore({
     },
     async deleteInvoiceById(id: number) {
       try {
-        const response = await axios.post(
-          'http://localhost:65513/api/invoices/deleteInvoiceById',
-          { id },
-          {
-            headers: {
-              'content-type': 'application/json'
-            }
-          }
-        )
-        if(response.status === 200) {
+        const response = await invoicesApiService.deleteInvoiceById(id)
+
+        if (response === 200) {
           console.log('deleteInvoiceById was successful!')
         }
       } catch (e) {
