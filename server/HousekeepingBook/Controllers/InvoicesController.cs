@@ -144,7 +144,16 @@ namespace HousekeepingBook.Controllers
 
                 bool commentUpdated = _monthlyInvoiceSummaryRepository.UpdateComment(id, model.Comment);
 
-                return commentUpdated ? Ok() : NotFound($"Comment for month {model.Month} and year {model.Year} not updated.");
+
+                if(commentUpdated) 
+                {
+                    string updatedComment = _monthlyInvoiceSummaryRepository.GetCommentByMonthlyInvoiceSummaryId(id)!;
+                    return Ok(updatedComment);
+                }
+                else
+                {
+                    return NotFound($"Comment for month {model.Month} and year {model.Year} not updated.");
+                }
             }
             catch (Exception ex)
             {

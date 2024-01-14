@@ -27,7 +27,7 @@ namespace HousekeepingBook.Repositories
             {
                 MonthId = (Month)Enum.Parse(typeof(Month), month.ToString()),
                 Year = year,
-                Comment = null,
+                Comment = "",
                 CreateTimestamp = DateTime.Now,
                 UpdateTimestamp = DateTime.Now,
                 //Invoices = null,

@@ -5,20 +5,14 @@ import { useInvoiceStore } from '../stores/useInvoiceStore.ts'
 import { useSettingsStore } from '@/stores/useSettingsStore'
 import useMonthOptions from '../composables/useMonthOptions.ts'
 import useYearOptions from '@/composables/useYearOptions'
-import { ref } from 'vue'
-import type { IInvoice } from '@/interfaces/IInvoice'
-import { onBeforeMount, onMounted } from 'vue'
-
-// variables
-const { t } = useI18n()
-
+import { ref, watch } from 'vue'
+import { onBeforeMount } from 'vue'
 
 //stores
 const invoiceStore = useInvoiceStore()
-const { getInvoices: invoices, getComment: commentFromStore } = storeToRefs(invoiceStore)
+const { getInvoices: invoices, getComment: savedComment } = storeToRefs(invoiceStore)
 const settingsStore = useSettingsStore()
 const { getMonth: month, getYear: year } = storeToRefs(settingsStore)
-
 
 // composables
 const { monthOptions } = useMonthOptions()
@@ -30,11 +24,14 @@ onBeforeMount(() => {
   invoiceStore.getCommentPerMonthAndYear(month.value, year.value.toString());
 });
 
-
-// commentfromstore ist zu früh drann es ist leer wenn die seite neu geladen wird
-var comment = ref(commentFromStore.value);
-console.log(" comment form store", commentFromStore.value)
-// das aktuelle Jahr und Monat als standartwert einstellen
+// variables
+const { t } = useI18n()
+var comment = ref(savedComment.value);
+// update comment because
+// comment is loaded faster than getComment from the store
+watch(savedComment, (newComment) => {
+  comment.value = newComment;
+})
 
 // functions
 const deleteInvoice = async (id: number) => {
@@ -47,16 +44,21 @@ const updateInvoice = (value: { id: number; invoiceTotal: number }) => {
 const updateComment = (comment: string) => {
   invoiceStore.updateCommentByMonthAndYear(month.value, year.value, comment)
 }
-const addInvoice = (invoiceTotal: number) => {
-  invoiceStore.addInvoiceToMonthAndYear(month.value, year.value, invoiceTotal)
+const addInvoice = async (invoiceTotal: number) => {
+  await invoiceStore.addInvoiceToMonthAndYear(month.value, year.value, invoiceTotal)
+  await invoiceStore.getInvoicesPerMonthAndYear(month.value, year.value.toString())
 }
-const updateMonth = (value: number) => {
-  settingsStore.selectMonth(value)
-  //select month und year wird zu einer methode
+const updateMonth = async (value: number) => {
+  await settingsStore.selectMonth(value)
+  await invoiceStore.getInvoicesPerMonthAndYear(value, year.value.toString());
+  await invoiceStore.getCommentPerMonthAndYear(value, year.value.toString());
 }
-const updateYear = (value: number) => {
-  settingsStore.selectYear(value)
+const updateYear = async(value: number) => {
+  await settingsStore.selectYear(value)
+  await invoiceStore.getInvoicesPerMonthAndYear(month.value, value.toString());
+  await invoiceStore.getCommentPerMonthAndYear(month.value, value.toString());
 }
+
 const switchToggeled = (value: Boolean) => {
   console.log('switchToggeled', value)
 }

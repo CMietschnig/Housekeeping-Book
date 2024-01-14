@@ -39,8 +39,6 @@ export const useInvoiceStore = defineStore({
         this.$patch((state) => {
           state.invoices = response.data
         })
-        
-        console.log('this.invoices', this.invoices)
       } catch (e) {
         console.error('Could not get invoices per month and year ' + month + ' ' + year + '. ' + e)
       }
@@ -59,16 +57,12 @@ export const useInvoiceStore = defineStore({
         this.$patch((state) => {
           state.comment = response.data
         })
-        
-        console.log('this.comment', this.comment)
       } catch (e) {
         console.error('Could not get comment per month and year ' + month + ' ' + year + '. ' + e)
       }
     },
     async addInvoiceToMonthAndYear(month: number, year: number, invoiceTotal: number) {
       try {
-        console.log('addInvoiceToMonthAndYear in store', month, year, invoiceTotal)
-
         const response = await axios.post(
           'http://localhost:65513/api/invoices/addInvoiceToMonthAndYear',
           { month, year, invoiceTotal },
@@ -78,8 +72,9 @@ export const useInvoiceStore = defineStore({
             }
           }
         )
-        const test = response.data
-        console.log('addInvoiceToMonthAndYear', test)
+        if (response.status === 200) {
+          console.log("addInvoiceToMonthAndYear was successful!");
+        }
       } catch (e) {
         console.error('Could not add invoice to month and year ' + e)
       }
@@ -98,8 +93,9 @@ export const useInvoiceStore = defineStore({
             }
           }
         )
-        const test = response.data
-        console.log('updateInvoiceById', test)
+        if(response.status === 200) {
+          console.log('updateInvoiceById was successful!')
+        }
       } catch (e) {
         console.error('Could not update invoice by id ' + id + '. ' + e)
       }
@@ -122,8 +118,6 @@ export const useInvoiceStore = defineStore({
         this.$patch((state) => {
           state.comment = response.data
         })
-        const test = response.data
-        console.log('updateCommentByMonthAndYear', test)
       } catch (e) {
         console.error(
           'Could not update comment by month and year ' +
@@ -139,7 +133,6 @@ export const useInvoiceStore = defineStore({
     },
     async deleteInvoiceById(id: number) {
       try {
-        console.log('delete number in store', id)
         const response = await axios.post(
           'http://localhost:65513/api/invoices/deleteInvoiceById',
           { id },
@@ -149,8 +142,9 @@ export const useInvoiceStore = defineStore({
             }
           }
         )
-        const test = response.data
-        console.log('deleteInvoiceById', test)
+        if(response.status === 200) {
+          console.log('deleteInvoiceById was successful!')
+        }
       } catch (e) {
         console.error('Could not delete number with id ' + id + '. ' + e)
       }

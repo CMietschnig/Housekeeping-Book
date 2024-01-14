@@ -106,6 +106,7 @@ namespace HousekeepingBook.Tests.Controllers
                 {
                     return true;
                 });
+            monthlyInvoiceSummaryRepositoryMock.Setup(repo => repo.GetCommentByMonthlyInvoiceSummaryId(It.IsAny<int>())).Returns("this is the updated comment");
 
             var controller = new InvoicesController(invoiceRepositoryMock.Object, monthlyInvoiceSummaryRepositoryMock.Object);
 
@@ -113,14 +114,16 @@ namespace HousekeepingBook.Tests.Controllers
             {
                 Month = 1,
                 Year = "2024",
-                Comment = "new comment"
+                Comment = "this is the updated comment"
             };
 
             // Act
             var result = controller.UpdateCommentByMonthAndYear(model);
 
             // Assert
-            Assert.IsType<OkResult>(result);
+            var statusCodeResult = Assert.IsType<OkObjectResult>(result);
+            Assert.Equal(200, statusCodeResult.StatusCode);
+            Assert.Equal("this is the updated comment", statusCodeResult.Value);
         }
 
         [Fact]

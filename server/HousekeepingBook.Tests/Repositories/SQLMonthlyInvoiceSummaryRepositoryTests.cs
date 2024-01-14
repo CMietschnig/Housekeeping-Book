@@ -36,7 +36,7 @@ namespace HousekeepingBook.Tests.Repositories
             Assert.Single(summaries);
             Assert.Equal((int)month, (int)summaries[0].MonthId);
             Assert.Equal(year, summaries[0].Year);
-            Assert.Null(summaries[0].Comment);
+            Assert.Equal(string.Empty, summaries[0].Comment);
             Assert.IsType<DateTime>(summaries[0].CreateTimestamp);
             Assert.IsType<DateTime>(summaries[0].UpdateTimestamp);
         }

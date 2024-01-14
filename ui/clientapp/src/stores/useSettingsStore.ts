@@ -26,6 +26,9 @@ export const useSettingsStore = defineStore({
         async selectMonth(value: number) {
             try {
               console.log('select month in store', value)
+              this.$patch((state) => {
+                state.month = value
+              })
             } catch (e) {
               console.error('Could not select month ' + value + '. ' + e)
             }
@@ -33,6 +36,9 @@ export const useSettingsStore = defineStore({
           async selectYear(value: number) {
             try {
               console.log('select year in store', value)
+              this.$patch((state) => {
+                state.year = value
+              })
             } catch (e) {
               console.error('Could not select year ' + value + '. ' + e)
             }
