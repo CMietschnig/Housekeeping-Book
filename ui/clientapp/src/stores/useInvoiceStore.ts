@@ -14,8 +14,6 @@ const DefaultInvoiceState: InvoiceStoreState = {
   comment: ''
 }
 
-const invoicesApiService = new InvoicesApiService()
-
 export const useInvoiceStore = defineStore({
   id: 'invoice-store',
   state: (): InvoiceStoreState => ({
@@ -29,7 +27,7 @@ export const useInvoiceStore = defineStore({
   actions: {
     async getInvoicesPerMonthAndYear(month: number, year: string) {
       try {
-        const invoices = await invoicesApiService.getInvoicesPerMonthAndYear(month, year)
+        const invoices = await InvoicesApiService.getInvoicesPerMonthAndYear(month, year)
 
         if (invoices) {
           this.$patch((state) => {
@@ -50,7 +48,7 @@ export const useInvoiceStore = defineStore({
     },
     async getCommentPerMonthAndYear(month: number, year: string) {
       try {
-        const comment = await invoicesApiService.getCommentPerMonthAndYear(month, year)
+        const comment = await InvoicesApiService.getCommentPerMonthAndYear(month, year)
 
         if (comment) {
           this.$patch((state) => {
@@ -69,16 +67,19 @@ export const useInvoiceStore = defineStore({
         console.error('Could not get comment per month and year ' + month + ' ' + year + '. ' + e)
       }
     },
-    async addInvoiceToMonthAndYear(month: number, year: number, invoiceTotal: number) {
+    async addInvoiceToMonthAndYear(month: number, year: string, invoiceTotal: number) {
       try {
-        const response = await invoicesApiService.addInvoiceToMonthAndYear(
+        const response = await InvoicesApiService.addInvoiceToMonthAndYear(
           month,
           year,
           invoiceTotal
         )
-
+          // todo refactor nur auf 200 zu prüfen ist nicht gut erfolgreich sind mehrere 200 statuse
         if (response === 200) {
           console.log('addInvoiceToMonthAndYear was successful!')
+        }
+        else {
+          console.error('Could not add invoice to month and year. Status code: ' + response)
         }
       } catch (e) {
         console.error('Could not add invoice to month and year ' + e)
@@ -86,7 +87,7 @@ export const useInvoiceStore = defineStore({
     },
     async updateInvoiceById(id: number, invoiceTotal: number) {
       try {
-        const response = await invoicesApiService.updateInvoiceById(id, invoiceTotal)
+        const response = await InvoicesApiService.updateInvoiceById(id, invoiceTotal)
 
         if (response === 200) {
           console.log('updateInvoiceById was successful!')
@@ -95,9 +96,9 @@ export const useInvoiceStore = defineStore({
         console.error('Could not update invoice by id ' + id + '. ' + e)
       }
     },
-    async updateCommentByMonthAndYear(month: number, year: number, comment: string) {
+    async updateCommentByMonthAndYear(month: number, year: string, comment: string) {
       try {
-        const newComment = await invoicesApiService.updateCommentByMonthAndYear(
+        const newComment = await InvoicesApiService.updateCommentByMonthAndYear(
           month,
           year,
           comment
@@ -133,7 +134,7 @@ export const useInvoiceStore = defineStore({
     },
     async deleteInvoiceById(id: number) {
       try {
-        const response = await invoicesApiService.deleteInvoiceById(id)
+        const response = await InvoicesApiService.deleteInvoiceById(id)
 
         if (response === 200) {
           console.log('deleteInvoiceById was successful!')

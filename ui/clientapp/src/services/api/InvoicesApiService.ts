@@ -19,6 +19,7 @@ class InvoicesApiService {
       return response.data
     } catch (e) {
       console.error('Could not get invoices per month and year ' + month + ' ' + year + '. ' + e)
+      return undefined // Return undefined in case of an error
     }
   }
 
@@ -36,12 +37,13 @@ class InvoicesApiService {
       return response.data
     } catch (e) {
       console.error('Could not get comment per month and year ' + month + ' ' + year + '. ' + e)
+      return undefined // Return undefined in case of an error
     }
   }
 
   async addInvoiceToMonthAndYear(
     month: number,
-    year: number,
+    year: string,
     invoiceTotal: number
   ): Promise<number | undefined> {
     try {
@@ -57,6 +59,7 @@ class InvoicesApiService {
       return response.status
     } catch (e) {
       console.error('Could not add invoice to month and year ' + e)
+      return undefined // Return undefined in case of an error
     }
   }
 
@@ -77,12 +80,13 @@ class InvoicesApiService {
       return response.status
     } catch (e) {
       console.error('Could not update invoice by id ' + id + '. ' + e)
+      return undefined // Return undefined in case of an error
     }
   }
 
   async updateCommentByMonthAndYear(
     month: number,
-    year: number,
+    year: string,
     comment: string
   ): Promise<string | undefined> {
     try {
@@ -104,6 +108,7 @@ class InvoicesApiService {
       console.error(
         'Could not update comment by month and year ' + month + ' ' + year + ' ' + comment + ' ' + e
       )
+      return undefined // Return undefined in case of an error
     }
   }
 
@@ -121,8 +126,9 @@ class InvoicesApiService {
       return response.status
     } catch (e) {
       console.error('Could not delete number with id ' + id + '. ' + e)
+      return undefined // Return undefined in case of an error
     }
   }
 }
 
-export default InvoicesApiService
+export default new InvoicesApiService()

@@ -42,10 +42,10 @@ const updateInvoice = (value: { id: number; invoiceTotal: number }) => {
   invoiceStore.updateInvoiceById(value.id, value.invoiceTotal)
 }
 const updateComment = (comment: string) => {
-  invoiceStore.updateCommentByMonthAndYear(month.value, year.value, comment)
+  invoiceStore.updateCommentByMonthAndYear(month.value, year.value.toString(), comment)
 }
 const addInvoice = async (invoiceTotal: number) => {
-  await invoiceStore.addInvoiceToMonthAndYear(month.value, year.value, invoiceTotal)
+  await invoiceStore.addInvoiceToMonthAndYear(month.value, year.value.toString(), invoiceTotal)
   await invoiceStore.getInvoicesPerMonthAndYear(month.value, year.value.toString())
 }
 const updateMonth = async (value: number) => {
