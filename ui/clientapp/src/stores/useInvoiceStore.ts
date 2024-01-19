@@ -10,7 +10,7 @@ export interface InvoiceStoreState {
 
 const DefaultInvoiceState: InvoiceStoreState = {
   invoices: [],
-  monthTotals: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120],
+  monthTotals: [10, 20, 30, 40, 50],
   comment: ''
 }
 
@@ -74,26 +74,54 @@ export const useInvoiceStore = defineStore({
           year,
           invoiceTotal
         )
-          // todo refactor nur auf 200 zu prüfen ist nicht gut erfolgreich sind mehrere 200 statuse
-        if (response === 200) {
+
+        if (response && response >= 200 && response < 300) {
           console.log('addInvoiceToMonthAndYear was successful!')
-        }
-        else {
-          console.error('Could not add invoice to month and year. Status code: ' + response)
+        } else {
+          console.error(
+            'Could not add invoice to month and year' +
+              month +
+              ' ' +
+              year +
+              ' with total ' +
+              invoiceTotal +
+              '. Status code: ' +
+              response
+          )
         }
       } catch (e) {
-        console.error('Could not add invoice to month and year ' + e)
+        console.error(
+          'Could not add invoice to month and year ' +
+            month +
+            ' ' +
+            year +
+            ' with total ' +
+            invoiceTotal +
+            '. ' +
+            e
+        )
       }
     },
     async updateInvoiceById(id: number, invoiceTotal: number) {
       try {
         const response = await InvoicesApiService.updateInvoiceById(id, invoiceTotal)
 
-        if (response === 200) {
+        if (response && response >= 200 && response < 300) {
           console.log('updateInvoiceById was successful!')
+        } else {
+          console.error(
+            'Could not update invoice by id ' +
+              id +
+              ' with total ' +
+              invoiceTotal +
+              '. Status code: ' +
+              response
+          )
         }
       } catch (e) {
-        console.error('Could not update invoice by id ' + id + '. ' + e)
+        console.error(
+          'Could not update invoice by id ' + id + ' with total ' + invoiceTotal + '. ' + e
+        )
       }
     },
     async updateCommentByMonthAndYear(month: number, year: string, comment: string) {
@@ -127,7 +155,7 @@ export const useInvoiceStore = defineStore({
             year +
             ' ' +
             comment +
-            ' ' +
+            '. ' +
             e
         )
       }
@@ -136,11 +164,13 @@ export const useInvoiceStore = defineStore({
       try {
         const response = await InvoicesApiService.deleteInvoiceById(id)
 
-        if (response === 200) {
+        if (response && response >= 200 && response < 300) {
           console.log('deleteInvoiceById was successful!')
+        } else {
+          console.error('Could not delete invoice by id ' + id + '. Status code: ' + response)
         }
       } catch (e) {
-        console.error('Could not delete number with id ' + id + '. ' + e)
+        console.error('Could not delete invoice with id ' + id + '. ' + e)
       }
     }
   }

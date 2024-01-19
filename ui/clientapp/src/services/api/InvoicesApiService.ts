@@ -58,7 +58,16 @@ class InvoicesApiService {
       )
       return response.status
     } catch (e) {
-      console.error('Could not add invoice to month and year ' + e)
+      console.error(
+        'Could not add invoice to month and year ' +
+          month +
+          ' ' +
+          year +
+          ' with total ' +
+          invoiceTotal +
+          '. ' +
+          e
+      )
       return undefined // Return undefined in case of an error
     }
   }
@@ -79,7 +88,9 @@ class InvoicesApiService {
       )
       return response.status
     } catch (e) {
-      console.error('Could not update invoice by id ' + id + '. ' + e)
+      console.error(
+        'Could not update invoice by id ' + id + ' with total ' + invoiceTotal + '. ' + e
+      )
       return undefined // Return undefined in case of an error
     }
   }

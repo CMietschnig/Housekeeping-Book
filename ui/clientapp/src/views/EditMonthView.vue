@@ -20,8 +20,8 @@ const { yearOptions } = useYearOptions()
 
 
 onBeforeMount(() => {
-  invoiceStore.getInvoicesPerMonthAndYear(month.value, year.value.toString());
-  invoiceStore.getCommentPerMonthAndYear(month.value, year.value.toString());
+  invoiceStore.getInvoicesPerMonthAndYear(month.value, year.value);
+  invoiceStore.getCommentPerMonthAndYear(month.value, year.value);
 });
 
 // variables
@@ -36,27 +36,27 @@ watch(savedComment, (newComment) => {
 // functions
 const deleteInvoice = async (id: number) => {
   await invoiceStore.deleteInvoiceById(id)
-  await invoiceStore.getInvoicesPerMonthAndYear(month.value, year.value.toString())
+  await invoiceStore.getInvoicesPerMonthAndYear(month.value, year.value)
 }
 const updateInvoice = (value: { id: number; invoiceTotal: number }) => {
   invoiceStore.updateInvoiceById(value.id, value.invoiceTotal)
 }
 const updateComment = (comment: string) => {
-  invoiceStore.updateCommentByMonthAndYear(month.value, year.value.toString(), comment)
+  invoiceStore.updateCommentByMonthAndYear(month.value, year.value, comment)
 }
 const addInvoice = async (invoiceTotal: number) => {
-  await invoiceStore.addInvoiceToMonthAndYear(month.value, year.value.toString(), invoiceTotal)
-  await invoiceStore.getInvoicesPerMonthAndYear(month.value, year.value.toString())
+  await invoiceStore.addInvoiceToMonthAndYear(month.value, year.value, invoiceTotal)
+  await invoiceStore.getInvoicesPerMonthAndYear(month.value, year.value)
 }
 const updateMonth = async (value: number) => {
-  await settingsStore.selectMonth(value)
-  await invoiceStore.getInvoicesPerMonthAndYear(value, year.value.toString());
-  await invoiceStore.getCommentPerMonthAndYear(value, year.value.toString());
+  settingsStore.selectMonth(value)
+  await invoiceStore.getInvoicesPerMonthAndYear(value, year.value);
+  await invoiceStore.getCommentPerMonthAndYear(value, year.value);
 }
-const updateYear = async(value: number) => {
-  await settingsStore.selectYear(value)
-  await invoiceStore.getInvoicesPerMonthAndYear(month.value, value.toString());
-  await invoiceStore.getCommentPerMonthAndYear(month.value, value.toString());
+const updateYear = async(value: string) => {
+  settingsStore.selectYear(value)
+  await invoiceStore.getInvoicesPerMonthAndYear(month.value, value);
+  await invoiceStore.getCommentPerMonthAndYear(month.value, value);
 }
 
 const switchToggeled = (value: Boolean) => {

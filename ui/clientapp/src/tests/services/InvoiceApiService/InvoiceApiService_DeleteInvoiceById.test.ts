@@ -4,7 +4,6 @@ import MockAdapter from 'axios-mock-adapter'
 import axios from 'axios'
 
 describe('InvoiceApiService => deleteInvoiceById', () => {
-  
   it('deleteInvoiceById => should return number 200', async () => {
     // Arrange
     const id = 1
@@ -18,9 +17,7 @@ describe('InvoiceApiService => deleteInvoiceById', () => {
 
     // Assert
     expect(mock.history.post.length).toBe(1)
-    expect(mock.history.post[0].url).toBe(
-      `http://localhost:65513/api/invoices/deleteInvoiceById`
-    )
+    expect(mock.history.post[0].url).toBe(`http://localhost:65513/api/invoices/deleteInvoiceById`)
     expect(response).toEqual(expectedResult)
 
     // Clean up after the test
@@ -40,9 +37,7 @@ describe('InvoiceApiService => deleteInvoiceById', () => {
 
     // Assert
     expect(mock.history.post.length).toBe(1)
-    expect(mock.history.post[0].url).toBe(
-      `http://localhost:65513/api/invoices/deleteInvoiceById`
-    )
+    expect(mock.history.post[0].url).toBe(`http://localhost:65513/api/invoices/deleteInvoiceById`)
     expect(response).toEqual(expectedResult)
 
     // Clean up after the test
@@ -55,23 +50,23 @@ describe('InvoiceApiService => deleteInvoiceById', () => {
 
     const mock = new MockAdapter(axios)
     mock.onPost(`http://localhost:65513/api/invoices/deleteInvoiceById`).reply(404)
-    const consoleMock = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    const consoleMock = vi.spyOn(console, 'error').mockImplementation(() => undefined)
 
     // Act
     const response = await InvoicesApiService.deleteInvoiceById(id)
 
     // Assert
     expect(mock.history.post.length).toBe(1)
-    expect(mock.history.post[0].url).toBe(
-      `http://localhost:65513/api/invoices/deleteInvoiceById`
-    )
+    expect(mock.history.post[0].url).toBe(`http://localhost:65513/api/invoices/deleteInvoiceById`)
     expect(response).toBeUndefined()
-    expect(consoleMock).toHaveBeenCalledOnce();
-    expect(consoleMock).toHaveBeenLastCalledWith('Could not delete number with id 3. Error: Request failed with status code 404');
+    expect(consoleMock).toHaveBeenCalledOnce()
+    expect(consoleMock).toHaveBeenLastCalledWith(
+      'Could not delete number with id 3. Error: Request failed with status code 404'
+    )
 
     // Clean up after the test
     mock.restore()
-    consoleMock.mockReset();
+    consoleMock.mockReset()
   })
 
   it('deleteInvoiceById => should catch error and return undefined: Error 500', async () => {
@@ -80,22 +75,22 @@ describe('InvoiceApiService => deleteInvoiceById', () => {
 
     const mock = new MockAdapter(axios)
     mock.onPost(`http://localhost:65513/api/invoices/deleteInvoiceById`).reply(500)
-    const consoleMock = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    const consoleMock = vi.spyOn(console, 'error').mockImplementation(() => undefined)
 
     // Act
     const response = await InvoicesApiService.deleteInvoiceById(id)
 
     // Assert
     expect(mock.history.post.length).toBe(1)
-    expect(mock.history.post[0].url).toBe(
-      `http://localhost:65513/api/invoices/deleteInvoiceById`
-    )
+    expect(mock.history.post[0].url).toBe(`http://localhost:65513/api/invoices/deleteInvoiceById`)
     expect(response).toBeUndefined()
-    expect(consoleMock).toHaveBeenCalledOnce();
-    expect(consoleMock).toHaveBeenLastCalledWith('Could not delete number with id 5. Error: Request failed with status code 500');
+    expect(consoleMock).toHaveBeenCalledOnce()
+    expect(consoleMock).toHaveBeenLastCalledWith(
+      'Could not delete number with id 5. Error: Request failed with status code 500'
+    )
 
     // Clean up after the test
     mock.restore()
-    consoleMock.mockReset();
+    consoleMock.mockReset()
   })
 })
