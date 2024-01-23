@@ -10,7 +10,7 @@ import { onBeforeMount } from 'vue'
 
 //stores
 const invoiceStore = useInvoiceStore()
-const { getInvoices: invoices, getComment: savedComment } = storeToRefs(invoiceStore)
+const { getInvoices: invoices, getComment: savedComment, getMonthlySum: sum } = storeToRefs(invoiceStore)
 const settingsStore = useSettingsStore()
 const { getMonth: month, getYear: year } = storeToRefs(settingsStore)
 
@@ -38,8 +38,9 @@ const deleteInvoice = async (id: number) => {
   await invoiceStore.deleteInvoiceById(id)
   await invoiceStore.getInvoicesPerMonthAndYear(month.value, year.value)
 }
-const updateInvoice = (value: { id: number; invoiceTotal: number }) => {
-  invoiceStore.updateInvoiceById(value.id, value.invoiceTotal)
+const updateInvoice = async (value: { id: number; invoiceTotal: number }) => {
+  await invoiceStore.updateInvoiceById(value.id, value.invoiceTotal)
+  await invoiceStore.getInvoicesPerMonthAndYear(month.value, year.value)
 }
 const updateComment = (comment: string) => {
   invoiceStore.updateCommentByMonthAndYear(month.value, year.value, comment)
@@ -100,7 +101,7 @@ const switchToggeled = (value: Boolean) => {
           @add-number="addInvoice"
         />
         <!--sum  -->
-        <MonthlySum :sum="2" :show-text="false" />
+        <MonthlySum :sum="sum" :show-text="false" />
         <div class="pt-4">
           <!-- switch -->
           <ToggelSwitch

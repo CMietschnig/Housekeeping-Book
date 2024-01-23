@@ -6,12 +6,14 @@ export interface InvoiceStoreState {
   invoices: Array<IInvoice>
   monthTotals: Array<number>
   comment: string
+  monthlySum: number
 }
 
 const DefaultInvoiceState: InvoiceStoreState = {
   invoices: [],
   monthTotals: [10, 20, 30, 40, 50],
-  comment: ''
+  comment: '',
+  monthlySum: 0
 }
 
 export const useInvoiceStore = defineStore({
@@ -22,7 +24,8 @@ export const useInvoiceStore = defineStore({
   getters: {
     getInvoices: (state): Array<IInvoice> => state.invoices,
     getMonthTotals: (state): Array<number> => state.monthTotals,
-    getComment: (state): string => state.comment
+    getComment: (state): string => state.comment,
+    getMonthlySum: (state): number => state.monthlySum
   },
   actions: {
     async getInvoicesPerMonthAndYear(month: number, year: string) {
@@ -30,8 +33,12 @@ export const useInvoiceStore = defineStore({
         const invoices = await InvoicesApiService.getInvoicesPerMonthAndYear(month, year)
 
         if (invoices) {
+          // calculate the monthly sum
+          const monthlySum = invoices.reduce((sum, invoice) => sum + invoice.Total, 0)
+
           this.$patch((state) => {
-            state.invoices = invoices
+            state.invoices = invoices,
+            state.monthlySum = monthlySum
           })
         } else {
           console.error(

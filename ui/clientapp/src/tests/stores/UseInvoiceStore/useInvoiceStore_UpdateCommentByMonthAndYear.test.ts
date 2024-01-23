@@ -21,6 +21,7 @@ describe('useInvoiceStore => updateCommentByMonthAndYear', () => {
     expect(sut.invoices).toEqual([])
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
+    expect(sut.monthlySum).toEqual(0)
 
     // Act
     await sut.updateCommentByMonthAndYear(month, year, comment)
@@ -30,6 +31,7 @@ describe('useInvoiceStore => updateCommentByMonthAndYear', () => {
     expect(sut.invoices).toEqual([])
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual(comment)
+    expect(sut.monthlySum).toEqual(0)
 
     // Clean up after the test
     spyInvoiceApiService.mockRestore()
@@ -49,6 +51,7 @@ describe('useInvoiceStore => updateCommentByMonthAndYear', () => {
     expect(sut.invoices).toEqual([])
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
+    expect(sut.monthlySum).toEqual(0)
 
     // Act
     await sut.updateCommentByMonthAndYear(month, year, comment)
@@ -58,6 +61,7 @@ describe('useInvoiceStore => updateCommentByMonthAndYear', () => {
     expect(sut.invoices).toEqual([])
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
+    expect(sut.monthlySum).toEqual(0)
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not update comment by month and year 2 2024 this is my new comment. The response is undefined.'
@@ -82,6 +86,7 @@ describe('useInvoiceStore => updateCommentByMonthAndYear', () => {
     expect(sut.invoices).toEqual([])
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
+    expect(sut.monthlySum).toEqual(0)
 
     // Act
     await sut.updateCommentByMonthAndYear(month, year, comment)
@@ -92,6 +97,7 @@ describe('useInvoiceStore => updateCommentByMonthAndYear', () => {
     expect(sut.invoices).toEqual([])
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
+    expect(sut.monthlySum).toEqual(0)
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not update comment by month and year 2 2024 this is my new comment. Error: error'
