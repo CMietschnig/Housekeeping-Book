@@ -59,7 +59,7 @@ const addInput = () => {
 
 <template>
   <div class="pb-2">
-    <!-- manage existing number input -->
+    <!-- change existing number -->
     <div v-if="!onlyAddable">
       <!-- edit or delete number -->
       <div
@@ -86,9 +86,9 @@ const addInput = () => {
         v-else
         class="d-flex flex-wrap justify-content-center justify-content-sm-start align-items-center gap-3"
       >
-        <input :placeholder="placeholder" v-model="inputValue" type="number" :id="'id-' + id" />
+        <input :placeholder="placeholder" v-model="inputValue" type="number" :id="'id-' + id" class="update-input-field"/>
         <div class="d-flex gap-2">
-          <BButton variant="primary" class="save-btn" @click="updateInput()">
+          <BButton variant="primary" class="update-btn" @click="updateInput()">
             <font-awesome-icon icon="fa-regular fa-floppy-disk" />
           </BButton>
           <BButton variant="primary" class="reset-btn" @click="resetInput()">
@@ -102,7 +102,7 @@ const addInput = () => {
       v-else
       class="d-flex flex-wrap justify-content-center justify-content-sm-start align-items-center gap-3 pb-4"
     >
-      <input :placeholder="placeholder" v-model="inputValue" type="number" :id="'id-' + id" />
+      <input :placeholder="placeholder" v-model="inputValue" type="number" :id="'id-' + id" class="add-input-field"/>
       <BButton variant="primary" class="add-btn" @click="addInput()">
         <font-awesome-icon icon="fa-solid fa-plus" />
       </BButton>

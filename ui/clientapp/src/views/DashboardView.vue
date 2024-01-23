@@ -20,7 +20,7 @@ const { getMonthTotals: monthTotals } = storeToRefs(invoiceStore)
 const { yearOptions } = useYearOptions()
 
 // functions
-const updateYear = (value: number) => {
+const updateYear = (value: string) => {
   settingsStore.selectYear(value)
 }
 const switchToggeled = (value: Boolean) => {

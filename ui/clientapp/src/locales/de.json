@@ -25,7 +25,8 @@
     "numberOfInvoices": "Anzahl der Rechnungen:",
     "perPersonSetting": "Die Anzahl der Personen können unter Einstellungen geändert werden.",
     "currrentMonth": "Aktueller Monat",
-    "noCommentYet": "Sie haben für diesen Monat noch keinen Kommentar hinterlassen."
+    "noCommentYet": "Sie haben für diesen Monat noch keinen Kommentar hinterlassen.",
+    "comment": "Kommentar"
   },
   "editMonth": {
     "invoiceTotal": "Rechnungssumme",

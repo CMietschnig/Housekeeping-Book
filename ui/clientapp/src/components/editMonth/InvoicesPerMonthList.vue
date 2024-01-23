@@ -26,14 +26,15 @@ const number = ref(null)
       :placeholder="t('editMonth.invoiceTotal')"
       :only-addable="true"
       @add-number="$emit('addNumber', $event)"
+      ref="addNewInvoice"
     />
     <!-- no invoices created yet -->
-    <div v-if="invoices.length === 0" class="pb-3">
+    <div v-if="invoices.length === 0" class="no-invoices pb-3">
       {{ t('editMonth.noInvoicesCreatedYet') }}
     </div>
 
     <!-- list of invoices -->
-    <div v-else v-for="(invoice, id) in invoices" :key="id">
+    <div v-else v-for="(invoice, id) in invoices" :key="id" class="invoices-list">
       <NumberInput
         v-model:number="invoice.Total"
         :id="invoice.InvoiceId"
@@ -41,6 +42,7 @@ const number = ref(null)
         @update-number="$emit('updateNumber', $event)"
         :placeholder="t('editMonth.invoiceTotal')"
         :only-addable="false"
+        ref="invoice"
       />
     </div>
   </div>

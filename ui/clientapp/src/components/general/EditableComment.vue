@@ -4,10 +4,6 @@ import { useVModel } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
 
 const props = defineProps({
-  placeholder: {
-    type: String,
-    required: false
-  },
   id: {
     type: [Number, String] as PropType<number | string>,
     required: true
@@ -30,31 +26,31 @@ const editComment = () => {
   isEditMode.value = !isEditMode.value
 }
 const saveComment = () => {
-  emit('saveComment', props.comment )
+  emit('saveComment', props.comment)
   isEditMode.value = !isEditMode.value
 }
 </script>
 
 <template>
-  <span class="d-flex justify-content-center justify-content-sm-start">Kommentar</span>
-  <!-- edit comment -->
-  <div v-if="!isEditMode">
+  <span class="d-flex justify-content-center justify-content-sm-start">{{ t('general.comment') }}</span>
+  <!-- open comment -->
+  <div v-if="!isEditMode" class="no-edit-mode">
     <div
       class="d-flex flex-column flex-sm-row justify-content-center justify-content-sm-start align-items-center align-items-sm-start gap-3"
     >
-      <span v-if="!comment" class="comment p-4">{{ t('general.noCommentYet') }}</span>
+      <span v-if="!comment" class="no-comment p-4">{{ t('general.noCommentYet') }}</span>
       <span v-else class="comment p-4"> {{ comment }}</span>
       <div>
-        <BButton variant="primary" class="editComment-btn" @click="editComment()"
+        <BButton variant="primary" class="edit-comment-btn" @click="editComment()"
           ><font-awesome-icon icon="fa-solid fa-pencil"
         /></BButton>
       </div>
     </div>
   </div>
-  <!-- save comment -->
+  <!-- close comment -->
   <div
     v-else
-    class="d-flex flex-column flex-sm-row justify-content-center justify-content-sm-start align-items-center align-items-sm-start gap-3"
+    class="d-flex flex-column flex-sm-row justify-content-center justify-content-sm-start align-items-center align-items-sm-start gap-3 edit-mode"
   >
     <textarea
       name="comment"
@@ -66,7 +62,7 @@ const saveComment = () => {
       class="p-4"
     ></textarea>
     <div>
-      <BButton variant="primary" class="saveComment-btn" @click="saveComment()">
+      <BButton variant="primary" class="save-comment-btn" @click="saveComment()">
         <font-awesome-icon icon="fa-regular fa-floppy-disk" />
       </BButton>
     </div>
@@ -74,7 +70,7 @@ const saveComment = () => {
 </template>
 
 <style scoped>
-.comment {
+.comment, .no-comment {
   max-width: 228px;
   border: 1px solid;
 }

@@ -25,7 +25,8 @@
     "numberOfInvoices": "Number of invoices:",
     "perPersonSetting": "The number of people can be changed under Settings.",
     "currrentMonth": "Current month",
-    "noCommentYet": "You have not yet left a comment for this month."
+    "noCommentYet": "You have not yet left a comment for this month.",
+    "comment": "Comment"
   },
   "editMonth": {
     "invoiceTotal": "Invoice total",
