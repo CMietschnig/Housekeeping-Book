@@ -20,8 +20,5 @@ namespace HousekeepingBook.Entities
         public DateTime CreateTimestamp { get; set; }
 
         public DateTime UpdateTimestamp { get; set; }
-
-        //[Required]
-        //public List<Invoice>? Invoices { get; set; }  // nicht auf der Datenbank????
     }
 }

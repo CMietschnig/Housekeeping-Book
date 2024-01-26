@@ -12,5 +12,6 @@ namespace HousekeepingBook.DbContexts
         public DbSet<Invoice> Invoices =>Set<Invoice>();
         public DbSet<Store> Stores => Set<Store>();
         public DbSet<MonthlyInvoiceSummary> MonthlyInvoiceSummaries => Set<MonthlyInvoiceSummary>();
+        public DbSet<Settings> Settings => Set<Settings>();
     }
 }
