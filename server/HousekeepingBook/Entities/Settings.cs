@@ -17,5 +17,8 @@ namespace HousekeepingBook.Entities
 
         [Required]
         public Month MonthId { get; set; }
+        public DateTime CreateTimestamp { get; set; }
+
+        public DateTime UpdateTimestamp { get; set; }
     }
 }
