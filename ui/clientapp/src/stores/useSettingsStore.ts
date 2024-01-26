@@ -1,3 +1,4 @@
+import SettingsApiService from '@/services/api/SettingsApiService'
 import { defineStore } from 'pinia'
 
 export interface SettingsStoreState {
@@ -39,6 +40,28 @@ export const useSettingsStore = defineStore({
         })
       } else {
         console.error('Could not select year ' + value + '. The value is not valid.')
+      }
+    },
+    async updateNumberOfPeople(id: number, people: number) {
+      try {
+        const response = await SettingsApiService.updateNumberOfPeople(id, people)
+
+        if (response && response >= 200 && response < 300) {
+          console.log('updateNumberOfPeople was successful!')
+        } else {
+          console.error(
+            'Could not update number of people by id ' +
+              id +
+              ' with people ' +
+              people +
+              '. Status code: ' +
+              response
+          )
+        }
+      } catch (e) {
+        console.error(
+          'Could not update number of people by id ' + id + ' with people ' + people + '. ' + e
+        )
       }
     }
   }

@@ -10,27 +10,30 @@ import { onBeforeMount } from 'vue'
 
 //stores
 const invoiceStore = useInvoiceStore()
-const { getInvoices: invoices, getComment: savedComment, getMonthlySum: sum } = storeToRefs(invoiceStore)
+const {
+  getInvoices: invoices,
+  getComment: savedComment,
+  getMonthlySum: sum
+} = storeToRefs(invoiceStore)
 const settingsStore = useSettingsStore()
-const { getMonth: month, getYear: year } = storeToRefs(settingsStore)
+const { getMonth: month, getYear: year, getPeople: people } = storeToRefs(settingsStore)
 
 // composables
 const { monthOptions } = useMonthOptions()
 const { yearOptions } = useYearOptions()
 
-
 onBeforeMount(() => {
-  invoiceStore.getInvoicesPerMonthAndYear(month.value, year.value);
-  invoiceStore.getCommentPerMonthAndYear(month.value, year.value);
-});
+  invoiceStore.getInvoicesPerMonthAndYear(month.value, year.value)
+  invoiceStore.getCommentPerMonthAndYear(month.value, year.value)
+})
 
 // variables
 const { t } = useI18n()
-var comment = ref(savedComment.value);
+var comment = ref(savedComment.value)
 // update comment because
 // comment is loaded faster than getComment from the store
 watch(savedComment, (newComment) => {
-  comment.value = newComment;
+  comment.value = newComment
 })
 
 // functions
@@ -38,8 +41,8 @@ const deleteInvoice = async (id: number) => {
   await invoiceStore.deleteInvoiceById(id)
   await invoiceStore.getInvoicesPerMonthAndYear(month.value, year.value)
 }
-const updateInvoice = async (value: { id: number; invoiceTotal: number }) => {
-  await invoiceStore.updateInvoiceById(value.id, value.invoiceTotal)
+const updateInvoice = async (value: { id: number; number: number }) => {
+  await invoiceStore.updateInvoiceById(value.id, value.number)
   await invoiceStore.getInvoicesPerMonthAndYear(month.value, year.value)
 }
 const updateComment = (comment: string) => {
@@ -51,17 +54,13 @@ const addInvoice = async (invoiceTotal: number) => {
 }
 const updateMonth = async (value: number) => {
   settingsStore.selectMonth(value)
-  await invoiceStore.getInvoicesPerMonthAndYear(value, year.value);
-  await invoiceStore.getCommentPerMonthAndYear(value, year.value);
+  await invoiceStore.getInvoicesPerMonthAndYear(value, year.value)
+  await invoiceStore.getCommentPerMonthAndYear(value, year.value)
 }
-const updateYear = async(value: string) => {
+const updateYear = async (value: string) => {
   settingsStore.selectYear(value)
-  await invoiceStore.getInvoicesPerMonthAndYear(month.value, value);
-  await invoiceStore.getCommentPerMonthAndYear(month.value, value);
-}
-
-const switchToggeled = (value: Boolean) => {
-  console.log('switchToggeled', value)
+  await invoiceStore.getInvoicesPerMonthAndYear(month.value, value)
+  await invoiceStore.getCommentPerMonthAndYear(month.value, value)
 }
 </script>
 
@@ -89,7 +88,7 @@ const switchToggeled = (value: Boolean) => {
         <!-- invoices count -->
         <NumberOfInvoices :invoices="invoices" />
         <!-- comment -->
-        <EditableComment v-model:comment="comment" id="jannuary" @save-comment="updateComment"/>
+        <EditableComment v-model:comment="comment" id="jannuary" @save-comment="updateComment" />
       </div>
 
       <div>
@@ -103,13 +102,7 @@ const switchToggeled = (value: Boolean) => {
         <!--sum  -->
         <MonthlySum :sum="sum" :show-text="false" />
         <div class="pt-4">
-          <!-- switch -->
-          <ToggelSwitch
-            :TextBefore="t('general.total')"
-            :TextAfter="t('general.perPerson')"
-            :checked="false"
-            @clicked="switchToggeled"
-          />
+          <SumPerPerson :sum="sum" :people="people" />
         </div>
       </div>
     </div>

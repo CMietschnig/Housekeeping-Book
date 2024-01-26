@@ -194,7 +194,7 @@ describe('NumberInput.vue', () => {
 
     // Assert
     expect(wrapper.emitted('updateNumber')).toBeTruthy()
-    expect(wrapper.emitted('updateNumber')).toStrictEqual([[{ id: 'test', invoiceTotal: 2 }]])
+    expect(wrapper.emitted('updateNumber')).toStrictEqual([[{ id: 'test', number: 2 }]])
   })
   it('should emit add number 2', async () => {
     // Arrange

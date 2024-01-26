@@ -28,6 +28,7 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SingleSelect: typeof import('./src/components/general/SingleSelect.vue')['default']
+    SumPerPerson: typeof import('./src/components/general/SumPerPerson.vue')['default']
     ToggelSwitch: typeof import('./src/components/general/ToggelSwitch.vue')['default']
   }
   export interface ComponentCustomProperties {

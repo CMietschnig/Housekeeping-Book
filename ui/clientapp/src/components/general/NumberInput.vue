@@ -45,7 +45,7 @@ const resetInput = () => {
 }
 const updateInput = () => {
   if (props.number) {
-    emit('updateNumber', { id: props.id, invoiceTotal: props.number })
+    emit('updateNumber', { id: props.id, number: props.number })
     isEditMode.value = !isEditMode.value
   }
 }
