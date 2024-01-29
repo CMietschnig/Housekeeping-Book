@@ -17,7 +17,7 @@ namespace HousekeepingBook.Controllers
         }
 
         [HttpPost("getSettingsById")]
-        public IActionResult GetSettingsById([FromBody] int id)
+        public IActionResult GetSettingsById([FromBody]int id)
         {
             try
             {

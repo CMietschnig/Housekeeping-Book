@@ -26,15 +26,16 @@
     "perPersonSetting": "Die Anzahl der Personen können unter Einstellungen geändert werden.",
     "currrentMonth": "Aktueller Monat",
     "noCommentYet": "Sie haben für diesen Monat noch keinen Kommentar hinterlassen.",
-    "comment": "Kommentar"
+    "comment": "Kommentar",
+    "totalContributionPerPerson": "Gesamtbeitrag pro Person"
   },
   "editMonth": {
     "invoiceTotal": "Rechnungssumme",
     "noInvoicesCreatedYet": "Es wurden noch keine Rechnungssummen angelegt."
   },
   "settings": {
-    "people": "Personen",
-    "numberOfPeople": "Personenanzahl",
+    "contributionMembers": "Personen",
+    "contributionMembersCount": "Personenanzahl",
     "currentSelectedMonth": "Aktuell eingestellter Monat",
     "currentSelectedYear": "Aktuell eingestelltes Jahr"
   },

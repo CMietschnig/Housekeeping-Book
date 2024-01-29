@@ -26,15 +26,16 @@
     "perPersonSetting": "The number of people can be changed under Settings.",
     "currrentMonth": "Current month",
     "noCommentYet": "You have not yet left a comment for this month.",
-    "comment": "Comment"
+    "comment": "Comment",
+    "totalContributionPerPerson": "Total contribution per person"
   },
   "editMonth": {
     "invoiceTotal": "Invoice total",
     "noInvoicesCreatedYet": "No invoice totals have been created yet."
   },
   "settings": {
-    "people": "People",
-    "numberOfPeople": "Number of people",
+    "contributionMembers": "Contribution members",
+    "contributionMembersCount": "Contribution members count",
     "currentSelectedMonth": "Currently set month",
     "currentSelectedYear": "Currently set year"
   },

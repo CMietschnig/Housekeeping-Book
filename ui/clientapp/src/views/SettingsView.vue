@@ -3,24 +3,41 @@ import { useI18n } from 'vue-i18n'
 import useMonthOptions from '../composables/useMonthOptions.ts'
 import useYearOptions from '@/composables/useYearOptions'
 import { storeToRefs } from 'pinia'
-import { ref } from 'vue'
+import { ref, onBeforeMount, watch } from 'vue'
 import { useSettingsStore } from '@/stores/useSettingsStore'
+import type { IUpdateSettings } from '@/interfaces/IUpdateSettings'
 
 // stores
 const settingsStore = useSettingsStore()
-const { getMonth: month, getYear: year, getPeople: savedPeople } = storeToRefs(settingsStore)
+const { getMonthId: month, getYear: year, getContributionMembersCount: savedContributionMembersCount } = storeToRefs(settingsStore)
 
 //composables
 const { monthOptions } = useMonthOptions()
 const { yearOptions } = useYearOptions()
 
+onBeforeMount(() => { 
+  // only one user so id is hardcoded
+  settingsStore.getSettingsById(1)
+})
 // variables
 const { t } = useI18n()
-const people = ref(savedPeople.value)
+const contributionMembersCount = ref(savedContributionMembersCount.value)
+
+// update contributionMembersCount
+watch(savedContributionMembersCount, (newCount) => {
+  contributionMembersCount.value = newCount
+})
 
 // functions
-const updateNumberOfPeople = (value: { id: number; number: number }) => {
-  settingsStore.updateNumberOfPeople(value.id, value.number)
+const updateSettingsById = (value: { id: number; number: number }) => {
+  // add year and month from select
+  const updateSettingsModel: IUpdateSettings = {
+    SettingsId: value.id,
+    ContributionMembersCount: value.number,
+    Year: "2023",
+    MonthId: 1
+  }
+  settingsStore.updateSettingsById(updateSettingsModel)
 }
 const updateMonth = (value: number) => {
   console.log('settings select default month', value)
@@ -35,14 +52,14 @@ const updateYear = (value: number) => {
     <h1 class="pb-4 d-flex justify-content-center">{{ t('general.settings') }}</h1>
     <div class="d-flex flex-wrap justify-content-between gap-4">
       <div>
-        <span>{{ t('settings.numberOfPeople') }}</span>
+        <span>{{ t('settings.contributionMembersCount') }}</span>
         <NumberInput
-          v-model:number="people"
-          id="people"
+          v-model:number="contributionMembersCount"
+          :id="1"
           :only-addable="false"
           :can-delete="false"
-          :placeholder="t('settings.people')"
-          @update-number="updateNumberOfPeople"
+          :placeholder="t('settings.contributionMembers')"
+          @update-number="updateSettingsById"
         />
       </div>
       <div>

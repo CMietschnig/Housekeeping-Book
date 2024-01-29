@@ -1,16 +1,17 @@
+import type { IUpdateSettings } from '@/interfaces/IUpdateSettings'
 import SettingsApiService from '@/services/api/SettingsApiService'
 import { defineStore } from 'pinia'
 
 export interface SettingsStoreState {
-  month: number
+  monthId: number
   year: string
-  people: number
+  contributionMembersCount: number
 }
 
 const DefaultSettingsState: SettingsStoreState = {
-  month: new Date().getMonth(),
+  monthId: new Date().getMonth(),
   year: new Date().getFullYear().toString(),
-  people: 1
+  contributionMembersCount: 1
 }
 
 export const useSettingsStore = defineStore({
@@ -19,15 +20,15 @@ export const useSettingsStore = defineStore({
     ...DefaultSettingsState
   }),
   getters: {
-    getMonth: (state): number => state.month,
+    getMonthId: (state): number => state.monthId,
     getYear: (state): string => state.year,
-    getPeople: (state): number => state.people
+    getContributionMembersCount: (state): number => state.contributionMembersCount
   },
   actions: {
     selectMonth(value: number) {
       if (value >= 0 && value < 12) {
         this.$patch((state) => {
-          state.month = value
+          state.monthId = value
         })
       } else {
         console.error('Could not select month ' + value + '. The value is not valid.')
@@ -42,26 +43,40 @@ export const useSettingsStore = defineStore({
         console.error('Could not select year ' + value + '. The value is not valid.')
       }
     },
-    async updateNumberOfPeople(id: number, people: number) {
+    async updateSettingsById(updateSettingsModel: IUpdateSettings) {
       try {
-        const response = await SettingsApiService.updateNumberOfPeople(id, people)
+        const response = await SettingsApiService.updateSettingsById(updateSettingsModel)
 
         if (response && response >= 200 && response < 300) {
-          console.log('updateNumberOfPeople was successful!')
+          console.log('updateSettingsById was successful!')
         } else {
           console.error(
-            'Could not update number of people by id ' +
-              id +
-              ' with people ' +
-              people +
+            'Could not update settings by id ' +
+              updateSettingsModel.SettingsId +
               '. Status code: ' +
               response
           )
         }
       } catch (e) {
         console.error(
-          'Could not update number of people by id ' + id + ' with people ' + people + '. ' + e
+          'Could not update settings by id ' + updateSettingsModel.SettingsId + '. ' + e
         )
+      }
+    },
+    async getSettingsById(id: number) {
+      try {
+        const settings = await SettingsApiService.getSettingsById(id)
+
+        if (settings) {
+          this.$patch((state) => {
+            state.contributionMembersCount = settings.ContributionMembersCount
+            // add other stuff
+          })
+        } else {
+          console.error('Could not get settings by id ' + id + '. The response is undefined.')
+        }
+      } catch (e) {
+        console.error('Could not get settings by id ' + id + '. ' + e)
       }
     }
   }

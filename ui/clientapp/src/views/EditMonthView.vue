@@ -5,8 +5,7 @@ import { useInvoiceStore } from '../stores/useInvoiceStore.ts'
 import { useSettingsStore } from '@/stores/useSettingsStore'
 import useMonthOptions from '../composables/useMonthOptions.ts'
 import useYearOptions from '@/composables/useYearOptions'
-import { ref, watch } from 'vue'
-import { onBeforeMount } from 'vue'
+import { ref, watch, onBeforeMount } from 'vue'
 
 //stores
 const invoiceStore = useInvoiceStore()
@@ -16,7 +15,7 @@ const {
   getMonthlySum: sum
 } = storeToRefs(invoiceStore)
 const settingsStore = useSettingsStore()
-const { getMonth: month, getYear: year, getPeople: people } = storeToRefs(settingsStore)
+const { getMonthId: month, getYear: year, getContributionMembersCount: contributionMembers } = storeToRefs(settingsStore)
 
 // composables
 const { monthOptions } = useMonthOptions()
@@ -25,6 +24,7 @@ const { yearOptions } = useYearOptions()
 onBeforeMount(() => {
   invoiceStore.getInvoicesPerMonthAndYear(month.value, year.value)
   invoiceStore.getCommentPerMonthAndYear(month.value, year.value)
+  settingsStore.getSettingsById(1)
 })
 
 // variables
@@ -102,7 +102,7 @@ const updateYear = async (value: string) => {
         <!--sum  -->
         <MonthlySum :sum="sum" :show-text="false" />
         <div class="pt-4">
-          <SumPerPerson :sum="sum" :people="people" />
+          <SumPerContributionMember :sum="sum" :contributionMembers="contributionMembers" />
         </div>
       </div>
     </div>

@@ -21,6 +21,7 @@ builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(build
 builder.Services.AddScoped<IInvoiceRepository, SQLInvoiceRepository>();
 builder.Services.AddScoped<IMonthlyInvoiceSummaryRepository, SQLMonthlyInvoiceSummaryRepository>();
 builder.Services.AddScoped<IStoreRepository, SQLStoreRepository>();
+builder.Services.AddScoped<ISettingRepository, SQLSettingRepository>();
 
 builder.Services.AddControllers();
 

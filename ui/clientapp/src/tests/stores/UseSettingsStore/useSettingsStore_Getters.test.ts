@@ -8,9 +8,9 @@ describe('useSettingsStore => getters, default state', () => {
     setActivePinia(createPinia())
     const sut = useSettingsStore()
     // Assert
-    expect(sut.month).toEqual(new Date().getMonth())
+    expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
-    expect(sut.people).toEqual(1)
+    expect(sut.contributionMembersCount).toEqual(1)
   })
 
   it('useSettingsStore => should return correct values for getters', () => {
@@ -19,8 +19,8 @@ describe('useSettingsStore => getters, default state', () => {
     const sut = useSettingsStore()
 
     // Assert
-    expect(sut.getMonth).toEqual(new Date().getMonth())
+    expect(sut.getMonthId).toEqual(new Date().getMonth())
     expect(sut.getYear).toEqual(new Date().getFullYear().toString())
-    expect(sut.getPeople).toEqual(1)
+    expect(sut.getContributionMembersCount).toEqual(1)
   })
 })

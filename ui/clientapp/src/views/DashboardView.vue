@@ -1,30 +1,31 @@
 <script setup lang="ts">
-import ToggelSwitch from '@/components/general/ToggelSwitch.vue'
 import MonthOverview from '../components/general/MonthOverview.vue'
 import { useI18n } from 'vue-i18n'
 import { storeToRefs } from 'pinia'
 import useYearOptions from '@/composables/useYearOptions'
 import { useSettingsStore } from '@/stores/useSettingsStore'
 import { useInvoiceStore } from '../stores/useInvoiceStore.ts'
+import { onBeforeMount } from 'vue'
 
 // variables
 const { t } = useI18n()
 
 //stores
 const settingsStore = useSettingsStore()
-const { getYear: year } = storeToRefs(settingsStore)
+const { getYear: year, getContributionMembersCount: contributionMembersCount } = storeToRefs(settingsStore)
 const invoiceStore = useInvoiceStore()
 const { getMonthTotals: monthTotals } = storeToRefs(invoiceStore)
 
 // composables
 const { yearOptions } = useYearOptions()
 
+onBeforeMount(() => {
+  settingsStore.getSettingsById(1)
+})
+
 // functions
 const updateYear = (value: string) => {
   settingsStore.selectYear(value)
-}
-const switchToggeled = (value: Boolean) => {
-  console.log('switchToggeled', value)
 }
 </script>
 
@@ -42,12 +43,7 @@ const switchToggeled = (value: Boolean) => {
         />
       </div>
       <div class="col d-flex justify-content-start justify-content-sm-end">
-        <ToggelSwitch
-          :TextBefore="t('general.total')"
-          :TextAfter="t('general.perPerson')"
-          :checked="false"
-          @clicked="switchToggeled"
-        />
+        <!-- empty placeholder for now -->
       </div>
     </div>
     <div class="border">
@@ -72,24 +68,24 @@ const switchToggeled = (value: Boolean) => {
       />
     </div>
     <div class="d-flex flex-column flex-md-row gap-3 pt-3">
-      <MonthOverview :month="t('general.january')" :sum="1234" />
-      <MonthOverview :month="t('general.february')" :sum="8734" />
-      <MonthOverview :month="t('general.march')" :sum="8734" />
+      <MonthOverview :month="t('general.january')" :sum="0" :contribution-members="contributionMembersCount"/>
+      <MonthOverview :month="t('general.february')" :sum="8734" :contribution-members="contributionMembersCount"/>
+      <MonthOverview :month="t('general.march')" :sum="8734" :contribution-members="contributionMembersCount"/>
     </div>
     <div class="d-flex flex-column flex-md-row gap-3 pt-3">
-      <MonthOverview :month="t('general.april')" :sum="8734" />
-      <MonthOverview :month="t('general.may')" :sum="8734" />
-      <MonthOverview :month="t('general.june')" :sum="8734" />
+      <MonthOverview :month="t('general.april')" :sum="8734" :contribution-members="contributionMembersCount"/>
+      <MonthOverview :month="t('general.may')" :sum="8734" :contribution-members="contributionMembersCount" />
+      <MonthOverview :month="t('general.june')" :sum="8734" :contribution-members="contributionMembersCount"/>
     </div>
     <div class="d-flex flex-column flex-md-row gap-3 pt-3">
-      <MonthOverview :month="t('general.july')" :sum="8734" />
-      <MonthOverview :month="t('general.august')" :sum="8734" />
-      <MonthOverview :month="t('general.september')" :sum="8734" />
+      <MonthOverview :month="t('general.july')" :sum="8734" :contribution-members="contributionMembersCount"/>
+      <MonthOverview :month="t('general.august')" :sum="8734" :contribution-members="contributionMembersCount"/>
+      <MonthOverview :month="t('general.september')" :sum="8734" :contribution-members="contributionMembersCount"/>
     </div>
     <div class="d-flex flex-column flex-md-row gap-3 pt-3">
-      <MonthOverview :month="t('general.october')" :sum="8734" />
-      <MonthOverview :month="t('general.november')" :sum="873" />
-      <MonthOverview :month="t('general.december')" :sum="8734" />
+      <MonthOverview :month="t('general.october')" :sum="8734" :contribution-members="contributionMembersCount"/>
+      <MonthOverview :month="t('general.november')" :sum="873" :contribution-members="contributionMembersCount"/>
+      <MonthOverview :month="t('general.december')" :sum="8734" :contribution-members="contributionMembersCount"/>
     </div>
   </div>
 </template>
