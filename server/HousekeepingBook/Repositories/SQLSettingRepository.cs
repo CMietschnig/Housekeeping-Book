@@ -23,7 +23,7 @@ namespace HousekeepingBook.Repositories
         {
             var settings = context.Settings.Find(model.SettingsId);
             int affectedRows = 0;
-            if (settings != null)
+            if (settings != null && model.ContributionMembersCount != 0)
             {
                 settings.ContributionMembersCount = model.ContributionMembersCount;
                 settings.Year = model.Year;

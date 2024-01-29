@@ -232,6 +232,70 @@ namespace HousekeepingBook.Tests.Repositories
                 Assert.NotEqual(newModel.UpdateTimestamp, settings[0].UpdateTimestamp);
             }
         }
+
+        [Fact]
+        public void UpdateSettingsById_ShouldNotUpdateSettings_Because_Count_Is_0()
+        {
+            // Arrange
+            var options = new DbContextOptionsBuilder<DataContext>()
+                .UseInMemoryDatabase(databaseName: "UpdateSettingsById_ShouldNotUpdateSettings_Because_Count_Is_0")
+                .Options;
+
+            using (var initialContext = new DataContext(options))
+            {
+                // Add an initial settings
+                var initialSettings1 = new Settings
+                {
+                    SettingsId = 1,
+                    ContributionMembersCount = 1,
+                    Year = "2023",
+                    MonthId = Month.March,
+                    CreateTimestamp = new DateTime(2024, 1, 15),
+                    UpdateTimestamp = new DateTime(2024, 2, 15),
+                };
+                var initialSettings2 = new Settings
+                {
+                    SettingsId = 2,
+                    ContributionMembersCount = 6,
+                    Year = "2024",
+                    MonthId = Month.March,
+                    CreateTimestamp = new DateTime(2024, 1, 15),
+                    UpdateTimestamp = new DateTime(2024, 2, 15),
+                };
+
+                initialContext.Settings.Add(initialSettings1);
+                initialContext.Settings.Add(initialSettings2);
+                initialContext.SaveChanges();
+            }
+
+            using (var context = new DataContext(options))
+            {
+                var sut = new SQLSettingRepository(context);
+
+                Settings newModel = new Settings()
+                {
+                    SettingsId = 1,
+                    ContributionMembersCount = 0,
+                    Year = "2025",
+                    MonthId = Month.October,
+                    CreateTimestamp = new DateTime(2024, 1, 15),
+                    UpdateTimestamp = new DateTime(2024, 2, 18),
+                };
+
+                // Act
+                bool result = sut.UpdateSettingsById(newModel);
+
+                // Assert
+                Assert.False(result);
+                List<Settings> settings = context.Settings.ToList();
+                Assert.Equal(2, settings.Count());
+                Assert.Equal(newModel.SettingsId, settings[0].SettingsId);
+                Assert.NotEqual(newModel.ContributionMembersCount, settings[0].ContributionMembersCount);
+                Assert.NotEqual(newModel.Year, settings[0].Year);
+                Assert.NotEqual(newModel.MonthId, settings[0].MonthId);
+                Assert.NotEqual(newModel.UpdateTimestamp, settings[0].UpdateTimestamp);
+            }
+        }
         #endregion
     }
 }
