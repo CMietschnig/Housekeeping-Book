@@ -9,7 +9,6 @@ namespace HousekeepingBook.Tests.Controllers
 {
     public class InvoicesControllerTests
     {
-
         #region DeleteInvoiceById
         [Fact]
         public void DeleteInvoiceById_ReturnsOk()
@@ -782,6 +781,109 @@ namespace HousekeepingBook.Tests.Controllers
             var statusCodeResult = Assert.IsType<ObjectResult>(result);
             Assert.Equal(500, statusCodeResult.StatusCode);
             Assert.Equal("Error occurred while executing GetInvoicesPerMonthAndYear: Simulated error", statusCodeResult.Value);
+        }
+        #endregion
+
+        #region GetMonthTotalsForYear
+        [Fact]
+        public void GetMonthTotalsForYear_ReturnsInternalError()
+        {
+            // Arrange
+            List<Invoice> invoices = new List<Invoice>()
+            {
+                new Invoice {
+                    InvoiceId = 1,
+                    MonthlyInvoiceSummaryId = 2,
+                    CreateTimestamp= new DateTime(2024,1,2),
+                    UpdateTimestamp = new DateTime(2024,1,3),
+                    Store = null,
+                    Total= 34.56
+                },
+                new Invoice {
+                    InvoiceId = 2,
+                    MonthlyInvoiceSummaryId = 2,
+                    CreateTimestamp= new DateTime(2024,1,7),
+                    UpdateTimestamp = new DateTime(2024,1,8),
+                    Store = null,
+                    Total= 673.67
+                }
+            };
+            List<double> expectedResult = [708.23, 708.23, 708.23, 708.23, 708.23, 708.23, 708.23, 708.23, 708.23, 708.23, 708.23, 708.23];
+
+            var invoiceRepositoryMock = new Mock<IInvoiceRepository>();
+            invoiceRepositoryMock.Setup(repo => repo.GetInvoicesPerMonthlyInvoiceSummaryId(It.IsAny<int>())).Throws(new Exception("Simulated error"));
+
+            var monthlyInvoiceSummaryRepositoryMock = new Mock<IMonthlyInvoiceSummaryRepository>();
+            monthlyInvoiceSummaryRepositoryMock.Setup(repo => repo.GetMonthlyInvoiceSummaryId(It.IsAny<int>(), It.IsAny<string>()))
+                .Returns((int month, string year) =>
+                {
+                    return 1;
+                });
+            
+
+            var controller = new InvoicesController(invoiceRepositoryMock.Object, monthlyInvoiceSummaryRepositoryMock.Object);
+
+            var year = "2023";
+
+            // Act
+            var result = controller.GetMonthTotalsForYear(year);
+
+            // Assert
+            var statusCodeResult = Assert.IsType<ObjectResult>(result);
+            Assert.Equal(500, statusCodeResult.StatusCode);
+            Assert.Equal("Error occurred while executing GetMonthTotalsForYear: Simulated error", statusCodeResult.Value);
+        }
+
+        [Fact]
+        public void GetMonthTotalsForYear_ReturnsOk()
+        {
+            // Arrange
+            List<Invoice> invoices = new List<Invoice>()
+            {
+                new Invoice {
+                    InvoiceId = 1,
+                    MonthlyInvoiceSummaryId = 2,
+                    CreateTimestamp= new DateTime(2024,1,2),
+                    UpdateTimestamp = new DateTime(2024,1,3),
+                    Store = null,
+                    Total= 34.56
+                },
+                new Invoice {
+                    InvoiceId = 2,
+                    MonthlyInvoiceSummaryId = 2,
+                    CreateTimestamp= new DateTime(2024,1,7),
+                    UpdateTimestamp = new DateTime(2024,1,8),
+                    Store = null,
+                    Total= 673.67
+                }
+            };
+            List<double> expectedResult = [708.23, 708.23, 708.23, 708.23, 708.23, 708.23, 708.23, 708.23, 708.23, 708.23, 708.23, 708.23];
+
+            var invoiceRepositoryMock = new Mock<IInvoiceRepository>();
+            invoiceRepositoryMock.Setup(repo => repo.GetInvoicesPerMonthlyInvoiceSummaryId(It.IsAny<int>())).Returns((int id) =>
+            {
+                return invoices;
+            });
+
+            var monthlyInvoiceSummaryRepositoryMock = new Mock<IMonthlyInvoiceSummaryRepository>();
+            monthlyInvoiceSummaryRepositoryMock.Setup(repo => repo.GetMonthlyInvoiceSummaryId(It.IsAny<int>(), It.IsAny<string>()))
+                .Returns((int month, string year) =>
+                {
+                    return 1;
+                });
+
+
+            var controller = new InvoicesController(invoiceRepositoryMock.Object, monthlyInvoiceSummaryRepositoryMock.Object);
+
+            var year = "2023";
+
+            // Act
+            var result = controller.GetMonthTotalsForYear(year);
+
+            // Assert
+            var statusCodeResult = Assert.IsType<OkObjectResult>(result);
+            Assert.Equal(200, statusCodeResult.StatusCode);
+            Assert.Equal(expectedResult, statusCodeResult.Value);
         }
         #endregion
     }

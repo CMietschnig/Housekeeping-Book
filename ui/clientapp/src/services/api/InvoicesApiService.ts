@@ -140,6 +140,24 @@ class InvoicesApiService {
       return undefined // Return undefined in case of an error
     }
   }
+
+  async getMonthTotalsForYear(year: string): Promise<number[] | undefined> {
+    try {
+      const response = await axios.post(
+        `${InvoicesApiService.baseUrl}/api/invoices/getMonthTotalsForYear`,
+        year,
+        {
+          headers: {
+            'content-type': 'application/json'
+          }
+        }
+      )
+      return response.data
+    } catch (e) {
+      console.error('Could not get month totals for year ' + year + '. ' + e)
+      return undefined // Return undefined in case of an error
+    }
+  }
 }
 
 export default new InvoicesApiService()

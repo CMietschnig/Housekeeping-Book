@@ -6,13 +6,12 @@ import useYearOptions from '@/composables/useYearOptions'
 import { useSettingsStore } from '@/stores/useSettingsStore'
 import { useInvoiceStore } from '../stores/useInvoiceStore.ts'
 import { onBeforeMount } from 'vue'
-
-// variables
-const { t } = useI18n()
+import { months, monthCategories } from '@/constants/Months'
 
 //stores
 const settingsStore = useSettingsStore()
-const { getYear: year, getContributionMembersCount: contributionMembersCount } = storeToRefs(settingsStore)
+const { getYear: year, getContributionMembersCount: contributionMembersCount } =
+  storeToRefs(settingsStore)
 const invoiceStore = useInvoiceStore()
 const { getMonthTotals: monthTotals } = storeToRefs(invoiceStore)
 
@@ -21,7 +20,11 @@ const { yearOptions } = useYearOptions()
 
 onBeforeMount(() => {
   settingsStore.getSettingsById(1)
+  invoiceStore.getMonthTotalsForYear('2024')
 })
+
+// variables
+const { t } = useI18n()
 
 // functions
 const updateYear = (value: string) => {
@@ -49,43 +52,36 @@ const updateYear = (value: string) => {
     <div class="border">
       <ColumnChart
         :series="monthTotals"
-        :categories="[
-          'Jan',
-          'Feb',
-          'Mar',
-          'Apr',
-          'May',
-          'Jun',
-          'Jul',
-          'Aug',
-          'Sep',
-          'Oct',
-          'Nov',
-          'Dec'
-        ]"
+        :categories="monthCategories"
         :chart-title="t('dashboard.monthlyInvoices')"
         :series-title="t('general.total')"
       />
     </div>
-    <div class="d-flex flex-column flex-md-row gap-3 pt-3">
-      <MonthOverview :month="t('general.january')" :sum="0" :contribution-members="contributionMembersCount"/>
-      <MonthOverview :month="t('general.february')" :sum="8734" :contribution-members="contributionMembersCount"/>
-      <MonthOverview :month="t('general.march')" :sum="8734" :contribution-members="contributionMembersCount"/>
-    </div>
-    <div class="d-flex flex-column flex-md-row gap-3 pt-3">
-      <MonthOverview :month="t('general.april')" :sum="8734" :contribution-members="contributionMembersCount"/>
-      <MonthOverview :month="t('general.may')" :sum="8734" :contribution-members="contributionMembersCount" />
-      <MonthOverview :month="t('general.june')" :sum="8734" :contribution-members="contributionMembersCount"/>
-    </div>
-    <div class="d-flex flex-column flex-md-row gap-3 pt-3">
-      <MonthOverview :month="t('general.july')" :sum="8734" :contribution-members="contributionMembersCount"/>
-      <MonthOverview :month="t('general.august')" :sum="8734" :contribution-members="contributionMembersCount"/>
-      <MonthOverview :month="t('general.september')" :sum="8734" :contribution-members="contributionMembersCount"/>
-    </div>
-    <div class="d-flex flex-column flex-md-row gap-3 pt-3">
-      <MonthOverview :month="t('general.october')" :sum="8734" :contribution-members="contributionMembersCount"/>
-      <MonthOverview :month="t('general.november')" :sum="873" :contribution-members="contributionMembersCount"/>
-      <MonthOverview :month="t('general.december')" :sum="8734" :contribution-members="contributionMembersCount"/>
+
+    <div class="d-flex flex-wrap flex-column flex-md-row gap-3 pt-3">
+      <MonthOverview
+        v-for="(month, index) in months"
+        :key="index"
+        :month="t('general.' + month.name)"
+        :sum="monthTotals[index]"
+        :contribution-members="contributionMembersCount"
+        class="item"
+      />
     </div>
   </div>
 </template>
+
+<style lang="css">
+/* mobile */
+@media (max-width: 768px) {
+  .item {
+    width: 100%;
+  }
+}
+/* bigger than mobile */
+@media (min-width: 768px) {
+  .item {
+    width: calc(33.33% - 11px);
+  }
+}
+</style>

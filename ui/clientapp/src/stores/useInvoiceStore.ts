@@ -37,8 +37,7 @@ export const useInvoiceStore = defineStore({
           const monthlySum = invoices.reduce((sum, invoice) => sum + invoice.Total, 0)
 
           this.$patch((state) => {
-            state.invoices = invoices,
-            state.monthlySum = monthlySum
+            ;(state.invoices = invoices), (state.monthlySum = monthlySum)
           })
         } else {
           console.error(
@@ -178,6 +177,23 @@ export const useInvoiceStore = defineStore({
         }
       } catch (e) {
         console.error('Could not delete invoice with id ' + id + '. ' + e)
+      }
+    },
+    async getMonthTotalsForYear(year: string) {
+      try {
+        const monthTotals = await InvoicesApiService.getMonthTotalsForYear(year)
+
+        if (monthTotals) {
+          this.$patch((state) => {
+            state.monthTotals = monthTotals
+          })
+        } else {
+          console.error(
+            'Could not get month totals for year ' + year + '. The response is undefined.'
+          )
+        }
+      } catch (e) {
+        console.error('Could not get month totals for year ' + year + '. ' + e)
       }
     }
   }

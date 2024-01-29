@@ -23,9 +23,3 @@ defineProps({
     <SumPerContributionMember v-if="sum > 0" :sum="sum" :contribution-members="contributionMembers" />
   </div>
 </template>
-
-<style scoped>
-.overview-container {
-  flex-basis: 100%;
-}
-</style>

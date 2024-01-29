@@ -1,4 +1,5 @@
 ﻿using HousekeepingBook.Entities;
+using HousekeepingBook.Entities.Enums;
 using HousekeepingBook.Interfaces;
 using HousekeepingBook.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -61,6 +62,31 @@ namespace HousekeepingBook.Controllers
                 // Todo: add loggin for exeptions
 
                 return StatusCode(500, "Error occurred while executing GetCommentPerMonthAndYear: " + ex.Message);
+            }
+        }
+
+        [HttpPost("getMonthTotalsForYear")]
+        public IActionResult GetMonthTotalsForYear([FromBody] string year)
+        {
+            try 
+            {
+                // Create an array to hold the 12 monthly totals
+                double[] monthTotals = new double[12];
+
+                // Iterate through each month and calculate the total
+                for (int i = 0; i < 12; i++)
+                {
+                    int monthlyInvoiceSummaryId = _monthlyInvoiceSummaryRepository.GetMonthlyInvoiceSummaryId(i, year);
+                    IEnumerable<Invoice> invoices = _invoiceRepository.GetInvoicesPerMonthlyInvoiceSummaryId(monthlyInvoiceSummaryId);
+                    monthTotals[i] = invoices.Sum(invoice => invoice.Total);
+                }
+                return Ok(monthTotals);
+            }
+            catch (Exception ex)
+            {
+                // Todo: add loggin for exeptions
+
+                return StatusCode(500, "Error occurred while executing GetMonthTotalsForYear: " + ex.Message);
             }
         }
 
