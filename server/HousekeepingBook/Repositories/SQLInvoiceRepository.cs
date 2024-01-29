@@ -21,9 +21,9 @@ namespace HousekeepingBook.Repositories
             return affectedRows > 0; // Returns true if at least one row was affected.
         }
 
-        public bool DeleteInvoiceById(DeleteInvoiceByIdModel model)
+        public bool DeleteInvoiceById(int id)
         {
-            var invoice = context.Invoices.Find(model.Id);
+            var invoice = context.Invoices.Find(id);
             int affectedRows = 0;
             if (invoice != null)
             {

@@ -190,13 +190,13 @@ namespace HousekeepingBook.Controllers
         }
 
         [HttpPost("deleteInvoiceById")]
-        public IActionResult DeleteInvoiceById([FromBody] DeleteInvoiceByIdModel model)
+        public IActionResult DeleteInvoiceById([FromBody]int id)
         {
             try
             {
-                bool invoiceDeleted = _invoiceRepository.DeleteInvoiceById(model);
+                bool invoiceDeleted = _invoiceRepository.DeleteInvoiceById(id);
 
-                return invoiceDeleted ? Ok() : NotFound($"Invoice with id {model.Id} not deleted.");
+                return invoiceDeleted ? Ok() : NotFound($"Invoice with id { id } not deleted.");
             }
             catch(Exception ex)
             {

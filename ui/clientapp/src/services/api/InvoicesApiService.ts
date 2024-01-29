@@ -127,7 +127,7 @@ class InvoicesApiService {
     try {
       const response = await axios.post(
         `${InvoicesApiService.baseUrl}/api/invoices/deleteInvoiceById`,
-        { id },
+        id,
         {
           headers: {
             'content-type': 'application/json'

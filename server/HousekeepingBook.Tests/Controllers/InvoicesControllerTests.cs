@@ -15,19 +15,16 @@ namespace HousekeepingBook.Tests.Controllers
         {
             // Arrange
             var invoiceRepositoryMock = new Mock<IInvoiceRepository>();
-            invoiceRepositoryMock.Setup(repo => repo.DeleteInvoiceById(It.IsAny<DeleteInvoiceByIdModel>())).Returns(true);
+            invoiceRepositoryMock.Setup(repo => repo.DeleteInvoiceById(It.IsAny<int>())).Returns(true);
 
             var monthlyInvoiceSummaryRepositoryMock = new Mock<IMonthlyInvoiceSummaryRepository>();
 
             var controller = new InvoicesController(invoiceRepositoryMock.Object, monthlyInvoiceSummaryRepositoryMock.Object);
 
-            var model = new DeleteInvoiceByIdModel
-            {
-                Id = 1,
-            };
+            var id = 1;
 
             // Act
-            var result = controller.DeleteInvoiceById(model);
+            var result = controller.DeleteInvoiceById(id);
 
             // Assert
             Assert.IsType<OkResult>(result);
@@ -38,19 +35,16 @@ namespace HousekeepingBook.Tests.Controllers
         {
             // Arrange
             var invoiceRepositoryMock = new Mock<IInvoiceRepository>();
-            invoiceRepositoryMock.Setup(repo => repo.DeleteInvoiceById(It.IsAny<DeleteInvoiceByIdModel>())).Returns(false);
+            invoiceRepositoryMock.Setup(repo => repo.DeleteInvoiceById(It.IsAny<int>())).Returns(false);
 
             var monthlyInvoiceSummaryRepositoryMock = new Mock<IMonthlyInvoiceSummaryRepository>();
 
             var controller = new InvoicesController(invoiceRepositoryMock.Object, monthlyInvoiceSummaryRepositoryMock.Object);
 
-            var model = new DeleteInvoiceByIdModel
-            {
-                Id = 19,
-            };
+            var id = 19;
 
             // Act
-            var result = controller.DeleteInvoiceById(model);
+            var result = controller.DeleteInvoiceById(id);
 
             // Assert
             var statusCodeResult = Assert.IsType<NotFoundObjectResult>(result);
@@ -64,19 +58,16 @@ namespace HousekeepingBook.Tests.Controllers
         {
             // Arrange
             var invoiceRepositoryMock = new Mock<IInvoiceRepository>();
-            invoiceRepositoryMock.Setup(repo => repo.DeleteInvoiceById(It.IsAny<DeleteInvoiceByIdModel>())).Throws(new Exception("Simulated error"));
+            invoiceRepositoryMock.Setup(repo => repo.DeleteInvoiceById(It.IsAny<int>())).Throws(new Exception("Simulated error"));
 
             var monthlyInvoiceSummaryRepositoryMock = new Mock<IMonthlyInvoiceSummaryRepository>();
 
             var controller = new InvoicesController(invoiceRepositoryMock.Object, monthlyInvoiceSummaryRepositoryMock.Object);
 
-            var model = new DeleteInvoiceByIdModel
-            {
-                Id = 19,
-            };
+            var id = 19;
 
             // Act
-            var result = controller.DeleteInvoiceById(model);
+            var result = controller.DeleteInvoiceById(id);
 
             // Assert
             var statusCodeResult = Assert.IsType<ObjectResult>(result);

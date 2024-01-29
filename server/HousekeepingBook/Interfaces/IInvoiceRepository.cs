@@ -9,6 +9,6 @@ namespace HousekeepingBook.Interfaces
         IEnumerable<Invoice> GetInvoicesPerMonthlyInvoiceSummaryId(int id);
         bool AddInvoiceToMonthAndYear(Invoice model);
         bool UpdateInvoiceById(Invoice model);
-        bool DeleteInvoiceById(DeleteInvoiceByIdModel model);
+        bool DeleteInvoiceById(int id);
     }
 }

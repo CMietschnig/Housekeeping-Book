@@ -150,15 +150,15 @@ namespace HousekeepingBook.Tests.Repositories
             using (var context = new DataContext(options))
             {
                 var sut = new SQLInvoiceRepository(context);
-                DeleteInvoiceByIdModel model = new DeleteInvoiceByIdModel() { Id = 1 };
+                int id = 1;
 
                 // Act
-                bool result = sut.DeleteInvoiceById(model);
+                bool result = sut.DeleteInvoiceById(id);
 
                 // Assert
                 Assert.True(result);
                 List<Invoice> invoices = context.Invoices.ToList();
-                Assert.DoesNotContain(invoices, invoice => invoice.InvoiceId == model.Id);
+                Assert.DoesNotContain(invoices, invoice => invoice.InvoiceId == id);
                 Assert.Empty(invoices);
             }
         }
@@ -201,15 +201,15 @@ namespace HousekeepingBook.Tests.Repositories
             using (var context = new DataContext(options))
             {
                 var sut = new SQLInvoiceRepository(context);
-                DeleteInvoiceByIdModel model = new DeleteInvoiceByIdModel() { Id = 3 };
+                int id = 3;
 
                 // Act
-                bool result = sut.DeleteInvoiceById(model);
+                bool result = sut.DeleteInvoiceById(id);
 
                 // Assert
                 Assert.False(result);
                 List<Invoice> invoices = context.Invoices.ToList();
-                Assert.DoesNotContain(invoices, invoice => invoice.InvoiceId == model.Id);
+                Assert.DoesNotContain(invoices, invoice => invoice.InvoiceId == id);
                 Assert.Equal(2, invoices.Count);
             }
         }
@@ -252,15 +252,15 @@ namespace HousekeepingBook.Tests.Repositories
             using (var context = new DataContext(options))
             {
                 var sut = new SQLInvoiceRepository(context);
-                DeleteInvoiceByIdModel model = new DeleteInvoiceByIdModel() { Id = 1 };
+                int id = 1;
 
                 // Act
-                bool result = sut.DeleteInvoiceById(model);
+                bool result = sut.DeleteInvoiceById(id);
 
                 // Assert
                 Assert.True(result);
                 List<Invoice> invoices = context.Invoices.ToList();
-                Assert.DoesNotContain(invoices, invoice => invoice.InvoiceId == model.Id);
+                Assert.DoesNotContain(invoices, invoice => invoice.InvoiceId == id);
                 Assert.Contains(invoices, invoice => invoice.InvoiceId == 2);
             }
         }

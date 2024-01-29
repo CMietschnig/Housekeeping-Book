@@ -24,7 +24,7 @@ namespace HousekeepingBook.Tests
             throw new NotImplementedException();
         }
 
-        public bool DeleteInvoiceById(DeleteInvoiceByIdModel model)
+        public bool DeleteInvoiceById(int id)
         {
             throw new NotImplementedException();
         }
