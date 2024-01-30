@@ -9,7 +9,7 @@
     "../**/*.vue",
     "../../**/*.ts"
   ],
-  "exclude": ["src/**/__tests__/*"],
+  "exclude": ["src/tests/*"],
   "compilerOptions": {
     "allowImportingTsExtensions": true,
     "composite": true,

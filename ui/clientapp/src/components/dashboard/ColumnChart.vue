@@ -70,16 +70,11 @@ const chartOptions = {
     }
   }
 }
-const seriesInput = [
-  {
-    name: props.seriesTitle,
-    data: props.series
-  }
-]
 </script>
+
 <template>
   <div id="chart">
-    <apexchart type="bar" height="250" :options="chartOptions" :series="seriesInput"></apexchart>
+    <apexchart type="bar" height="250" :options="chartOptions" :series="[{name: seriesTitle, data: series}]"></apexchart>
   </div>
 </template>
 
