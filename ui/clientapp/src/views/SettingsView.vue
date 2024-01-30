@@ -58,6 +58,7 @@ const updateYear = (value: number) => {
           :id="1"
           :only-addable="false"
           :can-delete="false"
+          :display-rounded-number="false"
           :placeholder="t('settings.contributionMembers')"
           @update-number="updateSettingsById"
         />

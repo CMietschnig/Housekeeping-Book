@@ -306,4 +306,67 @@ describe('NumberInput.vue', () => {
     // Assert
     expect(wrapper.emitted('updateNumber')).toBeFalsy()
   })
+  it('should display number rounded', async () => {
+    // Arrange
+    const wrapper = mount(NumberInput, {
+      props: {
+        onlyAddable: false,
+        placeholder: 'placeholder',
+        number: 2.056,
+        id: 'test',
+        displayRoundedNumber: true
+      },
+      global: {
+        components: { FontAwesomeIcon }
+      }
+    })
+
+    // Act
+    const number = wrapper.find('.number')
+    
+    // Assert
+    expect(number.text()).toBe('2.06')
+  })
+  it('should display number with decimals', async () => {
+    // Arrange
+    const wrapper = mount(NumberInput, {
+      props: {
+        onlyAddable: false,
+        placeholder: 'placeholder',
+        number: 2,
+        id: 'test',
+        displayRoundedNumber: true
+      },
+      global: {
+        components: { FontAwesomeIcon }
+      }
+    })
+
+    // Act
+    const number = wrapper.find('.number')
+    
+    // Assert
+    expect(number.text()).toBe('2.00')
+  })
+  it('should display number without decimals', async () => {
+    // Arrange
+    const wrapper = mount(NumberInput, {
+      props: {
+        onlyAddable: false,
+        placeholder: 'placeholder',
+        number: 2,
+        id: 'test',
+        displayRoundedNumber: false
+      },
+      global: {
+        components: { FontAwesomeIcon }
+      }
+    })
+
+    // Act
+    const number = wrapper.find('.number')
+    
+    // Assert
+    expect(number.text()).toBe('2')
+  })
 })

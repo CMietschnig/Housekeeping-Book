@@ -14,6 +14,11 @@ const props = defineProps({
     required: false,
     default: true
   },
+  displayRoundedNumber: {
+    type: Boolean,
+    required: false,
+    default: true
+  },
   placeholder: {
     type: String,
     required: true
@@ -66,7 +71,7 @@ const addInput = () => {
         v-if="!isEditMode"
         class="d-flex flex-wrap justify-content-center justify-content-sm-start align-items-center gap-3 edit-number"
       >
-        <span class="number">{{ number?.toFixed(2) }}</span>
+        <span class="number">{{ displayRoundedNumber ? number?.toFixed(2) : number }}</span>
         <div class="d-flex gap-2">
           <BButton variant="primary" class="edit-btn hide" @click="editInput()">
             <font-awesome-icon icon="fa-solid fa-pencil" />
