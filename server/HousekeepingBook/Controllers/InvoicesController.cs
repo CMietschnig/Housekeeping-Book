@@ -78,7 +78,7 @@ namespace HousekeepingBook.Controllers
                 {
                     int monthlyInvoiceSummaryId = _monthlyInvoiceSummaryRepository.GetMonthlyInvoiceSummaryId(i, year);
                     IEnumerable<Invoice> invoices = _invoiceRepository.GetInvoicesPerMonthlyInvoiceSummaryId(monthlyInvoiceSummaryId);
-                    monthTotals[i] = invoices.Sum(invoice => invoice.Total);
+                    monthTotals[i] = Math.Round(invoices.Sum(invoice => invoice.Total), 2);
                 }
                 return Ok(monthTotals);
             }

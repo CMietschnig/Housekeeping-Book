@@ -837,7 +837,7 @@ namespace HousekeepingBook.Tests.Controllers
                     CreateTimestamp= new DateTime(2024,1,2),
                     UpdateTimestamp = new DateTime(2024,1,3),
                     Store = null,
-                    Total= 34.56
+                    Total= 34.561
                 },
                 new Invoice {
                     InvoiceId = 2,
@@ -845,7 +845,7 @@ namespace HousekeepingBook.Tests.Controllers
                     CreateTimestamp= new DateTime(2024,1,7),
                     UpdateTimestamp = new DateTime(2024,1,8),
                     Store = null,
-                    Total= 673.67
+                    Total= 673.671
                 }
             };
             List<double> expectedResult = [708.23, 708.23, 708.23, 708.23, 708.23, 708.23, 708.23, 708.23, 708.23, 708.23, 708.23, 708.23];

@@ -66,7 +66,7 @@ const addInput = () => {
         v-if="!isEditMode"
         class="d-flex flex-wrap justify-content-center justify-content-sm-start align-items-center gap-3 edit-number"
       >
-        <span class="number">{{ number }}</span>
+        <span class="number">{{ number?.toFixed(2) }}</span>
         <div class="d-flex gap-2">
           <BButton variant="primary" class="edit-btn hide" @click="editInput()">
             <font-awesome-icon icon="fa-solid fa-pencil" />
@@ -86,7 +86,13 @@ const addInput = () => {
         v-else
         class="d-flex flex-wrap justify-content-center justify-content-sm-start align-items-center gap-3"
       >
-        <input :placeholder="placeholder" v-model="inputValue" type="number" :id="'id-' + id" class="update-input-field"/>
+        <input
+          :placeholder="placeholder"
+          v-model="inputValue"
+          type="number"
+          :id="'id-' + id"
+          class="update-input-field"
+        />
         <div class="d-flex gap-2">
           <BButton variant="primary" class="update-btn" @click="updateInput()">
             <font-awesome-icon icon="fa-regular fa-floppy-disk" />
@@ -102,7 +108,13 @@ const addInput = () => {
       v-else
       class="d-flex flex-wrap justify-content-center justify-content-sm-start align-items-center gap-3 pb-4"
     >
-      <input :placeholder="placeholder" v-model="inputValue" type="number" :id="'id-' + id" class="add-input-field"/>
+      <input
+        :placeholder="placeholder"
+        v-model="inputValue"
+        type="number"
+        :id="'id-' + id"
+        class="add-input-field"
+      />
       <BButton variant="primary" class="add-btn" @click="addInput()">
         <font-awesome-icon icon="fa-solid fa-plus" />
       </BButton>

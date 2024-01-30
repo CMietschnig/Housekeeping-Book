@@ -34,10 +34,11 @@ export const useInvoiceStore = defineStore({
 
         if (invoices) {
           // calculate the monthly sum
-          const monthlySum = invoices.reduce((sum, invoice) => sum + invoice.Total, 0)
+          const monthlySum = invoices.reduce((sum, invoice) => sum + invoice.Total, 0)  
+          const roundedSum = Math.round(monthlySum * 100) / 100;
 
           this.$patch((state) => {
-            ;(state.invoices = invoices), (state.monthlySum = monthlySum)
+            ;(state.invoices = invoices), (state.monthlySum = roundedSum)
           })
         } else {
           console.error(
