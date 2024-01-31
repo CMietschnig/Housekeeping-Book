@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 defineProps({
   month: {
     type: String,
@@ -7,7 +6,7 @@ defineProps({
   },
   sum: {
     type: Number,
-    required: true
+    required: false
   },
   contributionMembers: {
     type: Number,
@@ -20,6 +19,10 @@ defineProps({
   <div class="overview-container border p-3">
     <h2>{{ month }}</h2>
     <span class="fw-bold fs-4"> {{ sum }} €</span>
-    <SumPerContributionMember v-if="sum > 0" :sum="sum" :contribution-members="contributionMembers" />
+    <SumPerContributionMember
+      v-if="sum !== undefined && sum > 0"
+      :sum="sum"
+      :contribution-members="contributionMembers"
+    />
   </div>
 </template>

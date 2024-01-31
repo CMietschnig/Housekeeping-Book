@@ -15,7 +15,11 @@ const {
   getMonthlySum: sum
 } = storeToRefs(invoiceStore)
 const settingsStore = useSettingsStore()
-const { getMonthId: month, getYear: year, getContributionMembersCount: contributionMembers } = storeToRefs(settingsStore)
+const {
+  getMonthId: month,
+  getYear: year,
+  getContributionMembersCount: contributionMembers
+} = storeToRefs(settingsStore)
 
 // composables
 const { monthOptions } = useMonthOptions()
@@ -102,7 +106,11 @@ const updateYear = async (value: string) => {
         <!--sum  -->
         <MonthlySum :sum="sum" :show-text="false" />
         <div class="pt-4">
-          <SumPerContributionMember :sum="sum" :contributionMembers="contributionMembers" />
+          <SumPerContributionMember
+            v-if="sum !== undefined && sum > 0"
+            :sum="sum"
+            :contributionMembers="contributionMembers"
+          />
         </div>
       </div>
     </div>

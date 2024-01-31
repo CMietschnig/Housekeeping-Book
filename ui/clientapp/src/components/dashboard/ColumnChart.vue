@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 const props = defineProps({
   series: {
     type: Array<number>,
@@ -16,7 +15,7 @@ const props = defineProps({
   seriesTitle: {
     type: String,
     required: true
-  },
+  }
 })
 
 const chartOptions = {
@@ -74,16 +73,23 @@ const chartOptions = {
 
 <template>
   <div id="chart">
-    <apexchart type="bar" height="250" :options="chartOptions" :series="[{name: seriesTitle, data: series}]"></apexchart>
+    <apexchart
+      type="bar"
+      height="250"
+      :options="chartOptions"
+      :series="[{ name: seriesTitle, data: series }]"
+    ></apexchart>
   </div>
 </template>
 
-<style scoped >
-#chart, .apexcharts-tooltip {
+<style scoped>
+#chart,
+.apexcharts-tooltip {
   color: #000000;
 }
 
-#chart, .apexcharts-tooltip .apexcharts-tooltip-series-group.active {
+#chart,
+.apexcharts-tooltip .apexcharts-tooltip-series-group.active {
   background: #ffffff !important;
 }
 </style>

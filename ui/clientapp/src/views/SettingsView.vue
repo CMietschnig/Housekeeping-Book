@@ -9,13 +9,17 @@ import type { IUpdateSettings } from '@/interfaces/IUpdateSettings'
 
 // stores
 const settingsStore = useSettingsStore()
-const { getMonthId: month, getYear: year, getContributionMembersCount: savedContributionMembersCount } = storeToRefs(settingsStore)
+const {
+  getMonthId: month,
+  getYear: year,
+  getContributionMembersCount: savedContributionMembersCount
+} = storeToRefs(settingsStore)
 
 //composables
 const { monthOptions } = useMonthOptions()
 const { yearOptions } = useYearOptions()
 
-onBeforeMount(() => { 
+onBeforeMount(() => {
   // only one user so id is hardcoded
   settingsStore.getSettingsById(1)
 })
@@ -34,15 +38,17 @@ const updateSettingsById = (value: { id: number; number: number }) => {
   const updateSettingsModel: IUpdateSettings = {
     SettingsId: value.id,
     ContributionMembersCount: value.number,
-    Year: "2023",
+    Year: '2023',
     MonthId: 1
   }
   settingsStore.updateSettingsById(updateSettingsModel)
 }
 const updateMonth = (value: number) => {
+  // not implemented yet
   console.log('settings select default month', value)
 }
 const updateYear = (value: number) => {
+  // not implemented yet
   console.log('settings select default year', value)
 }
 </script>

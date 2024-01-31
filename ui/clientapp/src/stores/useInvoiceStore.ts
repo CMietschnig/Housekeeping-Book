@@ -34,8 +34,8 @@ export const useInvoiceStore = defineStore({
 
         if (invoices) {
           // calculate the monthly sum
-          const monthlySum = invoices.reduce((sum, invoice) => sum + invoice.Total, 0)  
-          const roundedSum = Math.round(monthlySum * 100) / 100;
+          const monthlySum = invoices.reduce((sum, invoice) => sum + invoice.Total, 0)
+          const roundedSum = Math.round(monthlySum * 100) / 100
 
           this.$patch((state) => {
             ;(state.invoices = invoices), (state.monthlySum = roundedSum)
@@ -57,7 +57,8 @@ export const useInvoiceStore = defineStore({
       try {
         const comment = await InvoicesApiService.getCommentPerMonthAndYear(month, year)
 
-        if (comment) {
+        // comment can be a empty string, so check for null or undefined
+        if (comment !== null && comment !== undefined) {
           this.$patch((state) => {
             state.comment = comment
           })

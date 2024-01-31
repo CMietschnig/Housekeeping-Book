@@ -20,15 +20,15 @@ const { yearOptions } = useYearOptions()
 
 onBeforeMount(() => {
   settingsStore.getSettingsById(1)
-  invoiceStore.getMonthTotalsForYear('2024')
+  invoiceStore.getMonthTotalsForYear(year.value)
 })
 
 // variables
 const { t } = useI18n()
 
 // functions
-const updateYear = (value: string) => {
-  settingsStore.selectYear(value)
+const updateYear = (year: string) => {
+  invoiceStore.getMonthTotalsForYear(year)
 }
 </script>
 
