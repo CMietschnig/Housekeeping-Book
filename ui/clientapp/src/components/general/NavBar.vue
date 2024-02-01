@@ -14,7 +14,10 @@ const { t } = useI18n()
         <BNavItem to="/"> {{ t('general.dashboard') }} </BNavItem>
         <BNavItem to="/editMonth">{{ t('general.editMonth') }}</BNavItem>
         <BNavItem to="/settings">{{ t('general.settings') }}</BNavItem>
+      </BNavbarNav>
+      <BNavbarNav class="ms-auto mb-2 mb-lg-0">
         <LocaleChanger />
+        <ColorModeSwitcher />
       </BNavbarNav>
     </BCollapse>
   </BNavbar>

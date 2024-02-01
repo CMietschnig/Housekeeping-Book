@@ -1,9 +1,65 @@
 // declare color overrides here!!
+[data-bs-theme='light'] {
+  $primary: orange;
+  $secondary: $gray-600 !default;
+  $success: $green !default;
+  $info: $cyan !default;
+  $warning: $yellow !default;
+  $danger: $red !default;
+  $light: $gray-100 !default;
+  $dark: $gray-100 !default;
+}
+
+[data-bs-theme='dark'] {
+  --color-text: red;
+  --bs-body-color: orange;
+  --bs-body-color-rgb: white;
+  --bs-body-bg: pink;
+  --bs-body-bg-rgb: blue;
+  --bs-tertiary-bg: blue;
+
+  .dropdown-menu {
+    --bs-dropdown-bg: #{mix(orange, green)};
+    --bs-dropdown-link-active-bg: #{orange};
+  }
+  .navbar-brand {
+    color: green !important;
+  }
+  --bs-navbar-brand-color: green;
+}
 
 @import '../node_modules/bootstrap/scss/bootstrap';
+
+// add additional custom code
+
+[data-bs-theme='blue'] {
+  --bs-primary: yellow;
+  --bs-secondary: #be22b1;
+  --bs-success: #1rgb(194, 38, 168) --bs-info: #0dcaf0;
+  --bs-warning: #ffc107;
+  --bs-danger: #ff3907;
+  --bs-body-color: var(--bs-white);
+  --bs-body-color-rgb: #{to-rgb($white)};
+  --bs-body-bg: var(--bs-blue);
+  --bs-body-bg-rgb: #{to-rgb($blue)};
+  --bs-tertiary-bg: #{$blue-600};
+  .dropdown-menu {
+    --bs-dropdown-bg: #{mix($blue-500, $blue-600)};
+    --bs-dropdown-link-active-bg: #{$blue-700};
+  }
+
+  .btn-secondary {
+    --bs-btn-bg: --bs-secondary;
+    --bs-btn-border-color: #{rgba($white, 0.25)};
+    --bs-btn-hover-bg: #{darken(mix($gray-600, $blue-400, 0.5), 5%)};
+    --bs-btn-hover-border-color: #{rgba($white, 0.25)};
+    --bs-btn-active-bg: #{darken(mix($gray-600, $blue-400, 0.5), 10%)};
+    --bs-btn-active-border-color: #{rgba($white, 0.5)};
+    --bs-btn-focus-border-color: #{rgba($white, 0.5)};
+    --bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.2);
+  }
+}
 
 .cursor-pointer {
   cursor: pointer;
 }
-
-

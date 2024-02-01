@@ -1,5 +1,6 @@
 import './assets/main.css'
 import 'bootstrap-vue-next/dist/bootstrap-vue-next.css'
+import '/src/assets/css/custom.css'
 
 import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
@@ -15,7 +16,7 @@ import en from './locales/en.json'
 
 // configure i18n
 const i18n = createI18n({
-  locale: 'en',
+  locale: 'de',
   fallbackLocale: 'en',
   messages: { de, en },
   legacy: false

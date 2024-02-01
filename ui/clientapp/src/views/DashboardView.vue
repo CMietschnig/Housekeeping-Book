@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import MonthOverview from '../components/general/MonthOverview.vue'
 import { useI18n } from 'vue-i18n'
 import { storeToRefs } from 'pinia'
 import useYearOptions from '@/composables/useYearOptions'

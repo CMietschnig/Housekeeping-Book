@@ -9,6 +9,9 @@ declare module 'vue' {
   export interface GlobalComponents {
     BButton: typeof import('bootstrap-vue-next')['BButton']
     BCollapse: typeof import('bootstrap-vue-next')['BCollapse']
+    BDropdown: typeof import('bootstrap-vue-next')['BDropdown']
+    BDropdownDivider: typeof import('bootstrap-vue-next')['BDropdownDivider']
+    BDropdownItem: typeof import('bootstrap-vue-next')['BDropdownItem']
     BFormSelect: typeof import('bootstrap-vue-next')['BFormSelect']
     BFormSelectOption: typeof import('bootstrap-vue-next')['BFormSelectOption']
     BNavbar: typeof import('bootstrap-vue-next')['BNavbar']
@@ -16,6 +19,7 @@ declare module 'vue' {
     BNavbarNav: typeof import('bootstrap-vue-next')['BNavbarNav']
     BNavbarToggle: typeof import('bootstrap-vue-next')['BNavbarToggle']
     BNavItem: typeof import('bootstrap-vue-next')['BNavItem']
+    ColorModeSwitcher: typeof import('./src/components/general/ColorModeSwitcher.vue')['default']
     ColumnChart: typeof import('./src/components/dashboard/ColumnChart.vue')['default']
     EditableComment: typeof import('./src/components/general/EditableComment.vue')['default']
     InvoicesPerMonthList: typeof import('./src/components/editMonth/InvoicesPerMonthList.vue')['default']
