@@ -27,7 +27,10 @@
     "currrentMonth": "Aktueller Monat",
     "noCommentYet": "Sie haben für diesen Monat noch keinen Kommentar hinterlassen.",
     "comment": "Kommentar",
-    "totalContributionPerPerson": "Gesamtbeitrag pro Person"
+    "totalContributionPerPerson": "Gesamtbeitrag pro Person",
+    "theme": "Farbschema",
+    "light": "Hell",
+    "dark": "Dunkel"
   },
   "editMonth": {
     "invoiceTotal": "Rechnungssumme",

@@ -25,7 +25,7 @@ const selectedValue = useVModel(props, 'selected', emit)
 </script>
 
 <template>
-  <BFormSelect v-model="selectedValue" :options="selectOptions">
+  <BFormSelect v-model="selectedValue" :options="selectOptions" class="single-select">
     <template #first>
       <BFormSelectOption :value="null" disabled>{{ placeholder }}</BFormSelectOption>
     </template>

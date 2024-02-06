@@ -1,65 +1,139 @@
 // declare color overrides here!!
-[data-bs-theme='light'] {
-  $primary: orange;
-  $secondary: $gray-600 !default;
-  $success: $green !default;
-  $info: $cyan !default;
-  $warning: $yellow !default;
-  $danger: $red !default;
-  $light: $gray-100 !default;
-  $dark: $gray-100 !default;
-}
-
-[data-bs-theme='dark'] {
-  --color-text: red;
-  --bs-body-color: orange;
-  --bs-body-color-rgb: white;
-  --bs-body-bg: pink;
-  --bs-body-bg-rgb: blue;
-  --bs-tertiary-bg: blue;
-
-  .dropdown-menu {
-    --bs-dropdown-bg: #{mix(orange, green)};
-    --bs-dropdown-link-active-bg: #{orange};
-  }
-  .navbar-brand {
-    color: green !important;
-  }
-  --bs-navbar-brand-color: green;
-}
 
 @import '../node_modules/bootstrap/scss/bootstrap';
 
 // add additional custom code
+[data-bs-theme='light'] {
+  color-scheme: light;
+  --color-1: #eae2d6;
+  --color-2: #d5c3aa;
+  --color-2-rgb: 213, 195, 170;
+  --color-3: #867666;
+  --color-4: #e1b80d;
+  --color-5: white;
 
-[data-bs-theme='blue'] {
-  --bs-primary: yellow;
-  --bs-secondary: #be22b1;
-  --bs-success: #1rgb(194, 38, 168) --bs-info: #0dcaf0;
-  --bs-warning: #ffc107;
-  --bs-danger: #ff3907;
-  --bs-body-color: var(--bs-white);
-  --bs-body-color-rgb: #{to-rgb($white)};
-  --bs-body-bg: var(--bs-blue);
-  --bs-body-bg-rgb: #{to-rgb($blue)};
-  --bs-tertiary-bg: #{$blue-600};
+  --bs-border-color: var(--color-2);
+  --bs-body-color: var(--color-3);
+  --bs-body-bg: var(--color-1);
+  --bs-primary: var(--color-2);
+  --bs-primary-rgb: var(--color-2-rgb);
+
+  .btn-primary {
+    --bs-btn-color: var(--color-3);
+    --bs-btn-bg: var(--bs-primary);
+    --bs-btn-border-color: var(--bs-primary);
+    // hover
+    --bs-btn-hover-color: var(--color-3);
+    --bs-btn-hover-bg: var(--color-1);
+    --bs-btn-hover-border-color: var(--color-1);
+    // active
+    --bs-btn-active-color: var(--color-3);
+    --bs-btn-active-bg: var(--color-5);
+    --bs-btn-active-border-color: var(--color-5);
+  }
   .dropdown-menu {
-    --bs-dropdown-bg: #{mix($blue-500, $blue-600)};
-    --bs-dropdown-link-active-bg: #{$blue-700};
+    --bs-dropdown-bg: var(--color-5);
+    --bs-dropdown-color: var(--color-3);
+    --bs-dropdown-link-hover-bg: var(--color-1);
+    --bs-dropdown-link-active-bg: var(--color-3);
   }
 
-  .btn-secondary {
-    --bs-btn-bg: --bs-secondary;
-    --bs-btn-border-color: #{rgba($white, 0.25)};
-    --bs-btn-hover-bg: #{darken(mix($gray-600, $blue-400, 0.5), 5%)};
-    --bs-btn-hover-border-color: #{rgba($white, 0.25)};
-    --bs-btn-active-bg: #{darken(mix($gray-600, $blue-400, 0.5), 10%)};
-    --bs-btn-active-border-color: #{rgba($white, 0.5)};
-    --bs-btn-focus-border-color: #{rgba($white, 0.5)};
-    --bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.2);
+  .navbar-brand {
+    --bs-navbar-brand-color: var(--color-5);
+    --bs-navbar-brand-hover-color: var(--color-5);
   }
+  .navbar-nav {
+    --bs-nav-link-color: var(--color-3);
+  }
+  .router-link-active {
+    color: var(--color-5);
+  }
+  .single-select {
+    --bs-border-color: var(--color-2);
+    background-color: var(--color-2);
+    &:focus {
+      border-color: var(--bs-border-color);
+      box-shadow:
+        rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+        rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    }
+    &:hover {
+      background-color: var(--color-1);
+      transition: 0.2s ease-in-out;
+    }
+    &:active {
+      background-color: var(--color-5);
+    }
+  }
+  .overview-container {
+    border-radius: 0.5rem;
+    background-image: linear-gradient(190deg, var(--color-1), var(--color-2));
+  }
+  .sum {
+    color: var(--color-5);
+  }
+  .apexcharts-menu-icon svg {
+    fill: var(--color-3);
+  }
+  .update-input-field,
+  .add-input-field {
+    background-color: transparent;
+
+    border-bottom: 1px solid var(--color-3);
+    color: var(--color-3);
+  }
+  .comment {
+    background-color: transparent;
+    color: var(--color-3);
+  }
+  .monthly-sum {
+    border-top: 1px solid var(--color-3);
+  }
+  .single-select > option {
+    background-color: var(--color-5);
+    color: var(--color-2);
+  }
+
 }
+
+/*[data-bs-theme='dark'] {
+ 
+}*/
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.nav-link {
+  justify-content: center;
+  display: flex;
+}
+.dropdown-item {
+  outline: none;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.update-input-field,
+.add-input-field {
+  border-top: none;
+  border-right: none;
+  border-left: none;
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.comment {
+  &:focus-visible {
+    outline: none;
+  }
 }

@@ -27,7 +27,10 @@
     "currrentMonth": "Current month",
     "noCommentYet": "You have not yet left a comment for this month.",
     "comment": "Comment",
-    "totalContributionPerPerson": "Total contribution per person"
+    "totalContributionPerPerson": "Total contribution per person",
+    "theme": "Theme",
+    "light": "Light",
+    "dark": "Dark"
   },
   "editMonth": {
     "invoiceTotal": "Invoice total",

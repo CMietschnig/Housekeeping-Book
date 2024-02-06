@@ -7,10 +7,10 @@ const { t } = useI18n()
 
 <template>
   <BNavbar toggleable="lg" variant="primary" v-b-color-mode="'dark'">
-    <BNavbarBrand href="#">{{ t('general.menu') }}</BNavbarBrand>
+    <BNavbarBrand>{{ t('general.menu') }}</BNavbarBrand>
     <BNavbarToggle target="nav-collapse" />
     <BCollapse id="nav-collapse" is-nav>
-      <BNavbarNav>
+      <BNavbarNav class="justify-content-center">
         <BNavItem to="/"> {{ t('general.dashboard') }} </BNavItem>
         <BNavItem to="/editMonth">{{ t('general.editMonth') }}</BNavItem>
         <BNavItem to="/settings">{{ t('general.settings') }}</BNavItem>

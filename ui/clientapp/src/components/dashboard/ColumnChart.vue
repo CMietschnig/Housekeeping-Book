@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
 const props = defineProps({
   series: {
     type: Array<number>,
@@ -19,11 +20,55 @@ const props = defineProps({
 })
 
 const chartOptions = {
+  chart: {
+    background: 'transparent'
+  },
+  legend: {
+    show: false
+  },
+  fill: {
+    colors: ['#e1b80d'],
+    opacity: 0.9,
+    type: 'solid',
+    gradient: {
+      shade: 'dark',
+      type: 'horizontal',
+      shadeIntensity: 0.5,
+      gradientToColors: ['#e1b80d'],
+      inverseColors: true,
+      opacityFrom: 0,
+      opacityTo: 1,
+      stops: [0, 50, 100],
+      colorStops: []
+    }
+  },
+  grid: {
+    show: true,
+    borderColor: '#d5c3aa',
+    strokeDashArray: 0,
+    position: 'back',
+    xaxis: {
+      lines: {
+        show: false
+      }
+    },
+    yaxis: {
+      lines: {
+        show: true
+      }
+    },
+    padding: {
+      top: 0,
+      right: 20,
+      bottom: 5,
+      left: 10
+    }
+  },
   dataLabels: {
     enabled: true,
     style: {
       fontSize: '12px',
-      colors: ['#fff']
+      colors: ['#867666']
     }
   },
   xaxis: {
@@ -49,11 +94,24 @@ const chartOptions = {
     },
     tooltip: {
       enabled: false
+    },
+    labels: {
+      style: {
+        colors: '#867666'
+      }
+    }
+  },
+  yaxis: {
+    labels: {
+      style: {
+        colors: '#867666'
+      }
     }
   },
   plotOptions: {
     bar: {
-      borderRadius: 6,
+      distributed: true,
+      borderRadius: 3,
       dataLabels: {
         position: 'top'
       }
@@ -65,8 +123,11 @@ const chartOptions = {
     offsetY: 230,
     align: 'center',
     style: {
-      color: '#444'
+      color: '#867666'
     }
+  },
+  tooltip: {
+    enabled: false
   }
 }
 </script>
@@ -81,15 +142,3 @@ const chartOptions = {
     ></apexchart>
   </div>
 </template>
-
-<style scoped>
-#chart,
-.apexcharts-tooltip {
-  color: #000000;
-}
-
-#chart,
-.apexcharts-tooltip .apexcharts-tooltip-series-group.active {
-  background: #ffffff !important;
-}
-</style>

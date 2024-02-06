@@ -18,7 +18,7 @@ defineProps({
 <template>
   <div class="overview-container border p-3">
     <h2>{{ month }}</h2>
-    <span class="fw-bold fs-4"> {{ sum }} €</span>
+    <span class="fw-bold fs-4 sum"> {{ sum }} €</span>
     <SumPerContributionMember
       v-if="sum !== undefined && sum > 0"
       :sum="sum"

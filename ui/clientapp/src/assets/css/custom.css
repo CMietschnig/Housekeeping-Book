@@ -11855,51 +11855,127 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-[data-bs-theme=dark] {
-  --color-text: red;
-  --bs-body-color: orange;
-  --bs-body-color-rgb: white;
-  --bs-body-bg: pink;
-  --bs-body-bg-rgb: blue;
-  --bs-tertiary-bg: blue;
-  --bs-navbar-brand-color: green;
+[data-bs-theme=light] {
+  color-scheme: light;
+  --color-1: #eae2d6;
+  --color-2: #d5c3aa;
+  --color-2-rgb: 213, 195, 170;
+  --color-3: #867666;
+  --color-4: #e1b80d;
+  --color-5: white;
+  --bs-border-color: var(--color-2);
+  --bs-body-color: var(--color-3);
+  --bs-body-bg: var(--color-1);
+  --bs-primary: var(--color-2);
+  --bs-primary-rgb: var(--color-2-rgb);
 }
-[data-bs-theme=dark] .dropdown-menu {
-  --bs-dropdown-bg: #809300;
-  --bs-dropdown-link-active-bg: orange;
+[data-bs-theme=light] .btn-primary {
+  --bs-btn-color: var(--color-3);
+  --bs-btn-bg: var(--bs-primary);
+  --bs-btn-border-color: var(--bs-primary);
+  --bs-btn-hover-color: var(--color-3);
+  --bs-btn-hover-bg: var(--color-1);
+  --bs-btn-hover-border-color: var(--color-1);
+  --bs-btn-active-color: var(--color-3);
+  --bs-btn-active-bg: var(--color-5);
+  --bs-btn-active-border-color: var(--color-5);
 }
-[data-bs-theme=dark] .navbar-brand {
-  color: green !important;
+[data-bs-theme=light] .dropdown-menu {
+  --bs-dropdown-bg: var(--color-5);
+  --bs-dropdown-color: var(--color-3);
+  --bs-dropdown-link-hover-bg: var(--color-1);
+  --bs-dropdown-link-active-bg: var(--color-3);
+}
+[data-bs-theme=light] .navbar-brand {
+  --bs-navbar-brand-color: var(--color-5);
+  --bs-navbar-brand-hover-color: var(--color-5);
+}
+[data-bs-theme=light] .navbar-nav {
+  --bs-nav-link-color: var(--color-3);
+}
+[data-bs-theme=light] .router-link-active {
+  color: var(--color-5);
+}
+[data-bs-theme=light] .single-select {
+  --bs-border-color: var(--color-2);
+  background-color: var(--color-2);
+}
+[data-bs-theme=light] .single-select:focus {
+  border-color: var(--bs-border-color);
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+[data-bs-theme=light] .single-select:hover {
+  background-color: var(--color-1);
+  transition: 0.2s ease-in-out;
+}
+[data-bs-theme=light] .single-select:active {
+  background-color: var(--color-5);
+}
+[data-bs-theme=light] .overview-container {
+  border-radius: 0.5rem;
+  background-image: linear-gradient(190deg, var(--color-1), var(--color-2));
+}
+[data-bs-theme=light] .sum {
+  color: var(--color-5);
+}
+[data-bs-theme=light] .apexcharts-menu-icon svg {
+  fill: var(--color-3);
+}
+[data-bs-theme=light] .update-input-field,
+[data-bs-theme=light] .add-input-field {
+  background-color: transparent;
+  border-bottom: 1px solid var(--color-3);
+  color: var(--color-3);
+}
+[data-bs-theme=light] .comment {
+  background-color: transparent;
+  color: var(--color-3);
+}
+[data-bs-theme=light] .monthly-sum {
+  border-top: 1px solid var(--color-3);
+}
+[data-bs-theme=light] .single-select > option {
+  background-color: var(--color-5);
+  color: var(--color-2);
 }
 
-[data-bs-theme=blue] {
-  --bs-primary: yellow;
-  --bs-secondary: #be22b1;
-  --bs-success: #1rgb(194, 38, 168)
-  --bs-info: #0dcaf0;
-  --bs-warning: #ffc107;
-  --bs-danger: #ff3907;
-  --bs-body-color: var(--bs-white);
-  --bs-body-color-rgb: 255, 255, 255;
-  --bs-body-bg: var(--bs-blue);
-  --bs-body-bg-rgb: 13, 110, 253;
-  --bs-tertiary-bg: #0a58ca;
-}
-[data-bs-theme=blue] .dropdown-menu {
-  --bs-dropdown-bg: #0c63e4;
-  --bs-dropdown-link-active-bg: #084298;
-}
-[data-bs-theme=blue] .btn-secondary {
-  --bs-btn-bg: --bs-secondary;
-  --bs-btn-border-color: rgba(255, 255, 255, 0.25);
-  --bs-btn-hover-bg: #247cfc;
-  --bs-btn-hover-border-color: rgba(255, 255, 255, 0.25);
-  --bs-btn-active-bg: #0b6dfb;
-  --bs-btn-active-border-color: rgba(255, 255, 255, 0.5);
-  --bs-btn-focus-border-color: rgba(255, 255, 255, 0.5);
-  --bs-btn-focus-box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .2);
-}
+/*[data-bs-theme='dark'] {
 
+}*/
 .cursor-pointer {
   cursor: pointer;
+}
+
+.nav-link {
+  justify-content: center;
+  display: flex;
+}
+
+.dropdown-item {
+  outline: none;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.update-input-field,
+.add-input-field {
+  border-top: none;
+  border-right: none;
+  border-left: none;
+}
+.update-input-field:focus-visible,
+.add-input-field:focus-visible {
+  outline: none;
+}
+
+.comment:focus-visible {
+  outline: none;
 }

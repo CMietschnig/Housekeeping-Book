@@ -59,7 +59,7 @@ const saveComment = () => {
       rows="10"
       v-model="inputValue"
       type="text"
-      class="p-4"
+      class="p-4 comment"
     ></textarea>
     <div>
       <BButton variant="primary" class="save-comment-btn" @click="saveComment()">

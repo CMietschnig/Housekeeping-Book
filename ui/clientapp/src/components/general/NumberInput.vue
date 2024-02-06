@@ -132,12 +132,10 @@ const addInput = () => {
   min-width: 11.25rem;
 }
 .hide {
-  /*display: none; */
-  opacity: 0.1;
+  opacity: 0.2;
 }
 .edit-number {
   min-height: 38px;
-  background-color: grey;
 }
 .edit-number:hover .hide {
   /*display: block; */
