@@ -40,7 +40,8 @@
     "contributionMembers": "Personen",
     "contributionMembersCount": "Personenanzahl",
     "currentSelectedMonth": "Aktuell eingestellter Monat",
-    "currentSelectedYear": "Aktuell eingestelltes Jahr"
+    "currentSelectedYear": "Aktuell eingestelltes Jahr",
+    "preferredColorMode": "Bevorzugtes Farbschema"
   },
   "dashboard": {
     "monthlyInvoices": "Monatliche Ausgaben"

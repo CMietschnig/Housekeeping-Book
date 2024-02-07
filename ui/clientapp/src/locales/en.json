@@ -40,7 +40,8 @@
     "contributionMembers": "Contribution members",
     "contributionMembersCount": "Contribution members count",
     "currentSelectedMonth": "Currently set month",
-    "currentSelectedYear": "Currently set year"
+    "currentSelectedYear": "Currently set year",
+    "preferredColorMode": "Preferred color mode"
   },
   "dashboard": {
     "monthlyInvoices": "Monthly invoices"

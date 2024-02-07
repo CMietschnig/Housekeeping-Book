@@ -11885,6 +11885,7 @@ textarea.form-control-lg {
   --bs-dropdown-color: var(--color-3);
   --bs-dropdown-link-hover-bg: var(--color-1);
   --bs-dropdown-link-active-bg: var(--color-3);
+  --bs-dropdown-border-color: var(--color-2);
 }
 [data-bs-theme=light] .navbar-brand {
   --bs-navbar-brand-color: var(--color-5);
@@ -11895,21 +11896,6 @@ textarea.form-control-lg {
 }
 [data-bs-theme=light] .router-link-active {
   color: var(--color-5);
-}
-[data-bs-theme=light] .single-select {
-  --bs-border-color: var(--color-2);
-  background-color: var(--color-2);
-}
-[data-bs-theme=light] .single-select:focus {
-  border-color: var(--bs-border-color);
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-}
-[data-bs-theme=light] .single-select:hover {
-  background-color: var(--color-1);
-  transition: 0.2s ease-in-out;
-}
-[data-bs-theme=light] .single-select:active {
-  background-color: var(--color-5);
 }
 [data-bs-theme=light] .overview-container {
   border-radius: 0.5rem;
@@ -11933,10 +11919,6 @@ textarea.form-control-lg {
 }
 [data-bs-theme=light] .monthly-sum {
   border-top: 1px solid var(--color-3);
-}
-[data-bs-theme=light] .single-select > option {
-  background-color: var(--color-5);
-  color: var(--color-2);
 }
 
 /*[data-bs-theme='dark'] {

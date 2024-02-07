@@ -6,6 +6,7 @@ import { useSettingsStore } from '@/stores/useSettingsStore'
 import { useInvoiceStore } from '../stores/useInvoiceStore.ts'
 import { onBeforeMount } from 'vue'
 import { months, monthCategories } from '@/constants/Months'
+import type { ISelectOption } from '@/interfaces/ISelectOption'
 
 //stores
 const settingsStore = useSettingsStore()
@@ -26,7 +27,9 @@ onBeforeMount(() => {
 const { t } = useI18n()
 
 // functions
-const updateYear = (year: string) => {
+const updateYear = (option: ISelectOption) => {
+  const year = option.value.toString()
+  settingsStore.selectYear(year)
   invoiceStore.getMonthTotalsForYear(year)
 }
 </script>
@@ -40,8 +43,7 @@ const updateYear = (year: string) => {
         <SingleSelect
           :select-options="yearOptions"
           :selected="year"
-          @update:selected="updateYear"
-          :placeholder="t('general.selectYear')"
+          @update-selected="updateYear"
         />
       </div>
       <div class="col d-flex justify-content-start justify-content-sm-end">

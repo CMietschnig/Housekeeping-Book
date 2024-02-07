@@ -44,11 +44,11 @@ const updateSettingsById = (value: { id: number; number: number }) => {
   settingsStore.updateSettingsById(updateSettingsModel)
 }
 const updateMonth = (value: number) => {
-  // not implemented yet
+  // not implemented delete from data base
   console.log('settings select default month', value)
 }
 const updateYear = (value: number) => {
-  // not implemented yet
+  // not implemented delete from data base
   console.log('settings select default year', value)
 }
 </script>
@@ -70,22 +70,14 @@ const updateYear = (value: number) => {
         />
       </div>
       <div>
-        <span>{{ t('settings.currentSelectedMonth') }}</span>
-        <SingleSelect
+        <span>{{ t('settings.preferredColorMode') }}</span>
+        <!-- Add the correct single select
+          <SingleSelect
           :select-options="monthOptions"
           :selected="month"
           @update:selected="updateMonth"
           :placeholder="t('general.selectMonth')"
-        />
-      </div>
-      <div>
-        <span>{{ t('settings.currentSelectedYear') }}</span>
-        <SingleSelect
-          :select-options="yearOptions"
-          :selected="year"
-          @update:selected="updateYear"
-          :placeholder="t('general.selectYear')"
-        />
+        />-->
       </div>
     </div>
   </div>

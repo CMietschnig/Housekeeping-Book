@@ -6,6 +6,7 @@ import { useSettingsStore } from '@/stores/useSettingsStore'
 import useMonthOptions from '../composables/useMonthOptions.ts'
 import useYearOptions from '@/composables/useYearOptions'
 import { ref, watch, onBeforeMount } from 'vue'
+import type { ISelectOption } from '@/interfaces/ISelectOption'
 
 //stores
 const invoiceStore = useInvoiceStore()
@@ -22,7 +23,7 @@ const {
 } = storeToRefs(settingsStore)
 
 // composables
-const { monthOptions } = useMonthOptions()
+const { monthOptions, getTextByValue } = useMonthOptions()
 const { yearOptions } = useYearOptions()
 
 onBeforeMount(() => {
@@ -56,15 +57,17 @@ const addInvoice = async (invoiceTotal: number) => {
   await invoiceStore.addInvoiceToMonthAndYear(month.value, year.value, invoiceTotal)
   await invoiceStore.getInvoicesPerMonthAndYear(month.value, year.value)
 }
-const updateMonth = async (value: number) => {
-  settingsStore.selectMonth(value)
-  await invoiceStore.getInvoicesPerMonthAndYear(value, year.value)
-  await invoiceStore.getCommentPerMonthAndYear(value, year.value)
+const updateMonth = async (option: ISelectOption) => {
+  const month = parseInt(option.value.toString())
+  settingsStore.selectMonth(month)
+  await invoiceStore.getInvoicesPerMonthAndYear(month, year.value)
+  await invoiceStore.getCommentPerMonthAndYear(month, year.value)
 }
-const updateYear = async (value: string) => {
-  settingsStore.selectYear(value)
-  await invoiceStore.getInvoicesPerMonthAndYear(month.value, value)
-  await invoiceStore.getCommentPerMonthAndYear(month.value, value)
+const updateYear = async (option: ISelectOption) => {
+  const year = option.value.toString()
+  settingsStore.selectYear(year)
+  await invoiceStore.getInvoicesPerMonthAndYear(month.value, year)
+  await invoiceStore.getCommentPerMonthAndYear(month.value, year)
 }
 </script>
 
@@ -75,17 +78,11 @@ const updateYear = async (value: string) => {
       <!-- month -->
       <SingleSelect
         :select-options="monthOptions"
-        :selected="month"
-        @update:selected="updateMonth"
-        :placeholder="t('general.selectMonth')"
+        :selected="getTextByValue(month)"
+        @update-selected="updateMonth"
       />
       <!-- year -->
-      <SingleSelect
-        :select-options="yearOptions"
-        :selected="year"
-        @update:selected="updateYear"
-        :placeholder="t('general.selectYear')"
-      />
+      <SingleSelect :select-options="yearOptions" :selected="year" @update-selected="updateYear" />
     </div>
     <div class="d-flex flex-column flex-sm-row invoices pb-3 gap-5">
       <div class="pb-5">

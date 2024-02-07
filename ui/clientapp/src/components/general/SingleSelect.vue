@@ -1,33 +1,40 @@
 <script setup lang="ts">
 import { type PropType } from 'vue'
-import { useVModel } from '@vueuse/core'
+import type { ISelectOption } from '@/interfaces/ISelectOption'
 
-const props = defineProps({
+defineProps({
   selectOptions: {
-    type: Array,
+    type: Array as PropType<ISelectOption[]>,
     required: true
   },
   selected: {
-    type: [Number, String, null] as PropType<number | string | null>,
+    type: [Number, String] as PropType<number | string>,
     required: false,
-    default: null
-  },
-  placeholder: {
-    type: String,
-    required: true
+    default: undefined
   }
 })
 
-const emit = defineEmits(['update:selected'])
+const emit = defineEmits(['updateSelected'])
 
-// variables
-const selectedValue = useVModel(props, 'selected', emit)
+const select = (option: ISelectOption) => {
+  emit('updateSelected', option)
+}
 </script>
 
 <template>
-  <BFormSelect v-model="selectedValue" :options="selectOptions" class="single-select">
-    <template #first>
-      <BFormSelectOption :value="null" disabled>{{ placeholder }}</BFormSelectOption>
-    </template>
-  </BFormSelect>
+  <BDropdown
+    :text="selected?.toString()"
+    variant="primary"
+    size="md"
+    class="single-select w-100"
+    menu-class="w-100"
+  >
+    <BDropdownItem
+      v-for="(option, index) in selectOptions"
+      :key="index"
+      @click="select(option)"
+      variant="primary"
+      >{{ option.text }}</BDropdownItem
+    >
+  </BDropdown>
 </template>
