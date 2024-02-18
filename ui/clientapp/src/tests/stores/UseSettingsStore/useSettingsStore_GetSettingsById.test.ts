@@ -28,6 +28,7 @@ describe('useSettingsStore => getSettingsById', () => {
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(1)
     expect(sut.preferredColorMode).toEqual('light')
+    expect(sut.currentColorMode).toEqual("light")
 
     // Act
     await sut.getSettingsById(id)
@@ -38,6 +39,7 @@ describe('useSettingsStore => getSettingsById', () => {
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(3)
     expect(sut.preferredColorMode).toEqual('dark')
+    expect(sut.currentColorMode).toEqual("light")
 
     // Clean up after the test
     spySettingsApiService.mockRestore()
@@ -58,6 +60,7 @@ describe('useSettingsStore => getSettingsById', () => {
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(1)
     expect(sut.preferredColorMode).toEqual('light')
+    expect(sut.currentColorMode).toEqual("light")
 
     // Act
     await sut.getSettingsById(id)
@@ -68,6 +71,7 @@ describe('useSettingsStore => getSettingsById', () => {
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(1)
     expect(sut.preferredColorMode).toEqual('light')
+    expect(sut.currentColorMode).toEqual("light")
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not get settings by id 1. The response is undefined.'
@@ -93,6 +97,7 @@ describe('useSettingsStore => getSettingsById', () => {
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(1)
     expect(sut.preferredColorMode).toEqual('light')
+    expect(sut.currentColorMode).toEqual("light")
 
     // Act
     await sut.getSettingsById(id)
@@ -104,6 +109,7 @@ describe('useSettingsStore => getSettingsById', () => {
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(1)
     expect(sut.preferredColorMode).toEqual('light')
+    expect(sut.currentColorMode).toEqual("light")
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith('Could not get settings by id 1. Error: error')
 

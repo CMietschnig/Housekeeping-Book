@@ -7,13 +7,15 @@ export interface SettingsStoreState {
   year: string
   contributionMembersCount: number
   preferredColorMode: string
+  currentColorMode: string
 }
 
 const DefaultSettingsState: SettingsStoreState = {
   monthId: new Date().getMonth(),
   year: new Date().getFullYear().toString(),
   contributionMembersCount: 1,
-  preferredColorMode: "light"
+  preferredColorMode: 'light',
+  currentColorMode: 'light'
 }
 
 export const useSettingsStore = defineStore({
@@ -25,7 +27,8 @@ export const useSettingsStore = defineStore({
     getMonthId: (state): number => state.monthId,
     getYear: (state): string => state.year,
     getContributionMembersCount: (state): number => state.contributionMembersCount,
-    getPreferredColorMode: (state): string => state.preferredColorMode
+    getPreferredColorMode: (state): string => state.preferredColorMode,
+    getCurrentColorMode: (state): string => state.currentColorMode
   },
   actions: {
     selectMonth(value: number) {
@@ -44,6 +47,15 @@ export const useSettingsStore = defineStore({
         })
       } else {
         console.error('Could not select year ' + value + '. The value is not valid.')
+      }
+    },
+    selectCurrentColorMode(mode: string) {
+      if (mode === 'light' || mode === 'dark') {
+        this.$patch((state) => {
+          state.currentColorMode = mode
+        })
+      } else {
+        console.error('Could not select current color mode ' + mode + '. The mode is not valid.')
       }
     },
     async updateSettingsById(updateSettingsModel: IUpdateSettings) {
@@ -72,8 +84,8 @@ export const useSettingsStore = defineStore({
 
         if (settings) {
           this.$patch((state) => {
-            state.contributionMembersCount = settings.ContributionMembersCount,
-            state.preferredColorMode = settings.PreferredColorMode
+            ;(state.contributionMembersCount = settings.ContributionMembersCount),
+              (state.preferredColorMode = settings.PreferredColorMode)
           })
         } else {
           console.error('Could not get settings by id ' + id + '. The response is undefined.')

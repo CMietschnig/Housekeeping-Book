@@ -2,7 +2,7 @@
 import useColorModes from '@/composables/useColorModes'
 import { useSettingsStore } from '@/stores/useSettingsStore'
 import { storeToRefs } from 'pinia'
-import { onBeforeMount } from 'vue';
+import { onBeforeMount } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const settingsStore = useSettingsStore()
@@ -10,7 +10,7 @@ const { getPreferredColorMode: savedPreferredColorMode } = storeToRefs(settingsS
 
 onBeforeMount(async () => {
   await settingsStore.getSettingsById(1)
-  changeMode(savedPreferredColorMode.value);
+  changeMode(savedPreferredColorMode.value)
 })
 
 const { t } = useI18n()
@@ -18,6 +18,7 @@ const { colorModes } = useColorModes()
 
 const changeMode = (mode: string) => {
   document.documentElement.setAttribute('data-bs-theme', mode.toLowerCase())
+  settingsStore.selectCurrentColorMode(mode)
 }
 </script>
 <template>

@@ -6,7 +6,7 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <BNavbar toggleable="lg" variant="primary" v-b-color-mode="'dark'">
+  <BNavbar toggleable="lg" variant="primary">
     <BNavbarBrand>{{ t('general.menu') }}</BNavbarBrand>
     <BNavbarToggle target="nav-collapse" />
     <BCollapse id="nav-collapse" is-nav>

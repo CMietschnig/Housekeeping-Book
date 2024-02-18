@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
 import { useSettingsStore } from '@/stores/useSettingsStore'
 
-describe('useSettingsStore => getters, default state', () => {
+describe('useSettingsStore => selectMonth', () => {
   it('selectMonth => should set month 0', () => {
     // Arrange
     setActivePinia(createPinia())
@@ -13,6 +13,7 @@ describe('useSettingsStore => getters, default state', () => {
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(1)
     expect(sut.preferredColorMode).toEqual("light")
+    expect(sut.currentColorMode).toEqual("light")
 
     // Act
     sut.selectMonth(0)
@@ -22,6 +23,7 @@ describe('useSettingsStore => getters, default state', () => {
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(1)
     expect(sut.preferredColorMode).toEqual("light")
+    expect(sut.currentColorMode).toEqual("light")
   })
 
   it('selectMonth => should set month 6', () => {
@@ -34,6 +36,7 @@ describe('useSettingsStore => getters, default state', () => {
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(1)
     expect(sut.preferredColorMode).toEqual("light")
+    expect(sut.currentColorMode).toEqual("light")
 
     // Act
     sut.selectMonth(6)
@@ -43,6 +46,7 @@ describe('useSettingsStore => getters, default state', () => {
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(1)
     expect(sut.preferredColorMode).toEqual("light")
+    expect(sut.currentColorMode).toEqual("light")
   })
 
   it('selectMonth => should NOT set month 12', () => {
@@ -56,6 +60,7 @@ describe('useSettingsStore => getters, default state', () => {
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(1)
     expect(sut.preferredColorMode).toEqual("light")
+    expect(sut.currentColorMode).toEqual("light")
 
     // Act
     sut.selectMonth(12)
@@ -65,6 +70,7 @@ describe('useSettingsStore => getters, default state', () => {
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(1)
     expect(sut.preferredColorMode).toEqual("light")
+    expect(sut.currentColorMode).toEqual("light")
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not select month 12. The value is not valid.'
@@ -85,6 +91,7 @@ describe('useSettingsStore => getters, default state', () => {
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(1)
     expect(sut.preferredColorMode).toEqual("light")
+    expect(sut.currentColorMode).toEqual("light")
 
     // Act
     sut.selectMonth(-1)
@@ -94,6 +101,7 @@ describe('useSettingsStore => getters, default state', () => {
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(1)
     expect(sut.preferredColorMode).toEqual("light")
+    expect(sut.currentColorMode).toEqual("light")
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not select month -1. The value is not valid.'
