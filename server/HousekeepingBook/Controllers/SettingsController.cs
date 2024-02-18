@@ -52,8 +52,7 @@ namespace HousekeepingBook.Controllers
                 {
                     SettingsId = model.SettingsId,
                     ContributionMembersCount = model.ContributionMembersCount,
-                    Year = model.Year,
-                    MonthId = model.MonthId,
+                    PreferredColorMode = model.PreferredColorMode,
                     CreateTimestamp = oldSettings.CreateTimestamp,
                     UpdateTimestamp = DateTime.Now,
                 };

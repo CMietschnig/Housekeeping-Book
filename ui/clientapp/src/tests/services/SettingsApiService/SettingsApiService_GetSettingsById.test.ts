@@ -10,8 +10,7 @@ describe('SettingsApiService => getSettingsById', () => {
     const result: ISettings = {
       SettingsId: 1,
       ContributionMembersCount: 3,
-      Year: '2023',
-      MonthId: 6,
+      PreferredColorMode: "dark",
       CreateTimestamp: '2024-02-01T23:00:00.000Z',
       UpdateTimestamp: '2024-02-02T23:00:00.000Z'
     }

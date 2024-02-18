@@ -1,10 +1,7 @@
-import type { Month } from '@/enums/MonthEnums'
-
 export interface ISettings {
   SettingsId: number
   ContributionMembersCount: number
-  Year: string
-  MonthId: Month
+  PreferredColorMode: string
   CreateTimestamp: Date | string
   UpdateTimestamp: Date | string
 }

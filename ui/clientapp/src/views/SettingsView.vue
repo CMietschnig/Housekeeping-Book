@@ -1,55 +1,58 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import useMonthOptions from '../composables/useMonthOptions.ts'
-import useYearOptions from '@/composables/useYearOptions'
+import useColorModes from '@/composables/useColorModes'
 import { storeToRefs } from 'pinia'
 import { ref, onBeforeMount, watch } from 'vue'
 import { useSettingsStore } from '@/stores/useSettingsStore'
 import type { IUpdateSettings } from '@/interfaces/IUpdateSettings'
+import type { ISelectOption } from '@/interfaces/ISelectOption'
 
 // stores
 const settingsStore = useSettingsStore()
 const {
-  getMonthId: month,
-  getYear: year,
+  getPreferredColorMode: savedPreferredColorMode,
   getContributionMembersCount: savedContributionMembersCount
 } = storeToRefs(settingsStore)
 
 //composables
-const { monthOptions } = useMonthOptions()
-const { yearOptions } = useYearOptions()
+const { colorModes, getTextByValue } = useColorModes()
 
-onBeforeMount(() => {
-  // only one user so id is hardcoded
-  settingsStore.getSettingsById(1)
-})
 // variables
+const settingsId: number = 1 // only one user so settingsId is hardcoded
 const { t } = useI18n()
 const contributionMembersCount = ref(savedContributionMembersCount.value)
+const preferredColorMode = ref(savedPreferredColorMode.value)
+
+onBeforeMount(() => {
+  settingsStore.getSettingsById(settingsId)
+})
 
 // update contributionMembersCount
 watch(savedContributionMembersCount, (newCount) => {
   contributionMembersCount.value = newCount
 })
+watch(savedPreferredColorMode, (newMode) => {
+  preferredColorMode.value = newMode
+})
 
 // functions
-const updateSettingsById = (value: { id: number; number: number }) => {
-  // add year and month from select
+const updateContributionMembersCount = async (value: { id: number; number: number }) => {
   const updateSettingsModel: IUpdateSettings = {
     SettingsId: value.id,
     ContributionMembersCount: value.number,
-    Year: '2023',
-    MonthId: 1
+    PreferredColorMode: preferredColorMode.value
   }
-  settingsStore.updateSettingsById(updateSettingsModel)
+  await settingsStore.updateSettingsById(updateSettingsModel)
+  await settingsStore.getSettingsById(settingsId)
 }
-const updateMonth = (value: number) => {
-  // not implemented delete from data base
-  console.log('settings select default month', value)
-}
-const updateYear = (value: number) => {
-  // not implemented delete from data base
-  console.log('settings select default year', value)
+const updateColorMode = async (option: ISelectOption) => {
+  const updateSettingsModel: IUpdateSettings = {
+    SettingsId: settingsId,
+    ContributionMembersCount: savedContributionMembersCount.value,
+    PreferredColorMode: option.value.toString()
+  }
+  await settingsStore.updateSettingsById(updateSettingsModel)
+  await settingsStore.getSettingsById(settingsId)
 }
 </script>
 
@@ -61,23 +64,21 @@ const updateYear = (value: number) => {
         <span>{{ t('settings.contributionMembersCount') }}</span>
         <NumberInput
           v-model:number="contributionMembersCount"
-          :id="1"
+          :id="settingsId"
           :only-addable="false"
           :can-delete="false"
           :display-rounded-number="false"
           :placeholder="t('settings.contributionMembers')"
-          @update-number="updateSettingsById"
+          @update-number="updateContributionMembersCount"
         />
       </div>
       <div>
         <span>{{ t('settings.preferredColorMode') }}</span>
-        <!-- Add the correct single select
-          <SingleSelect
-          :select-options="monthOptions"
-          :selected="month"
-          @update:selected="updateMonth"
-          :placeholder="t('general.selectMonth')"
-        />-->
+        <SingleSelect
+          :select-options="colorModes"
+          :selected="getTextByValue(preferredColorMode)"
+          @update-selected="updateColorMode"
+        />
       </div>
     </div>
   </div>

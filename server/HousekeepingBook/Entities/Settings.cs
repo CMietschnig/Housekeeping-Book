@@ -1,4 +1,4 @@
-﻿using HousekeepingBook.Entities.Enums;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace HousekeepingBook.Entities
@@ -12,11 +12,9 @@ namespace HousekeepingBook.Entities
         public int ContributionMembersCount { get; set; }
 
         [Required]
-        [MaxLength(4)]
-        public string Year { get; set; } = string.Empty;
+        [DefaultValue("light")]
+        public required string PreferredColorMode { get; set; }
 
-        [Required]
-        public Month MonthId { get; set; }
         public DateTime CreateTimestamp { get; set; }
 
         public DateTime UpdateTimestamp { get; set; }

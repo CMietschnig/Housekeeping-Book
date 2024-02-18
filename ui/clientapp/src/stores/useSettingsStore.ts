@@ -6,12 +6,14 @@ export interface SettingsStoreState {
   monthId: number
   year: string
   contributionMembersCount: number
+  preferredColorMode: string
 }
 
 const DefaultSettingsState: SettingsStoreState = {
   monthId: new Date().getMonth(),
   year: new Date().getFullYear().toString(),
-  contributionMembersCount: 1
+  contributionMembersCount: 1,
+  preferredColorMode: "light"
 }
 
 export const useSettingsStore = defineStore({
@@ -22,7 +24,8 @@ export const useSettingsStore = defineStore({
   getters: {
     getMonthId: (state): number => state.monthId,
     getYear: (state): string => state.year,
-    getContributionMembersCount: (state): number => state.contributionMembersCount
+    getContributionMembersCount: (state): number => state.contributionMembersCount,
+    getPreferredColorMode: (state): string => state.preferredColorMode
   },
   actions: {
     selectMonth(value: number) {
@@ -69,8 +72,8 @@ export const useSettingsStore = defineStore({
 
         if (settings) {
           this.$patch((state) => {
-            state.contributionMembersCount = settings.ContributionMembersCount
-            // add other stuff
+            state.contributionMembersCount = settings.ContributionMembersCount,
+            state.preferredColorMode = settings.PreferredColorMode
           })
         } else {
           console.error('Could not get settings by id ' + id + '. The response is undefined.')

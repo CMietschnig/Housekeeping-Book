@@ -8,8 +8,7 @@ describe('SettingsApiService => updateSettingsById', () => {
   const updateSettingsModel: IUpdateSettings = {
     SettingsId: 3,
     ContributionMembersCount: 4,
-    Year: "2024",
-    MonthId: 2
+    PreferredColorMode: "dark"
   }
 
   it('updateSettingsById => should return number 200', async () => {

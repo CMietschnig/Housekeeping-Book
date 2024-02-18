@@ -31,8 +31,7 @@ namespace HousekeepingBook.Tests.Repositories
             {
                 SettingsId = 1,
                 ContributionMembersCount = 1,
-                Year = "2023",
-                MonthId = Month.March,
+                PreferredColorMode = "light",
                 CreateTimestamp = new DateTime(2024, 1, 15),
                 UpdateTimestamp = new DateTime(2024, 2, 15),
             };
@@ -68,8 +67,7 @@ namespace HousekeepingBook.Tests.Repositories
             {
                 SettingsId = 1,
                 ContributionMembersCount = 1,
-                Year = "2023",
-                MonthId = Month.March,
+                PreferredColorMode = "light",
                 CreateTimestamp = new DateTime(2024, 1, 15),
                 UpdateTimestamp = new DateTime(2024, 2, 15),
             };
@@ -77,8 +75,7 @@ namespace HousekeepingBook.Tests.Repositories
             {
                 SettingsId = 2,
                 ContributionMembersCount = 6,
-                Year = "2024",
-                MonthId = Month.March,
+                PreferredColorMode = "light",
                 CreateTimestamp = new DateTime(2024, 1, 15),
                 UpdateTimestamp = new DateTime(2024, 2, 15),
             };
@@ -120,8 +117,7 @@ namespace HousekeepingBook.Tests.Repositories
                 {
                     SettingsId = 1,
                     ContributionMembersCount = 1,
-                    Year = "2023",
-                    MonthId = Month.March,
+                    PreferredColorMode = "light",
                     CreateTimestamp = new DateTime(2024, 1, 15),
                     UpdateTimestamp = new DateTime(2024, 2, 15),
                 };
@@ -129,8 +125,7 @@ namespace HousekeepingBook.Tests.Repositories
                 {
                     SettingsId = 2,
                     ContributionMembersCount = 6,
-                    Year = "2024",
-                    MonthId = Month.March,
+                    PreferredColorMode = "light",
                     CreateTimestamp = new DateTime(2024, 1, 15),
                     UpdateTimestamp = new DateTime(2024, 2, 15),
                 };
@@ -148,8 +143,7 @@ namespace HousekeepingBook.Tests.Repositories
                 {
                     SettingsId = 1,
                     ContributionMembersCount = 9,
-                    Year = "2025",
-                    MonthId = Month.October,
+                    PreferredColorMode = "light",
                     CreateTimestamp = new DateTime(2024, 1, 15),
                     UpdateTimestamp = new DateTime(2024, 2, 18),
                 };
@@ -163,8 +157,7 @@ namespace HousekeepingBook.Tests.Repositories
                 Assert.Equal(2, settings.Count());
                 Assert.Equal(newModel.SettingsId, settings[0].SettingsId);
                 Assert.Equal(newModel.ContributionMembersCount, settings[0].ContributionMembersCount);
-                Assert.Equal(newModel.Year, settings[0].Year); 
-                Assert.Equal(newModel.MonthId, settings[0].MonthId);
+                Assert.Equal(newModel.PreferredColorMode, settings[0].PreferredColorMode);
                 Assert.Equal(newModel.UpdateTimestamp, settings[0].UpdateTimestamp);
             }
         }
@@ -184,8 +177,7 @@ namespace HousekeepingBook.Tests.Repositories
                 {
                     SettingsId = 1,
                     ContributionMembersCount = 1,
-                    Year = "2023",
-                    MonthId = Month.March,
+                    PreferredColorMode = "light",
                     CreateTimestamp = new DateTime(2024, 1, 15),
                     UpdateTimestamp = new DateTime(2024, 2, 15),
                 };
@@ -193,8 +185,7 @@ namespace HousekeepingBook.Tests.Repositories
                 {
                     SettingsId = 2,
                     ContributionMembersCount = 6,
-                    Year = "2024",
-                    MonthId = Month.March,
+                    PreferredColorMode = "light",
                     CreateTimestamp = new DateTime(2024, 1, 15),
                     UpdateTimestamp = new DateTime(2024, 2, 15),
                 };
@@ -212,8 +203,7 @@ namespace HousekeepingBook.Tests.Repositories
                 {
                     SettingsId = 3,
                     ContributionMembersCount = 9,
-                    Year = "2025",
-                    MonthId = Month.October,
+                    PreferredColorMode = "dark",
                     CreateTimestamp = new DateTime(2024, 1, 15),
                     UpdateTimestamp = new DateTime(2024, 2, 18),
                 };
@@ -227,8 +217,7 @@ namespace HousekeepingBook.Tests.Repositories
                 Assert.Equal(2, settings.Count());
                 Assert.NotEqual(newModel.SettingsId, settings[0].SettingsId);
                 Assert.NotEqual(newModel.ContributionMembersCount, settings[0].ContributionMembersCount);
-                Assert.NotEqual(newModel.Year, settings[0].Year);
-                Assert.NotEqual(newModel.MonthId, settings[0].MonthId);
+                Assert.NotEqual(newModel.PreferredColorMode, settings[0].PreferredColorMode);
                 Assert.NotEqual(newModel.UpdateTimestamp, settings[0].UpdateTimestamp);
             }
         }
@@ -248,8 +237,7 @@ namespace HousekeepingBook.Tests.Repositories
                 {
                     SettingsId = 1,
                     ContributionMembersCount = 1,
-                    Year = "2023",
-                    MonthId = Month.March,
+                    PreferredColorMode = "light",
                     CreateTimestamp = new DateTime(2024, 1, 15),
                     UpdateTimestamp = new DateTime(2024, 2, 15),
                 };
@@ -257,8 +245,7 @@ namespace HousekeepingBook.Tests.Repositories
                 {
                     SettingsId = 2,
                     ContributionMembersCount = 6,
-                    Year = "2024",
-                    MonthId = Month.March,
+                    PreferredColorMode = "light",
                     CreateTimestamp = new DateTime(2024, 1, 15),
                     UpdateTimestamp = new DateTime(2024, 2, 15),
                 };
@@ -276,8 +263,7 @@ namespace HousekeepingBook.Tests.Repositories
                 {
                     SettingsId = 1,
                     ContributionMembersCount = 0,
-                    Year = "2025",
-                    MonthId = Month.October,
+                    PreferredColorMode = "dark",
                     CreateTimestamp = new DateTime(2024, 1, 15),
                     UpdateTimestamp = new DateTime(2024, 2, 18),
                 };
@@ -291,8 +277,7 @@ namespace HousekeepingBook.Tests.Repositories
                 Assert.Equal(2, settings.Count());
                 Assert.Equal(newModel.SettingsId, settings[0].SettingsId);
                 Assert.NotEqual(newModel.ContributionMembersCount, settings[0].ContributionMembersCount);
-                Assert.NotEqual(newModel.Year, settings[0].Year);
-                Assert.NotEqual(newModel.MonthId, settings[0].MonthId);
+                Assert.NotEqual(newModel.PreferredColorMode, settings[0].PreferredColorMode);
                 Assert.NotEqual(newModel.UpdateTimestamp, settings[0].UpdateTimestamp);
             }
         }

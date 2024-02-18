@@ -13,9 +13,9 @@ namespace HousekeepingBook.Tests
         { 
             _settings = new List<Settings>()
             {
-                new Settings() { SettingsId = 1, ContributionMembersCount = 2, Year = "2024", MonthId = Month.January, CreateTimestamp= new DateTime(), UpdateTimestamp = new DateTime() },
-                new Settings() { SettingsId = 2, ContributionMembersCount = 4, Year = "2024", MonthId = Month.February, CreateTimestamp= new DateTime(), UpdateTimestamp = new DateTime() },
-                new Settings() { SettingsId = 3, ContributionMembersCount = 5, Year = "2024", MonthId = Month.April, CreateTimestamp= new DateTime(), UpdateTimestamp = new DateTime() },
+                new Settings() { SettingsId = 1, ContributionMembersCount = 2, PreferredColorMode = "light", CreateTimestamp= new DateTime(), UpdateTimestamp = new DateTime() },
+                new Settings() { SettingsId = 2, ContributionMembersCount = 4, PreferredColorMode = "dark", CreateTimestamp= new DateTime(), UpdateTimestamp = new DateTime() },
+                new Settings() { SettingsId = 3, ContributionMembersCount = 5, PreferredColorMode = "light", CreateTimestamp= new DateTime(), UpdateTimestamp = new DateTime() },
             };
         }
 

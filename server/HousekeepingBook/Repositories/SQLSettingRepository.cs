@@ -26,8 +26,7 @@ namespace HousekeepingBook.Repositories
             if (settings != null && model.ContributionMembersCount != 0)
             {
                 settings.ContributionMembersCount = model.ContributionMembersCount;
-                settings.Year = model.Year;
-                settings.MonthId = model.MonthId;
+                settings.PreferredColorMode = model.PreferredColorMode;
                 settings.UpdateTimestamp = model.UpdateTimestamp;
                 affectedRows = context.SaveChanges();
             }

@@ -6,7 +6,6 @@ namespace HousekeepingBook.Models
     {
         public int SettingsId { get; set; }
         public int ContributionMembersCount { get; set; }
-        public string Year { get; set; } = string.Empty;
-        public Month MonthId { get; set; }
+        public string PreferredColorMode { get; set; } = string.Empty;
     }
 }

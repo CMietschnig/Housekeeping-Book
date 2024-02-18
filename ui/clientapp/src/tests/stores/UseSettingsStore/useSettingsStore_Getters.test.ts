@@ -11,6 +11,7 @@ describe('useSettingsStore => getters, default state', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(1)
+    expect(sut.preferredColorMode).toEqual("light")
   })
 
   it('useSettingsStore => should return correct values for getters', () => {
@@ -22,5 +23,6 @@ describe('useSettingsStore => getters, default state', () => {
     expect(sut.getMonthId).toEqual(new Date().getMonth())
     expect(sut.getYear).toEqual(new Date().getFullYear().toString())
     expect(sut.getContributionMembersCount).toEqual(1)
+    expect(sut.getPreferredColorMode).toEqual("light")
   })
 })

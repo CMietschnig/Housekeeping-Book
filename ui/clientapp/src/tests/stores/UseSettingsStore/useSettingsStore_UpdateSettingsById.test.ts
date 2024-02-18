@@ -8,8 +8,7 @@ describe('useSettingsStore => updateSettingsById', () => {
   const updateSettingsModel: IUpdateSettings = {
     SettingsId: 3,
     ContributionMembersCount: 4,
-    Year: "2024",
-    MonthId: 2
+    PreferredColorMode: "dark"
   }
 
   it('updateSettingsById => should catch log because returns 200 resopnse', async () => {
@@ -26,6 +25,7 @@ describe('useSettingsStore => updateSettingsById', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(1)
+    expect(sut.preferredColorMode).toEqual("light")
 
     // Act
     await sut.updateSettingsById(updateSettingsModel)
@@ -35,6 +35,7 @@ describe('useSettingsStore => updateSettingsById', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(1)
+    expect(sut.preferredColorMode).toEqual("light")
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith('updateSettingsById was successful!')
 
@@ -57,6 +58,7 @@ describe('useSettingsStore => updateSettingsById', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(1)
+    expect(sut.preferredColorMode).toEqual("light")
 
     // Act
     await sut.updateSettingsById(updateSettingsModel)
@@ -66,6 +68,7 @@ describe('useSettingsStore => updateSettingsById', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(1)
+    expect(sut.preferredColorMode).toEqual("light")
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith('updateSettingsById was successful!')
 
@@ -88,6 +91,7 @@ describe('useSettingsStore => updateSettingsById', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(1)
+    expect(sut.preferredColorMode).toEqual("light")
 
     // Act
     await sut.updateSettingsById(updateSettingsModel)
@@ -97,6 +101,7 @@ describe('useSettingsStore => updateSettingsById', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(1)
+    expect(sut.preferredColorMode).toEqual("light")
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not update settings by id 3. Status code: undefined'
@@ -121,6 +126,7 @@ describe('useSettingsStore => updateSettingsById', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(1)
+    expect(sut.preferredColorMode).toEqual("light")
 
     // Act
     await sut.updateSettingsById(updateSettingsModel)
@@ -131,6 +137,7 @@ describe('useSettingsStore => updateSettingsById', () => {
     expect(sut.monthId).toEqual(new Date().getMonth())
     expect(sut.year).toEqual(new Date().getFullYear().toString())
     expect(sut.contributionMembersCount).toEqual(1)
+    expect(sut.preferredColorMode).toEqual("light")
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not update settings by id 3. Error: error'

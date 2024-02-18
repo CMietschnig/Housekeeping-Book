@@ -19,8 +19,7 @@ namespace HousekeepingBook.Tests.Controllers
             {
                 SettingsId = 1,
                 ContributionMembersCount = 1,
-                Year = "2023",
-                MonthId = Month.March,
+                PreferredColorMode = "light",
                 CreateTimestamp = new DateTime(2024, 1, 15),
                 UpdateTimestamp = new DateTime(2024, 2, 15),
             };
@@ -103,8 +102,7 @@ namespace HousekeepingBook.Tests.Controllers
                 {
                     SettingsId = 1,
                     ContributionMembersCount = 1,
-                    Year = "2023",
-                    MonthId = Month.March,
+                    PreferredColorMode = "light",
                     CreateTimestamp = new DateTime(2024, 1, 15),
                     UpdateTimestamp = new DateTime(2024, 2, 15),
                 };
@@ -118,8 +116,7 @@ namespace HousekeepingBook.Tests.Controllers
             {
                 SettingsId = 1,
                 ContributionMembersCount = 5,
-                Year = "2024",
-                MonthId = Month.May
+                PreferredColorMode = "light",
             };
 
             // Act
@@ -145,8 +142,7 @@ namespace HousekeepingBook.Tests.Controllers
             {
                 SettingsId = 1,
                 ContributionMembersCount = 5,
-                Year = "2024",
-                MonthId = Month.May
+                PreferredColorMode = "light",
             };
 
             // Act
@@ -169,8 +165,7 @@ namespace HousekeepingBook.Tests.Controllers
                 {
                     SettingsId = 1,
                     ContributionMembersCount = 1,
-                    Year = "2023",
-                    MonthId = Month.March,
+                    PreferredColorMode = "light",
                     CreateTimestamp = new DateTime(2024, 1, 15),
                     UpdateTimestamp = new DateTime(2024, 2, 15),
                 };
@@ -184,8 +179,7 @@ namespace HousekeepingBook.Tests.Controllers
             {
                 SettingsId = 1,
                 ContributionMembersCount = 5,
-                Year = "2024",
-                MonthId = Month.May
+                PreferredColorMode = "light",
             };
 
             // Act
@@ -208,8 +202,7 @@ namespace HousekeepingBook.Tests.Controllers
                 {
                     SettingsId = 1,
                     ContributionMembersCount = 1,
-                    Year = "2023",
-                    MonthId = Month.March,
+                    PreferredColorMode = "light",
                     CreateTimestamp = new DateTime(2024, 1, 15),
                     UpdateTimestamp = new DateTime(2024, 2, 15),
                 };
@@ -223,8 +216,7 @@ namespace HousekeepingBook.Tests.Controllers
             {
                 SettingsId = 1,
                 ContributionMembersCount = 5,
-                Year = "2024",
-                MonthId = Month.May
+                PreferredColorMode = "light",
             };
 
             // Act
