@@ -20,7 +20,7 @@ declare module 'vue' {
     ColorModeSwitcher: typeof import('./src/components/general/ColorModeSwitcher.vue')['default']
     EditableComment: typeof import('./src/components/general/EditableComment.vue')['default']
     InvoicesPerMonthList: typeof import('./src/components/editMonth/InvoicesPerMonthList.vue')['default']
-    LocaleChanger: typeof import('./src/components/general/LocaleChanger.vue')['default']
+    LanguageSelector: typeof import('./src/components/general/LanguageSelector.vue')['default']
     MonthlySum: typeof import('./src/components/general/MonthlySum.vue')['default']
     MonthOverview: typeof import('./src/components/general/MonthOverview.vue')['default']
     NavBar: typeof import('./src/components/general/NavBar.vue')['default']

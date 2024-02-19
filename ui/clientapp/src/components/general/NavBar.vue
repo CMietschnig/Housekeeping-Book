@@ -16,7 +16,7 @@ const { t } = useI18n()
         <BNavItem to="/settings">{{ t('general.settings') }}</BNavItem>
       </BNavbarNav>
       <BNavbarNav class="ms-auto mb-2 mb-lg-0">
-        <LocaleChanger />
+        <LanguageSelector />
         <ColorModeSwitcher />
       </BNavbarNav>
     </BCollapse>
