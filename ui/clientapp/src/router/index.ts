@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import DashboardView from '../views/DashboardView.vue'
-import EditMonthView from '../views/EditMonthView.vue'
-import SettingsView from '@/views/SettingsView.vue'
+import Dashboard from '../views/Dashboard.vue'
+import EditMonth from '../views/EditMonth.vue'
+import Settings from '@/views/Settings.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -9,17 +9,17 @@ const router = createRouter({
     {
       path: '/',
       name: 'Dashboard',
-      component: DashboardView
+      component: Dashboard
     },
     {
       path: '/editMonth',
       name: 'Edit month',
-      component: EditMonthView
+      component: EditMonth
     },
     {
       path: '/settings',
       name: 'Settings',
-      component: SettingsView
+      component: Settings
     }
   ]
 })
