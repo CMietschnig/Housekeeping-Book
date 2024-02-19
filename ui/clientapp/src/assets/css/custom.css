@@ -12028,7 +12028,7 @@ textarea.form-control-lg {
 }
 
 .editable-number-input .number {
-  min-width: 11.25rem;
+  min-width: 9rem;
 }
 .editable-number-input .hide {
   opacity: 0.2;
@@ -12041,6 +12041,7 @@ textarea.form-control-lg {
 }
 .editable-number-input .update-input-field,
 .editable-number-input .add-input-field {
+  width: 9rem;
   border-top: none;
   border-right: none;
   border-left: none;

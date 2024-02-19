@@ -31,7 +31,7 @@
 // editable number input component
 .editable-number-input {
   .number {
-    min-width: 11.25rem;
+    min-width: 9rem;
   }
   .hide {
     opacity: 0.2;
@@ -45,6 +45,7 @@
 
   .update-input-field,
   .add-input-field {
+    width: 9rem;
     border-top: none;
     border-right: none;
     border-left: none;

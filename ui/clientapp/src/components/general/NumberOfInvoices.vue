@@ -16,9 +16,9 @@ const { t } = useI18n()
 <template>
   <div
     v-if="invoices.length > 0"
-    class="d-flex flex-column align-items-center align-items-sm-start pe-0 pe-sm-5 pb-4"
+    class="d-flex flex-column align-items-center align-items-md-start pe-0 pe-md-5 pb-4"
   >
     <span>{{ t('general.numberOfInvoices') }}</span>
-    <span class="ps-0 ps-sm-4">{{ invoices.length }} </span>
+    <span class="ps-0 ps-md-4">{{ invoices.length }} </span>
   </div>
 </template>

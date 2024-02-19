@@ -67,7 +67,7 @@ const addInput = () => {
       <!-- edit or delete number -->
       <div
         v-if="!isEditMode"
-        class="d-flex flex-wrap justify-content-center justify-content-sm-start align-items-center gap-3 edit-number"
+        class="d-flex flex-wrap justify-content-center justify-content-md-start align-items-center gap-3 edit-number"
       >
         <span class="number">{{ displayRoundedNumber ? number?.toFixed(2) : number }}</span>
         <div class="d-flex gap-2">
@@ -87,7 +87,7 @@ const addInput = () => {
       <!-- save number -->
       <div
         v-else
-        class="d-flex flex-wrap justify-content-center justify-content-sm-start align-items-center gap-3"
+        class="d-flex flex-wrap justify-content-center justify-content-md-start align-items-center gap-3"
       >
         <input
           :placeholder="placeholder"
@@ -109,7 +109,7 @@ const addInput = () => {
     <!-- create new number input -->
     <div
       v-else
-      class="d-flex flex-wrap justify-content-center justify-content-sm-start align-items-center gap-3 pb-4"
+      class="d-flex flex-wrap justify-content-center justify-content-md-start align-items-center gap-3 pb-4"
     >
       <input
         :placeholder="placeholder"

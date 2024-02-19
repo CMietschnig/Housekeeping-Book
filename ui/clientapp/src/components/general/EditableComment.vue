@@ -31,13 +31,13 @@ const saveComment = () => {
 
 <template>
   <div class="editable-comment">
-    <span class="d-flex justify-content-center justify-content-sm-start">{{
+    <span class="d-flex justify-content-center justify-content-md-start">{{
       t('general.comment')
     }}</span>
     <!-- open comment -->
     <div v-if="!isEditMode" class="no-edit-mode">
       <div
-        class="d-flex flex-column flex-sm-row justify-content-center justify-content-sm-start align-items-center align-items-sm-start gap-3"
+        class="d-flex flex-column flex-md-row justify-content-center justify-content-md-start align-items-center align-items-md-start gap-3"
       >
         <span v-if="!comment" class="no-comment p-4">{{ t('general.noCommentYet') }}</span>
         <span v-else class="comment p-4"> {{ comment }}</span>
@@ -51,7 +51,7 @@ const saveComment = () => {
     <!-- close comment -->
     <div
       v-else
-      class="d-flex flex-column flex-sm-row justify-content-center justify-content-sm-start align-items-center align-items-sm-start gap-3 edit-mode"
+      class="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start align-items-center align-items-sm-start gap-3 edit-mode"
     >
       <textarea
         name="comment"

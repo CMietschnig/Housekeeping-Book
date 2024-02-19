@@ -70,7 +70,7 @@ const updateYear = async (option: ISelectOption) => {
 <template>
   <div class="edit-month pt-5">
     <h1 class="pb-4 d-flex justify-content-center">{{ t('general.editMonth') }}</h1>
-    <div class="d-flex flex-column flex-sm-row pb-5 gap-4 gap-sm-5">
+    <div class="d-flex flex-column flex-md-row pb-5 gap-4 gap-md-5">
       <!-- month -->
       <SingleSelect
         :select-options="monthOptions"
@@ -80,7 +80,7 @@ const updateYear = async (option: ISelectOption) => {
       <!-- year -->
       <SingleSelect :select-options="yearOptions" :selected="year" @update-selected="updateYear" />
     </div>
-    <div class="d-flex flex-column flex-sm-row invoices pb-3 gap-5">
+    <div class="d-flex flex-column flex-md-row invoices pb-3 gap-5">
       <div class="pb-5">
         <!-- invoices count -->
         <NumberOfInvoices :invoices="invoices" />
@@ -88,7 +88,7 @@ const updateYear = async (option: ISelectOption) => {
         <EditableComment v-model:comment="comment" id="jannuary" @save-comment="updateComment" />
       </div>
 
-      <div>
+      <div class="px-0 px-sm-5 px-md-0 mx-0 mx-sm-5 mx-md-0">
         <!-- invoices -->
         <InvoicesPerMonthList
           :invoices="invoices"
