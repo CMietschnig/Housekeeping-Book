@@ -10,7 +10,6 @@ defineProps({
   }
 })
 
-// variables
 const { t } = useI18n()
 </script>
 

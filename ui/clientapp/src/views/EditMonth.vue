@@ -8,7 +8,6 @@ import useYearOptions from '@/composables/useYearOptions'
 import { ref, watch, onBeforeMount } from 'vue'
 import type { ISelectOption } from '@/interfaces/ISelectOption'
 
-//stores
 const invoiceStore = useInvoiceStore()
 const {
   getInvoices: invoices,
@@ -22,7 +21,6 @@ const {
   getContributionMembersCount: contributionMembers
 } = storeToRefs(settingsStore)
 
-// composables
 const { monthOptions, getTextByValue } = useMonthOptions()
 const { yearOptions } = useYearOptions()
 
@@ -32,7 +30,6 @@ onBeforeMount(() => {
   settingsStore.getSettingsById(1)
 })
 
-// variables
 const { t } = useI18n()
 var comment = ref(savedComment.value)
 // update comment because
@@ -41,7 +38,6 @@ watch(savedComment, (newComment) => {
   comment.value = newComment
 })
 
-// functions
 const deleteInvoice = async (id: number) => {
   await invoiceStore.deleteInvoiceById(id)
   await invoiceStore.getInvoicesPerMonthAndYear(month.value, year.value)

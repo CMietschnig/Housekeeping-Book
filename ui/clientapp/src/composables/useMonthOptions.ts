@@ -58,7 +58,9 @@ export default function useMonthOptions() {
   ])
 
   const getTextByValue = (value: number): string | undefined => {
-    const option: ISelectOption | undefined = monthOptions.value.find(option => option.value === value);
+    const option: ISelectOption | undefined = monthOptions.value.find(
+      (option) => option.value === value
+    )
 
     return option?.text.toString()
   }

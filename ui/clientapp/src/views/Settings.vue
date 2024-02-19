@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import useColorModes from '@/composables/useColorModes'
@@ -7,17 +8,14 @@ import { useSettingsStore } from '@/stores/useSettingsStore'
 import type { IUpdateSettings } from '@/interfaces/IUpdateSettings'
 import type { ISelectOption } from '@/interfaces/ISelectOption'
 
-// stores
 const settingsStore = useSettingsStore()
 const {
   getPreferredColorMode: savedPreferredColorMode,
   getContributionMembersCount: savedContributionMembersCount
 } = storeToRefs(settingsStore)
 
-//composables
 const { colorModes, getTextByValue } = useColorModes()
 
-// variables
 const settingsId: number = 1 // only one user so settingsId is hardcoded
 const { t } = useI18n()
 const contributionMembersCount = ref(savedContributionMembersCount.value)
@@ -35,7 +33,6 @@ watch(savedPreferredColorMode, (newMode) => {
   preferredColorMode.value = newMode
 })
 
-// functions
 const updateContributionMembersCount = async (value: { id: number; number: number }) => {
   const updateSettingsModel: IUpdateSettings = {
     SettingsId: value.id,

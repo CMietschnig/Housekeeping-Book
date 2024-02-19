@@ -26,8 +26,12 @@ const changeLocale = (newLocale: string) => {
     class="color-mode-switcher"
     menu-class="w-100"
   >
-    <BDropdownItem v-for="(lang, i) in langs" :key="`Lang${i}`" @click="changeLocale(lang.code)" variant="primary">{{
-      lang.text
-    }}</BDropdownItem>
+    <BDropdownItem
+      v-for="(lang, i) in langs"
+      :key="`Lang${i}`"
+      @click="changeLocale(lang.code)"
+      variant="primary"
+      >{{ lang.text }}</BDropdownItem
+    >
   </BDropdown>
 </template>

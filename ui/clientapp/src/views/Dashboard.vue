@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import { storeToRefs } from 'pinia'
@@ -8,14 +9,12 @@ import { onBeforeMount } from 'vue'
 import { months, monthCategories } from '@/constants/Months'
 import type { ISelectOption } from '@/interfaces/ISelectOption'
 
-//stores
 const settingsStore = useSettingsStore()
 const { getYear: year, getContributionMembersCount: contributionMembersCount } =
   storeToRefs(settingsStore)
 const invoiceStore = useInvoiceStore()
 const { getMonthTotals: monthTotals } = storeToRefs(invoiceStore)
 
-// composables
 const { yearOptions } = useYearOptions()
 
 onBeforeMount(() => {
@@ -23,10 +22,8 @@ onBeforeMount(() => {
   invoiceStore.getMonthTotalsForYear(year.value)
 })
 
-// variables
 const { t } = useI18n()
 
-// functions
 const updateYear = (option: ISelectOption) => {
   const year = option.value.toString()
   settingsStore.selectYear(year)

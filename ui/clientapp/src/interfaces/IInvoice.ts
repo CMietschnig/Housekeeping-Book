@@ -1,4 +1,4 @@
-import type { IStore } from "./IStore"
+import type { IStore } from './IStore'
 
 export interface IInvoice {
   InvoiceId: number

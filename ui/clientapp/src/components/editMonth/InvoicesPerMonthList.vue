@@ -12,7 +12,6 @@ defineProps({
 
 defineEmits(['deleteNumber', 'updateNumber', 'addNumber'])
 
-// variables
 const { t } = useI18n()
 const number = ref(null)
 </script>

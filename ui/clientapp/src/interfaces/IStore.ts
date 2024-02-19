@@ -1,6 +1,6 @@
 export interface IStore {
-    StoreId: number
-    StoreName: string
-    CreateTimestamp: Date
-    UpdateTimestamp: Date
+  StoreId: number
+  StoreName: string
+  CreateTimestamp: Date
+  UpdateTimestamp: Date
 }

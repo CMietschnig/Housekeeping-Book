@@ -16,12 +16,10 @@ const props = defineProps({
 
 const emit = defineEmits(['update:comment', 'saveComment'])
 
-// variables
 const { t } = useI18n()
 const isEditMode = ref(false)
 const inputValue = useVModel(props, 'comment', emit)
 
-// functions
 const editComment = () => {
   isEditMode.value = !isEditMode.value
 }
@@ -32,7 +30,9 @@ const saveComment = () => {
 </script>
 
 <template>
-  <span class="d-flex justify-content-center justify-content-sm-start">{{ t('general.comment') }}</span>
+  <span class="d-flex justify-content-center justify-content-sm-start">{{
+    t('general.comment')
+  }}</span>
   <!-- open comment -->
   <div v-if="!isEditMode" class="no-edit-mode">
     <div
@@ -70,7 +70,8 @@ const saveComment = () => {
 </template>
 
 <style scoped>
-.comment, .no-comment {
+.comment,
+.no-comment {
   max-width: 228px;
   border: 1px solid;
 }

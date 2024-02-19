@@ -17,7 +17,7 @@ export default function useColorModes() {
   ])
 
   const getTextByValue = (value: string): string | undefined => {
-    const mode: ISelectOption | undefined = colorModes.value.find(mode => mode.value === value);
+    const mode: ISelectOption | undefined = colorModes.value.find((mode) => mode.value === value)
 
     return mode?.text.toString()
   }

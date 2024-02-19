@@ -5,7 +5,7 @@ import '/src/assets/css/custom.css'
 import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
 import { createPinia } from 'pinia'
-import VueApexCharts from "vue3-apexcharts";
+import VueApexCharts from 'vue3-apexcharts'
 
 import App from './App.vue'
 import router from './router'

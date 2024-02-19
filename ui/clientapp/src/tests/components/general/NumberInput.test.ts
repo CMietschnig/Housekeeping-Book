@@ -323,7 +323,7 @@ describe('EditableNumberInput.vue', () => {
 
     // Act
     const number = wrapper.find('.number')
-    
+
     // Assert
     expect(number.text()).toBe('2.06')
   })
@@ -344,7 +344,7 @@ describe('EditableNumberInput.vue', () => {
 
     // Act
     const number = wrapper.find('.number')
-    
+
     // Assert
     expect(number.text()).toBe('2.00')
   })
@@ -365,7 +365,7 @@ describe('EditableNumberInput.vue', () => {
 
     // Act
     const number = wrapper.find('.number')
-    
+
     // Assert
     expect(number.text()).toBe('2')
   })

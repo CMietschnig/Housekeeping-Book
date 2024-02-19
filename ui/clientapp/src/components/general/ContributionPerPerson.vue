@@ -12,13 +12,18 @@ defineProps({
   }
 })
 
-// variables
 const { t } = useI18n()
 </script>
 
 <template>
   <div v-if="contributionMembers > 1" class="d-flex flex-column">
-    <span> {{ t('general.totalContributionPerPerson') }}<font-awesome-icon class="ps-2" icon="fa-solid fa-circle-info" v-b-tooltip.hover.top="t('general.perPersonSetting')" /></span>
+    <span>
+      {{ t('general.totalContributionPerPerson')
+      }}<font-awesome-icon
+        class="ps-2"
+        icon="fa-solid fa-circle-info"
+        v-b-tooltip.hover.top="t('general.perPersonSetting')"
+    /></span>
     <span class="fw-bold"> {{ (sum / contributionMembers).toFixed(2) }} €</span>
   </div>
 </template>

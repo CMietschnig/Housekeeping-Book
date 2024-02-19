@@ -7,9 +7,9 @@ defineProps({
     required: true
   },
   showText: {
-    type:Boolean,
+    type: Boolean,
     required: false,
-    default: false,
+    default: false
   },
   text: {
     type: String,
@@ -18,7 +18,6 @@ defineProps({
   }
 })
 
-// variables
 const { t } = useI18n()
 </script>
 

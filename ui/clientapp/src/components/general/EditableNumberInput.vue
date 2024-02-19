@@ -35,12 +35,10 @@ const props = defineProps({
 
 const emit = defineEmits(['update:number', 'deleteNumber', 'updateNumber', 'addNumber'])
 
-// variables
 const oldNumber = props.number
 const inputValue = useVModel(props, 'number', emit)
 const isEditMode = ref(false)
 
-// functions
 const editInput = () => {
   isEditMode.value = !isEditMode.value
 }
@@ -138,7 +136,6 @@ const addInput = () => {
   min-height: 38px;
 }
 .edit-number:hover .hide {
-  /*display: block; */
   opacity: 1;
 }
 </style>
