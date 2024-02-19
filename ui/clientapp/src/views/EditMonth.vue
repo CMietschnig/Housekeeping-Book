@@ -70,7 +70,7 @@ const updateYear = async (option: ISelectOption) => {
 <template>
   <div class="edit-month pt-5">
     <h1 class="pb-4 d-flex justify-content-center">{{ t('general.editMonth') }}</h1>
-    <div class="d-flex flex-column flex-md-row pb-5 gap-4 gap-md-5">
+    <div class="d-flex flex-column flex-md-row py-5 gap-4 gap-md-5">
       <!-- month -->
       <SingleSelect
         :select-options="monthOptions"

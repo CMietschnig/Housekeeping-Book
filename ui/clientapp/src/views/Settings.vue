@@ -56,7 +56,7 @@ const updateColorMode = async (option: ISelectOption) => {
 <template>
   <div class="pt-5">
     <h1 class="pb-4 d-flex justify-content-center">{{ t('general.settings') }}</h1>
-    <div class="d-flex flex-column flex-sm-row justify-content-center justify-content-sm-between align-items-center gap-4">
+    <div class="d-flex flex-column flex-sm-row justify-content-center justify-content-sm-between align-items-center gap-4 pt-5">
       <div>
         <span>{{ t('settings.contributionMembersCount') }}</span>
         <EditableNumberInput
