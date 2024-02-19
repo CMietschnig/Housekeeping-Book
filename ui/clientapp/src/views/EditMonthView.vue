@@ -103,7 +103,7 @@ const updateYear = async (option: ISelectOption) => {
         <!--sum  -->
         <MonthlySum :sum="sum" :show-text="false" />
         <div class="pt-4">
-          <SumPerContributionMember
+          <ContributionPerPerson
             v-if="sum !== undefined && sum > 0"
             :sum="sum"
             :contributionMembers="contributionMembers"

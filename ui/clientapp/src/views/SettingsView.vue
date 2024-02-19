@@ -62,7 +62,7 @@ const updateColorMode = async (option: ISelectOption) => {
     <div class="d-flex flex-wrap justify-content-between gap-4">
       <div>
         <span>{{ t('settings.contributionMembersCount') }}</span>
-        <NumberInput
+        <EditableNumberInput
           v-model:number="contributionMembersCount"
           :id="settingsId"
           :only-addable="false"

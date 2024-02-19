@@ -1,12 +1,12 @@
-import NumberInput from '@/components/general/NumberInput.vue'
+import EditableNumberInput from '@/components/general/EditableNumberInput.vue'
 import FontAwesomeIcon from '@/tests/fontAwesomeIcon.Mock'
 import { mount } from '@vue/test-utils'
 import { describe, it, expect } from 'vitest'
 
-describe('NumberInput.vue', () => {
+describe('EditableNumberInput.vue', () => {
   it('onlyAddable true -> should have only add input field and add button', () => {
     // Arrange
-    const wrapper = mount(NumberInput, {
+    const wrapper = mount(EditableNumberInput, {
       props: {
         onlyAddable: true,
         placeholder: 'placeholder',
@@ -41,7 +41,7 @@ describe('NumberInput.vue', () => {
   })
   it('onlyAddable false,  isEditMode true -> should have only update input field, update button and reset button', async () => {
     // Arrange
-    const wrapper = mount(NumberInput, {
+    const wrapper = mount(EditableNumberInput, {
       props: {
         onlyAddable: false,
         placeholder: 'placeholder',
@@ -81,7 +81,7 @@ describe('NumberInput.vue', () => {
   })
   it('onlyAddable false,  isEditMode false, canDelete true -> should have only invoice number, edit button and delete button', () => {
     // Arrange
-    const wrapper = mount(NumberInput, {
+    const wrapper = mount(EditableNumberInput, {
       props: {
         onlyAddable: false,
         placeholder: 'placeholder',
@@ -116,7 +116,7 @@ describe('NumberInput.vue', () => {
   })
   it('onlyAddable false,  isEditMode false, canDelete false -> should have only invoice number and edit button', () => {
     // Arrange
-    const wrapper = mount(NumberInput, {
+    const wrapper = mount(EditableNumberInput, {
       props: {
         onlyAddable: false,
         placeholder: 'placeholder',
@@ -152,7 +152,7 @@ describe('NumberInput.vue', () => {
   })
   it('should emit delete number', async () => {
     // Arrange
-    const wrapper = mount(NumberInput, {
+    const wrapper = mount(EditableNumberInput, {
       props: {
         onlyAddable: false,
         placeholder: 'placeholder',
@@ -174,7 +174,7 @@ describe('NumberInput.vue', () => {
   })
   it('should emit update number 2', async () => {
     // Arrange
-    const wrapper = mount(NumberInput, {
+    const wrapper = mount(EditableNumberInput, {
       props: {
         onlyAddable: false,
         placeholder: 'placeholder',
@@ -198,7 +198,7 @@ describe('NumberInput.vue', () => {
   })
   it('should emit add number 2', async () => {
     // Arrange
-    const wrapper = mount(NumberInput, {
+    const wrapper = mount(EditableNumberInput, {
       props: {
         onlyAddable: true,
         placeholder: 'placeholder',
@@ -220,7 +220,7 @@ describe('NumberInput.vue', () => {
   })
   it('should NOT emit add number when number is null', async () => {
     // Arrange
-    const wrapper = mount(NumberInput, {
+    const wrapper = mount(EditableNumberInput, {
       props: {
         onlyAddable: true,
         placeholder: 'placeholder',
@@ -241,7 +241,7 @@ describe('NumberInput.vue', () => {
   })
   it('should NOT emit update number when number is null', async () => {
     // Arrange
-    const wrapper = mount(NumberInput, {
+    const wrapper = mount(EditableNumberInput, {
       props: {
         onlyAddable: false,
         placeholder: 'placeholder',
@@ -264,7 +264,7 @@ describe('NumberInput.vue', () => {
   })
   it('should NOT emit add number when number is 0', async () => {
     // Arrange
-    const wrapper = mount(NumberInput, {
+    const wrapper = mount(EditableNumberInput, {
       props: {
         onlyAddable: true,
         placeholder: 'placeholder',
@@ -285,7 +285,7 @@ describe('NumberInput.vue', () => {
   })
   it('should NOT emit update number when number is 0', async () => {
     // Arrange
-    const wrapper = mount(NumberInput, {
+    const wrapper = mount(EditableNumberInput, {
       props: {
         onlyAddable: false,
         placeholder: 'placeholder',
@@ -308,7 +308,7 @@ describe('NumberInput.vue', () => {
   })
   it('should display number rounded', async () => {
     // Arrange
-    const wrapper = mount(NumberInput, {
+    const wrapper = mount(EditableNumberInput, {
       props: {
         onlyAddable: false,
         placeholder: 'placeholder',
@@ -329,7 +329,7 @@ describe('NumberInput.vue', () => {
   })
   it('should display number with decimals', async () => {
     // Arrange
-    const wrapper = mount(NumberInput, {
+    const wrapper = mount(EditableNumberInput, {
       props: {
         onlyAddable: false,
         placeholder: 'placeholder',
@@ -350,7 +350,7 @@ describe('NumberInput.vue', () => {
   })
   it('should display number without decimals', async () => {
     // Arrange
-    const wrapper = mount(NumberInput, {
+    const wrapper = mount(EditableNumberInput, {
       props: {
         onlyAddable: false,
         placeholder: 'placeholder',

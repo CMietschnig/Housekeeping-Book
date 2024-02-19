@@ -20,7 +20,7 @@ const number = ref(null)
 <template>
   <div class="d-flex flex-column">
     <!-- Add new invoices -->
-    <NumberInput
+    <EditableNumberInput
       v-model:number="number"
       id="addNewInvoice"
       :placeholder="t('editMonth.invoiceTotal')"
@@ -35,7 +35,7 @@ const number = ref(null)
 
     <!-- list of invoices -->
     <div v-else v-for="(invoice, id) in invoices" :key="id" class="invoices-list">
-      <NumberInput
+      <EditableNumberInput
         v-model:number="invoice.Total"
         :id="invoice.InvoiceId"
         @delete-number="$emit('deleteNumber', $event)"
