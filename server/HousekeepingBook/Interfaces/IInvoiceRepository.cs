@@ -1,5 +1,4 @@
 ﻿using HousekeepingBook.Entities;
-using HousekeepingBook.Models;
 
 namespace HousekeepingBook.Interfaces
 {

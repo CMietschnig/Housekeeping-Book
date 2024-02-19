@@ -1,6 +1,4 @@
-﻿using HousekeepingBook.Entities;
-
-namespace HousekeepingBook.Interfaces
+﻿namespace HousekeepingBook.Interfaces
 {
     public interface IMonthlyInvoiceSummaryRepository
     {

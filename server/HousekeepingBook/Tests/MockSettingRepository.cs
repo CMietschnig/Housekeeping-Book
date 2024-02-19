@@ -1,5 +1,4 @@
 ﻿using HousekeepingBook.Entities;
-using HousekeepingBook.Entities.Enums;
 using HousekeepingBook.Interfaces;
 
 namespace HousekeepingBook.Tests

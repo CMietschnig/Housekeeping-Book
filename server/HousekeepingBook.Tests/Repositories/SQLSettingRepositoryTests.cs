@@ -1,7 +1,6 @@
 ﻿using HousekeepingBook.DbContexts;
 using HousekeepingBook.Entities;
 using Microsoft.EntityFrameworkCore;
-using HousekeepingBook.Entities.Enums;
 using HousekeepingBook.Repositories;
 
 namespace HousekeepingBook.Tests.Repositories

@@ -1,7 +1,6 @@
 ﻿using HousekeepingBook.DbContexts;
 using HousekeepingBook.Entities;
 using HousekeepingBook.Interfaces;
-using HousekeepingBook.Models;
 
 namespace HousekeepingBook.Repositories
 {

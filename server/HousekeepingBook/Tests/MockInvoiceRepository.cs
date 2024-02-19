@@ -1,6 +1,5 @@
 ﻿using HousekeepingBook.Entities;
 using HousekeepingBook.Interfaces;
-using HousekeepingBook.Models;
 
 namespace HousekeepingBook.Tests
 {
@@ -18,7 +17,6 @@ namespace HousekeepingBook.Tests
             };
         }
 
-        // create a seperate IMonthlyInvoiceSummaryRepository and change the service
         public bool AddInvoiceToMonthAndYear(Invoice model)
         {
             throw new NotImplementedException();

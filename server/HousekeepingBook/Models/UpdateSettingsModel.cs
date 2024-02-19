@@ -1,6 +1,4 @@
-﻿using HousekeepingBook.Entities.Enums;
-
-namespace HousekeepingBook.Models
+﻿namespace HousekeepingBook.Models
 {
     public class UpdateSettingsModel
     {

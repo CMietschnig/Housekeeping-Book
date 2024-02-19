@@ -30,7 +30,6 @@ namespace HousekeepingBook.Repositories
                 Comment = "",
                 CreateTimestamp = DateTime.Now,
                 UpdateTimestamp = DateTime.Now,
-                //Invoices = null,
             };
 
             int affectedRows = 0;

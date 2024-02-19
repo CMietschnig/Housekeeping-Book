@@ -255,7 +255,7 @@ namespace HousekeepingBook.Tests.Controllers
             var model = new UpdateInvoiceByIdModel
             {
                 Id = 1,
-                invoiceTotal = 89.54
+                InvoiceTotal = 89.54
             };
 
             // Act
@@ -281,7 +281,7 @@ namespace HousekeepingBook.Tests.Controllers
             var model = new UpdateInvoiceByIdModel
             {
                 Id = 5,
-                invoiceTotal = 89.54
+                InvoiceTotal = 89.54
             };
 
             // Act
@@ -318,7 +318,7 @@ namespace HousekeepingBook.Tests.Controllers
             var model = new UpdateInvoiceByIdModel
             {
                 Id = 5,
-                invoiceTotal = 89.54
+                InvoiceTotal = 89.54
             };
 
             // Act
@@ -356,7 +356,7 @@ namespace HousekeepingBook.Tests.Controllers
             var model = new UpdateInvoiceByIdModel
             {
                 Id = 5,
-                invoiceTotal = 89.54
+                InvoiceTotal = 89.54
             };
 
             // Act

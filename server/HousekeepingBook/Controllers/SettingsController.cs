@@ -31,8 +31,6 @@ namespace HousekeepingBook.Controllers
             }
             catch (Exception ex)
             {
-                // Todo: add loggin for exeptions
-
                 return StatusCode(500, "Error occurred while executing GetSettingsById: " + ex.Message);
             }
         }
@@ -64,10 +62,7 @@ namespace HousekeepingBook.Controllers
             }
             catch (Exception ex)
             {
-                // Todo: add loggin for exeptions
-
                 return StatusCode(500, "Error occurred while executing UpdateSettingsById: " + ex.Message);
-
             }
         }
     }

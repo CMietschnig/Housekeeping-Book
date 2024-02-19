@@ -1,9 +1,7 @@
 ﻿using HousekeepingBook.Entities;
-using HousekeepingBook.Entities.Enums;
 using HousekeepingBook.Interfaces;
 using HousekeepingBook.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
 
 namespace HousekeepingBook.Controllers
 {
@@ -36,8 +34,6 @@ namespace HousekeepingBook.Controllers
             }
             catch (Exception ex)
             {
-                // Todo: add loggin for exeptions
-
                 return StatusCode(500, "Error occurred while executing GetInvoicesPerMonthAndYear: " + ex.Message);
             }
         }
@@ -59,8 +55,6 @@ namespace HousekeepingBook.Controllers
             }
             catch (Exception ex)
             {
-                // Todo: add loggin for exeptions
-
                 return StatusCode(500, "Error occurred while executing GetCommentPerMonthAndYear: " + ex.Message);
             }
         }
@@ -84,8 +78,6 @@ namespace HousekeepingBook.Controllers
             }
             catch (Exception ex)
             {
-                // Todo: add loggin for exeptions
-
                 return StatusCode(500, "Error occurred while executing GetMonthTotalsForYear: " + ex.Message);
             }
         }
@@ -107,7 +99,7 @@ namespace HousekeepingBook.Controllers
                     CreateTimestamp = DateTime.Now,
                     UpdateTimestamp = DateTime.Now,
                     MonthlyInvoiceSummaryId = id,
-                    Store = null // store hinzufügen
+                    Store = null // add store later on
                 };
 
                 bool invoiceAdded = _invoiceRepository.AddInvoiceToMonthAndYear(invoice);
@@ -116,8 +108,6 @@ namespace HousekeepingBook.Controllers
             }
             catch (Exception ex) 
             {
-                // Todo: add loggin for exeptions
-
                 return StatusCode(500, "Error occurred while executing AddInvoiceToMonthAndYear: " + ex.Message);
             }
         }
@@ -136,7 +126,7 @@ namespace HousekeepingBook.Controllers
                 Invoice newModel = new Invoice()
                 {
                     InvoiceId = model.Id,
-                    Total = model.invoiceTotal,
+                    Total = model.InvoiceTotal,
                     CreateTimestamp = oldInvoice.CreateTimestamp,
                     UpdateTimestamp = DateTime.Now,
                     MonthlyInvoiceSummaryId = oldInvoice.MonthlyInvoiceSummaryId,
@@ -150,10 +140,7 @@ namespace HousekeepingBook.Controllers
             }
             catch (Exception ex)
             {
-                // Todo: add loggin for exeptions
-
                 return StatusCode(500, "Error occurred while executing UpdateInvoiceById: " + ex.Message);
-
             }
         }
 
@@ -183,8 +170,6 @@ namespace HousekeepingBook.Controllers
             }
             catch (Exception ex)
             {
-                // Todo: add loggin for exeptions
-
                 return StatusCode(500, "Error occurred while executing UpdateCommentByMonthAndYear: " + ex.Message);
             }
         }
@@ -200,11 +185,8 @@ namespace HousekeepingBook.Controllers
             }
             catch(Exception ex)
             {
-                // Todo: add loggin for exeptions
-
                 return StatusCode(500, "Error occurred while executing DeleteInvoiceById: " + ex.Message);
             }
         }
-
     }
 }
