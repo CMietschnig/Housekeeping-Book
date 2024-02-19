@@ -30,7 +30,6 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SingleSelect: typeof import('./src/components/general/SingleSelect.vue')['default']
-    ToggelSwitch: typeof import('./src/components/general/ToggelSwitch.vue')['default']
   }
   export interface ComponentCustomProperties {
     vBTooltip: typeof import('bootstrap-vue-next')['vBTooltip']
