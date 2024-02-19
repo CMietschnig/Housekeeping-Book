@@ -16,8 +16,8 @@ declare module 'vue' {
     BNavbarNav: typeof import('bootstrap-vue-next')['BNavbarNav']
     BNavbarToggle: typeof import('bootstrap-vue-next')['BNavbarToggle']
     BNavItem: typeof import('bootstrap-vue-next')['BNavItem']
+    ChartComponent: typeof import('./src/components/dashboard/ChartComponent.vue')['default']
     ColorModeSwitcher: typeof import('./src/components/general/ColorModeSwitcher.vue')['default']
-    ColumnChart: typeof import('./src/components/dashboard/ColumnChart.vue')['default']
     EditableComment: typeof import('./src/components/general/EditableComment.vue')['default']
     InvoicesPerMonthList: typeof import('./src/components/editMonth/InvoicesPerMonthList.vue')['default']
     LocaleChanger: typeof import('./src/components/general/LocaleChanger.vue')['default']
@@ -33,7 +33,6 @@ declare module 'vue' {
     ToggelSwitch: typeof import('./src/components/general/ToggelSwitch.vue')['default']
   }
   export interface ComponentCustomProperties {
-    vBColorMode: typeof import('bootstrap-vue-next')['vBColorMode']
     vBTooltip: typeof import('bootstrap-vue-next')['vBTooltip']
   }
 }

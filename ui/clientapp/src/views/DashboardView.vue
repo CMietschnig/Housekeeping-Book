@@ -51,7 +51,7 @@ const updateYear = (option: ISelectOption) => {
       </div>
     </div>
     <div class="border">
-      <ColumnChart
+      <ChartComponent
         :series="monthTotals"
         :categories="monthCategories"
         :chart-title="t('dashboard.monthlyInvoices')"
