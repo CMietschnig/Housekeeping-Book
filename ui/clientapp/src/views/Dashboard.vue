@@ -32,7 +32,7 @@ const updateYear = (option: ISelectOption) => {
 </script>
 
 <template>
-  <div class="pt-5">
+  <div class="dashboard pt-5">
     <h1 class="pb-4 d-flex justify-content-center">{{ t('general.dashboard') }}</h1>
     <div class="d-flex flex-column flex-sm-row gap-4 gap-sm-5 pt-5 pb-3">
       <div class="col">
@@ -68,18 +68,3 @@ const updateYear = (option: ISelectOption) => {
     </div>
   </div>
 </template>
-
-<style lang="css">
-/* mobile */
-@media (max-width: 768px) {
-  .item {
-    width: 100%;
-  }
-}
-/* bigger than mobile */
-@media (min-width: 768px) {
-  .item {
-    width: calc(33.33% - 11px);
-  }
-}
-</style>

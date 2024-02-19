@@ -12013,40 +12013,66 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-.cursor-pointer {
-  cursor: pointer;
-}
-
 .nav-link {
   justify-content: center;
   display: flex;
 }
 
-.dropdown-item {
+.editable-comment .comment:focus-visible {
   outline: none;
 }
-
-input[type=number] {
-  -moz-appearance: textfield;
+.editable-comment .comment,
+.editable-comment .no-comment {
+  max-width: 228px;
+  border: 1px solid;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+.editable-number-input .number {
+  min-width: 11.25rem;
 }
-
-.update-input-field,
-.add-input-field {
+.editable-number-input .hide {
+  opacity: 0.2;
+}
+.editable-number-input .edit-number {
+  min-height: 38px;
+}
+.editable-number-input .edit-number:hover .hide {
+  opacity: 1;
+}
+.editable-number-input .update-input-field,
+.editable-number-input .add-input-field {
   border-top: none;
   border-right: none;
   border-left: none;
 }
-.update-input-field:focus-visible,
-.add-input-field:focus-visible {
+.editable-number-input .update-input-field:focus-visible,
+.editable-number-input .add-input-field:focus-visible {
   outline: none;
 }
+.editable-number-input input[type=number] {
+  -moz-appearance: textfield;
+}
+.editable-number-input input::-webkit-outer-spin-button,
+.editable-number-input input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
-.comment:focus-visible {
-  outline: none;
+.edit-month .invoices {
+  justify-content: space-around;
+}
+
+.dashboard {
+  /* mobile */
+  /* bigger than mobile */
+}
+@media (max-width: 768px) {
+  .dashboard .item {
+    width: 100%;
+  }
+}
+@media (min-width: 768px) {
+  .dashboard .item {
+    width: calc(33.33% - 11px);
+  }
 }

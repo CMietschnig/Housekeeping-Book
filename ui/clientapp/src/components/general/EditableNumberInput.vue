@@ -61,7 +61,7 @@ const addInput = () => {
 </script>
 
 <template>
-  <div class="pb-2">
+  <div class="editable-number-input pb-2">
     <!-- change existing number -->
     <div v-if="!onlyAddable">
       <!-- edit or delete number -->
@@ -124,18 +124,3 @@ const addInput = () => {
     </div>
   </div>
 </template>
-
-<style scoped>
-.number {
-  min-width: 11.25rem;
-}
-.hide {
-  opacity: 0.2;
-}
-.edit-number {
-  min-height: 38px;
-}
-.edit-number:hover .hide {
-  opacity: 1;
-}
-</style>

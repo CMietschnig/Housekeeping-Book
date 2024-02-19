@@ -68,7 +68,7 @@ const updateYear = async (option: ISelectOption) => {
 </script>
 
 <template>
-  <div class="pt-5">
+  <div class="edit-month pt-5">
     <h1 class="pb-4 d-flex justify-content-center">{{ t('general.editMonth') }}</h1>
     <div class="d-flex flex-column flex-sm-row pb-5 gap-4 gap-sm-5">
       <!-- month -->
@@ -109,9 +109,3 @@ const updateYear = async (option: ISelectOption) => {
     </div>
   </div>
 </template>
-
-<style scoped>
-.invoices {
-  justify-content: space-around;
-}
-</style>
