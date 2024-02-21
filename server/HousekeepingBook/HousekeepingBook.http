@@ -1,0 +1,6 @@
+@HousekeepingBook_HostAddress = http://localhost:5104
+
+GET {{HousekeepingBook_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

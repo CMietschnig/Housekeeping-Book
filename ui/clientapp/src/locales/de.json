@@ -1,0 +1,51 @@
+{
+  "general": {
+    "housekeepingBook": "Hauswirtschaftsbuch",
+    "menu": "Menü",
+    "dashboard": "Dashboard",
+    "settings": "Einstellungen",
+    "editMonth": "Monat bearbeiten",
+    "total": "Gesamt",
+    "perPerson": "Pro Person",
+    "january": "Jänner",
+    "february": "Feber",
+    "march": "März",
+    "april": "April",
+    "may": "Mai",
+    "june": "Juni",
+    "july": "Juli",
+    "august": "August",
+    "september": "September",
+    "october": "Oktober",
+    "november": "November",
+    "december": "Dezember",
+    "selectMonth": "-- Wählen Sie bitte einen Monat aus --",
+    "selectYear": "-- Wählen Sie bitte ein Jahr aus --",
+    "sum": "Summe",
+    "numberOfInvoices": "Anzahl der Rechnungen:",
+    "perPersonSetting": "Die Anzahl der Personen können unter Einstellungen geändert werden.",
+    "currrentMonth": "Aktueller Monat",
+    "noCommentYet": "Sie haben für diesen Monat noch keinen Kommentar hinterlassen.",
+    "comment": "Kommentar",
+    "totalContributionPerPerson": "Gesamtbeitrag pro Person",
+    "theme": "Farbschema",
+    "light": "Hell",
+    "dark": "Dunkel"
+  },
+  "editMonth": {
+    "invoiceTotal": "Rechnungssumme",
+    "noInvoicesCreatedYet": "Es wurden noch keine Rechnungssummen angelegt."
+  },
+  "settings": {
+    "contributionMembers": "Personen",
+    "contributionMembersCount": "Personenanzahl",
+    "currentSelectedMonth": "Aktuell eingestellter Monat",
+    "currentSelectedYear": "Aktuell eingestelltes Jahr",
+    "preferredColorMode": "Bevorzugtes Farbschema"
+  },
+  "dashboard": {
+    "monthlyInvoices": "Monatliche Ausgaben",
+    "monthlyAverage": "Monatsdurchschnitt",
+    "forTheSelectedYear": "Für das ausgewählte Jahr"
+  }
+}

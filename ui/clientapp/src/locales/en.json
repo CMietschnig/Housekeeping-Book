@@ -1,0 +1,51 @@
+{
+  "general": {
+    "housekeepingBook": "Housekeeping book",
+    "menu": "Menu",
+    "dashboard": "Dashboard",
+    "editMonth": "Edit month",
+    "settings": "Settings",
+    "total": "Total",
+    "perPerson": "Per person",
+    "january": "January",
+    "february": "February",
+    "march": "March",
+    "april": "April",
+    "may": "May",
+    "june": "June",
+    "july": "July",
+    "august": "August",
+    "september": "September",
+    "october": "October",
+    "november": "November",
+    "december": "December",
+    "selectMonth": "-- Please select a month --",
+    "selectYear": "-- Please select a year --",
+    "sum": "Sum",
+    "numberOfInvoices": "Number of invoices:",
+    "perPersonSetting": "The number of people can be changed under Settings.",
+    "currrentMonth": "Current month",
+    "noCommentYet": "You have not yet left a comment for this month.",
+    "comment": "Comment",
+    "totalContributionPerPerson": "Total contribution per person",
+    "theme": "Theme",
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "editMonth": {
+    "invoiceTotal": "Invoice total",
+    "noInvoicesCreatedYet": "No invoice totals have been created yet."
+  },
+  "settings": {
+    "contributionMembers": "Contribution members",
+    "contributionMembersCount": "Contribution members count",
+    "currentSelectedMonth": "Currently set month",
+    "currentSelectedYear": "Currently set year",
+    "preferredColorMode": "Preferred color mode"
+  },
+  "dashboard": {
+    "monthlyInvoices": "Monthly invoices",
+    "monthlyAverage": "Monthly average",
+    "forTheSelectedYear": "For the selected year"
+  }
+}

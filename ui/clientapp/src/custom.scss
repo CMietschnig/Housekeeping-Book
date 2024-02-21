@@ -1,0 +1,89 @@
+// declare color overrides here!!
+@import 'assets/scss/dark_mode.scss';
+@import 'assets/scss/light_mode.scss';
+
+// basic bootstrap import
+@import '../node_modules/bootstrap/scss/bootstrap';
+
+// add additional custom code
+
+// navbar
+.nav-link {
+  justify-content: center;
+  display: flex;
+}
+
+// editable comment component
+.editable-comment {
+  .comment {
+    &:focus-visible {
+      outline: none;
+    }
+  }
+
+  .comment,
+  .no-comment {
+    max-width: 228px;
+    border: 1px solid;
+  }
+}
+
+// editable number input component
+.editable-number-input {
+  .number {
+    min-width: 9rem;
+  }
+  .hide {
+    opacity: 0.2;
+  }
+  .edit-number {
+    min-height: 38px;
+  }
+  .edit-number:hover .hide {
+    opacity: 1;
+  }
+
+  .update-input-field,
+  .add-input-field {
+    width: 9rem;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+// edit month page
+.edit-month {
+  .invoices {
+    justify-content: space-around;
+  }
+}
+
+// dashboard page
+.dashboard {
+  /* mobile */
+  @media (max-width: 768px) {
+    .item {
+      width: 100%;
+    }
+  }
+  /* bigger than mobile */
+  @media (min-width: 768px) {
+    .item {
+      width: calc(33.33% - 11px);
+    }
+  }
+}
