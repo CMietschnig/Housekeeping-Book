@@ -44,6 +44,8 @@
     "preferredColorMode": "Bevorzugtes Farbschema"
   },
   "dashboard": {
-    "monthlyInvoices": "Monatliche Ausgaben"
+    "monthlyInvoices": "Monatliche Ausgaben",
+    "monthlyAverage": "Monatsdurchschnitt",
+    "forTheSelectedYear": "Für das ausgewählte Jahr"
   }
 }

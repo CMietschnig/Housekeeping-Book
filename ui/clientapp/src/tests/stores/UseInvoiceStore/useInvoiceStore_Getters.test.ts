@@ -13,6 +13,7 @@ describe('useInvoiceStore => getters, default state', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
   })
 
   it('useInvoiceStore => should return correct values for getters', () => {
@@ -25,5 +26,6 @@ describe('useInvoiceStore => getters, default state', () => {
     expect(sut.getMonthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.getComment).toEqual('')
     expect(sut.getMonthlySum).toEqual(0)
+    expect(sut.getAnnualMonthlyAverage).toEqual(0)
   })
 })

@@ -40,6 +40,7 @@ describe('useInvoiceStore => getInvoicesPerMonthAndYear', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
 
     // Act
     await sut.getInvoicesPerMonthAndYear(month, year)
@@ -50,6 +51,7 @@ describe('useInvoiceStore => getInvoicesPerMonthAndYear', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(102.54)
+    expect(sut.annualMonthlyAverage).toEqual(0)
 
     // Clean up after the test
     spyInvoiceApiService.mockRestore()
@@ -70,6 +72,7 @@ describe('useInvoiceStore => getInvoicesPerMonthAndYear', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
 
     // Act
     await sut.getInvoicesPerMonthAndYear(month, year)
@@ -80,6 +83,7 @@ describe('useInvoiceStore => getInvoicesPerMonthAndYear', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not get invoices per month and year 2 2024. The response is undefined.'
@@ -105,6 +109,7 @@ describe('useInvoiceStore => getInvoicesPerMonthAndYear', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
 
     // Act
     await sut.getInvoicesPerMonthAndYear(month, year)
@@ -116,6 +121,7 @@ describe('useInvoiceStore => getInvoicesPerMonthAndYear', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not get invoices per month and year 2 2024. Error: error'

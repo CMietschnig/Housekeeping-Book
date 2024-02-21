@@ -22,6 +22,7 @@ describe('useInvoiceStore => updateInvoiceById', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
 
     // Act
     await sut.updateInvoiceById(id, invoiceTotal)
@@ -32,6 +33,7 @@ describe('useInvoiceStore => updateInvoiceById', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith('updateInvoiceById was successful!')
 
@@ -55,6 +57,7 @@ describe('useInvoiceStore => updateInvoiceById', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
 
     // Act
     await sut.updateInvoiceById(id, invoiceTotal)
@@ -65,6 +68,7 @@ describe('useInvoiceStore => updateInvoiceById', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith('updateInvoiceById was successful!')
 
@@ -88,6 +92,7 @@ describe('useInvoiceStore => updateInvoiceById', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
 
     // Act
     await sut.updateInvoiceById(id, invoiceTotal)
@@ -98,6 +103,7 @@ describe('useInvoiceStore => updateInvoiceById', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not update invoice by id 3 with total 23.56. Status code: undefined'
@@ -123,6 +129,7 @@ describe('useInvoiceStore => updateInvoiceById', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
 
     // Act
     await sut.updateInvoiceById(id, invoiceTotal)
@@ -134,6 +141,7 @@ describe('useInvoiceStore => updateInvoiceById', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not update invoice by id 3 with total 23.56. Error: error'
@@ -159,6 +167,7 @@ describe('useInvoiceStore => updateInvoiceById', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
 
     // Act
     await sut.updateInvoiceById(id, invoiceTotal)
@@ -169,6 +178,7 @@ describe('useInvoiceStore => updateInvoiceById', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not update invoice by id 3 with total 23.56. Status code: 300'

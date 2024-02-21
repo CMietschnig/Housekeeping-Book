@@ -21,6 +21,7 @@ describe('useInvoiceStore => deleteInvoiceById', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
 
     // Act
     await sut.deleteInvoiceById(id)
@@ -31,6 +32,7 @@ describe('useInvoiceStore => deleteInvoiceById', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith('deleteInvoiceById was successful!')
 
@@ -54,6 +56,7 @@ describe('useInvoiceStore => deleteInvoiceById', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
 
     // Act
     await sut.deleteInvoiceById(id)
@@ -64,6 +67,7 @@ describe('useInvoiceStore => deleteInvoiceById', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith('deleteInvoiceById was successful!')
 
@@ -87,6 +91,7 @@ describe('useInvoiceStore => deleteInvoiceById', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
 
     // Act
     await sut.deleteInvoiceById(id)
@@ -97,6 +102,7 @@ describe('useInvoiceStore => deleteInvoiceById', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not delete invoice by id 3. Status code: undefined'
@@ -122,6 +128,7 @@ describe('useInvoiceStore => deleteInvoiceById', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
 
     // Act
     await sut.deleteInvoiceById(id)
@@ -133,6 +140,7 @@ describe('useInvoiceStore => deleteInvoiceById', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith('Could not delete invoice with id 3. Error: error')
 
@@ -156,6 +164,7 @@ describe('useInvoiceStore => deleteInvoiceById', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
 
     // Act
     await sut.deleteInvoiceById(id)
@@ -166,6 +175,7 @@ describe('useInvoiceStore => deleteInvoiceById', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not delete invoice by id 3. Status code: 300'

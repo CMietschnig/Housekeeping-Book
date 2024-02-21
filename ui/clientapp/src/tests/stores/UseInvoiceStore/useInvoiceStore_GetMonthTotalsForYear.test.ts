@@ -21,6 +21,7 @@ describe('useInvoiceStore => getMonthTotalsForYear', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
 
     // Act
     await sut.getMonthTotalsForYear(year)
@@ -31,6 +32,7 @@ describe('useInvoiceStore => getMonthTotalsForYear', () => {
     expect(sut.monthTotals).toEqual(monthTotals)
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(154.61)
 
     // Clean up after the test
     spyInvoiceApiService.mockRestore()
@@ -51,6 +53,7 @@ describe('useInvoiceStore => getMonthTotalsForYear', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
 
     // Act
     await sut.getMonthTotalsForYear(year)
@@ -61,6 +64,7 @@ describe('useInvoiceStore => getMonthTotalsForYear', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not get month totals for year 2024. The response is undefined.'
@@ -86,6 +90,7 @@ describe('useInvoiceStore => getMonthTotalsForYear', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
 
     // Act
     await sut.getMonthTotalsForYear(year)
@@ -97,6 +102,7 @@ describe('useInvoiceStore => getMonthTotalsForYear', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not get month totals for year 2024. Error: error'

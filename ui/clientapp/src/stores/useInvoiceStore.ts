@@ -7,13 +7,15 @@ export interface InvoiceStoreState {
   monthTotals: Array<number>
   comment: string
   monthlySum: number
+  annualMonthlyAverage: number
 }
 
 const DefaultInvoiceState: InvoiceStoreState = {
   invoices: [],
   monthTotals: [10, 20, 30, 40, 50],
   comment: '',
-  monthlySum: 0
+  monthlySum: 0,
+  annualMonthlyAverage: 0
 }
 
 export const useInvoiceStore = defineStore({
@@ -25,7 +27,8 @@ export const useInvoiceStore = defineStore({
     getInvoices: (state): Array<IInvoice> => state.invoices,
     getMonthTotals: (state): Array<number> => state.monthTotals,
     getComment: (state): string => state.comment,
-    getMonthlySum: (state): number => state.monthlySum
+    getMonthlySum: (state): number => state.monthlySum,
+    getAnnualMonthlyAverage: (state): number => state.annualMonthlyAverage
   },
   actions: {
     async getInvoicesPerMonthAndYear(month: number, year: string) {
@@ -186,8 +189,15 @@ export const useInvoiceStore = defineStore({
         const monthTotals = await InvoicesApiService.getMonthTotalsForYear(year)
 
         if (monthTotals) {
+          // filter the monthly totals for non-zero totals
+          const filledTotals = monthTotals.filter((total) => total > 0)
+          // calculate the sum of the values from the filledTotals array
+          const sum = filledTotals.reduce((acc, curr) => acc + curr, 0)
+          // calculate the average total for the filled months
+          const monthlyAverage = sum / filledTotals.length
+
           this.$patch((state) => {
-            state.monthTotals = monthTotals
+            ;(state.monthTotals = monthTotals), (state.annualMonthlyAverage = monthlyAverage)
           })
         } else {
           console.error(

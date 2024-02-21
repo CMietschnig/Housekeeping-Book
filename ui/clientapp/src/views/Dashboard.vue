@@ -13,7 +13,8 @@ const settingsStore = useSettingsStore()
 const { getYear: year, getContributionMembersCount: contributionMembersCount } =
   storeToRefs(settingsStore)
 const invoiceStore = useInvoiceStore()
-const { getMonthTotals: monthTotals } = storeToRefs(invoiceStore)
+const { getMonthTotals: monthTotals, getAnnualMonthlyAverage: annualMonthlyAverage } =
+  storeToRefs(invoiceStore)
 
 const { yearOptions } = useYearOptions()
 
@@ -34,7 +35,7 @@ const updateYear = (option: ISelectOption) => {
 <template>
   <div class="dashboard pt-5">
     <h1 class="pb-4 d-flex justify-content-center">{{ t('general.dashboard') }}</h1>
-    <div class="d-flex flex-column flex-sm-row gap-4 gap-sm-5 pt-5 pb-3">
+    <div class="d-flex flex-column flex-sm-row gap-4 gap-sm-5 pt-5 pb-0 pb-sm-3">
       <div class="col">
         <!-- year -->
         <SingleSelect
@@ -47,6 +48,12 @@ const updateYear = (option: ISelectOption) => {
         <!-- empty placeholder for now -->
       </div>
     </div>
+
+    <AnnualMonthlyAverage
+      :annual-monthly-average="annualMonthlyAverage"
+      :contribution-members="contributionMembersCount"
+    />
+
     <div class="border">
       <ChartComponent
         :series="monthTotals"

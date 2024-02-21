@@ -23,6 +23,7 @@ describe('useInvoiceStore => addInvoiceToMonthAndYear', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
 
     // Act
     await sut.addInvoiceToMonthAndYear(month, year, invoiceTotal)
@@ -33,6 +34,7 @@ describe('useInvoiceStore => addInvoiceToMonthAndYear', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith('addInvoiceToMonthAndYear was successful!')
 
@@ -56,6 +58,7 @@ describe('useInvoiceStore => addInvoiceToMonthAndYear', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
 
     // Act
     await sut.addInvoiceToMonthAndYear(month, year, invoiceTotal)
@@ -66,6 +69,7 @@ describe('useInvoiceStore => addInvoiceToMonthAndYear', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith('addInvoiceToMonthAndYear was successful!')
 
@@ -89,6 +93,7 @@ describe('useInvoiceStore => addInvoiceToMonthAndYear', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
 
     // Act
     await sut.addInvoiceToMonthAndYear(month, year, invoiceTotal)
@@ -99,6 +104,7 @@ describe('useInvoiceStore => addInvoiceToMonthAndYear', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not add invoice to month and year2 2024 with total 23.56. Status code: undefined'
@@ -124,6 +130,7 @@ describe('useInvoiceStore => addInvoiceToMonthAndYear', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
 
     // Act
     await sut.addInvoiceToMonthAndYear(month, year, invoiceTotal)
@@ -135,6 +142,7 @@ describe('useInvoiceStore => addInvoiceToMonthAndYear', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not add invoice to month and year 2 2024 with total 23.56. Error: error'
@@ -160,6 +168,7 @@ describe('useInvoiceStore => addInvoiceToMonthAndYear', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
 
     // Act
     await sut.addInvoiceToMonthAndYear(month, year, invoiceTotal)
@@ -170,6 +179,7 @@ describe('useInvoiceStore => addInvoiceToMonthAndYear', () => {
     expect(sut.monthTotals).toEqual([10, 20, 30, 40, 50])
     expect(sut.comment).toEqual('')
     expect(sut.monthlySum).toEqual(0)
+    expect(sut.annualMonthlyAverage).toEqual(0)
     expect(consoleMock).toHaveBeenCalledOnce()
     expect(consoleMock).toHaveBeenLastCalledWith(
       'Could not add invoice to month and year2 2024 with total 23.56. Status code: 300'

@@ -44,6 +44,8 @@
     "preferredColorMode": "Preferred color mode"
   },
   "dashboard": {
-    "monthlyInvoices": "Monthly invoices"
+    "monthlyInvoices": "Monthly invoices",
+    "monthlyAverage": "Monthly average",
+    "forTheSelectedYear": "For the selected year"
   }
 }
